@@ -130,6 +130,12 @@ public class MainActivity extends Activity {
       BitmapFactory.Options bmOptions = new BitmapFactory.Options();
       bmOptions.inJustDecodeBounds = true;
       BitmapFactory.decodeFile(currentImage.getPath(), bmOptions);
+      
+      /*
+       * int scaleFactor = calculateInSampleSize(bmOptions,
+       * imageView.getWidth(), imageView.getHeight());
+       */
+      
       /*
        * int photoW = bmOptions.outWidth; int photoH = bmOptions.outHeight; int
        * scaleFactor = Math.min(photoW / imageView.getWidth(), photoH /
@@ -152,9 +158,12 @@ public class MainActivity extends Activity {
       
       boolean sideways = rotation == 90 || rotation == 270;
       
-      int scaleFactor = bmOptions.inSampleSize = Math
-            .min(bmOptions.outWidth / imageView.getWidth(), bmOptions.outHeight
-                  / imageView.getHeight());
+      int vW = imageView.getWidth();
+      int vH = imageView.getHeight();
+      
+      int scaleFactor = bmOptions.inSampleSize = Math.max(bmOptions.outWidth
+            / vW, bmOptions.outHeight / vH);
+      
       Toast.makeText(this, "scale: " + scaleFactor, Toast.LENGTH_LONG).show();
       
       bmOptions.inJustDecodeBounds = false;
@@ -166,6 +175,7 @@ public class MainActivity extends Activity {
       
       Matrix matrix = new Matrix();
       matrix.preRotate(rotation);
+      
       bitMap = Bitmap.createBitmap(bitMap, 0, 0, bitMap.getWidth(),
             bitMap.getHeight(), matrix, true);
       
@@ -173,30 +183,6 @@ public class MainActivity extends Activity {
             / scaleFactor, bitMap.getHeight() / scaleFactor, false);
       
       imageView.setImageBitmap(bitMap);
-   }
-   
-   private static int calculateInSampleSize(BitmapFactory.Options options,
-         int reqWidth, int reqHeight) {
-      // Raw height and width of image
-      final int height = options.outHeight;
-      final int width = options.outWidth;
-      int inSampleSize = 1;
-      
-      if (height > reqHeight || width > reqWidth) {
-         
-         final int halfHeight = height / 2;
-         final int halfWidth = width / 2;
-         
-         // Calculate the largest inSampleSize value that is a power of 2 and
-         // keeps both
-         // height and width larger than the requested height and width.
-         while ((halfHeight / inSampleSize) > reqHeight
-               && (halfWidth / inSampleSize) > reqWidth) {
-            inSampleSize *= 2;
-         }
-      }
-      
-      return inSampleSize;
    }
    
    @Override
