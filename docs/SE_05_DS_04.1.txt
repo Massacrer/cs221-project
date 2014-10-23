@@ -31,7 +31,7 @@ Description of Activities:
 	
 	Recording
 		Context of a visit to a reserve. Contains a list of species found so far, and ability to add new ones (see Links To), delete and update existing records, and to end recording. Should also be able to manage existing recordings, in which case the functionality to add species and stop the recording should be disabled.
-		Required: list of species found so far, ability to edit or delete these species from the list, button to add new species to list (see Links To), ability to stop recording (should close activity, what should the user be taken to? Discuss)
+		Required: list of species found so far, ability to edit or delete these species from the list, button to add new species to list (see Links To), ability to stop recording (should close activity, what should the user be taken to? Recordings Management? Discuss)
 		Links to: Record Species (both for new species and update of existing - see Record Species)
 	
 	Record Species
