@@ -11,13 +11,14 @@ Activities required:
 	Recording
 	Record Species
 	Recordings Management
-	Synchronisation
+	Photo Picker
 
 Description of Activities:
 	Main
 		Main activity, reached on launch
-		Required: Logo (? discuss), buttons to provide links described below
-		Links to: New Recording, Recordings Management, Synchronisation, Settings
+		Required: Logo (? discuss), buttons to provide the following links:
+		New Recording, Continue Recording, Recordings Management, Settings
+		Links to: New Recording, Recording, Recordings Management, Settings
 	
 	Settings
 		Use Android-provided Settings infrastructure.
@@ -36,18 +37,18 @@ Description of Activities:
 	
 	Record Species
 		Details of a single species discovered in a Recording. See seqars 3.1.1 FR3, 4. Should have blank fields for a new Species, or contain existing data if a recorded species is being modified.
-		Required: Fields for entry of text data specified in FR3&4 (consider combo box / other convenient selection method for species name (FR3), drop-down or other for DAFOR rating), mechanism to capture and display photos for scene and specimen using device camera and Android operating system functionality (see note at bottom of document re: Android camera)
-		Links to: none
+		Required: Fields for entry of text data specified in FR3&4 (consider combo box / other convenient selection method for species name (FR3), drop-down or other for DAFOR rating), buttons to open photo picker for scene and specimen pictures.
+		Links to: Photo Picker
 	
 	Recordings Management
-		List of all recordings made on the device, with functionality to delete a recording, open it for editing (using Recording activity), or to synchronise it to the server (how should recordings be handled once uploaded? Editable, re-uploadable? Discuss).
-		Required: List of recordings, ability to delete, edit or sync individual recordings. Consider ability to select multiple recordings for deletion / syncing.
-		Links to: Synchronisation, Recording
+		List of all recordings made on the device, with functionality to delete a recording, open it for editing (using Recording activity), or to synchronise it to the server. Once a recording has been uploaded, it should be viewable, but not editable, on the device.
+		Required: List of recordings, ability to delete, edit or upload individual recordings. Allow for selection of multiple recordings for deletion / upload.
+		Links to: Recording
 	
-	Synchronisation
-		Interface to upload a recording (multiple?) to the server.
-		Required: information on recording(s) to be uploaded (list?), ability to enter authentication information as appropriate (see documentation on security and authentication) (could be done as a dialog, etc), button to start upload
-		Links to: none (consider ability to make last-minute edits to recordings, select recording to edit?)
+	Photo Picker
+		This activity will be accessed from Record Species, and will allow the user to select a picture for either the specimen or scene, or take one using the device camera (see note at bottom of document re: Android camera).
+		Required: displays selected picture (or none if none selected), buttons to select picture from device storage or take new picture
+		Links to: none
 	
 Note on Android camera functionality:
 	The observant reader will notice that I have not described an activity to take pictures or select existing ones from the device camera roll, as specified in seqars 3.1.1 FR4. This is because, on Android, an app is not expected to handle certain specialised tasks, such as taking pictures, by itself, unless that is it's primary purpose or it requires advanced functionality. The app should instead delegate that action to an app that is designed specifically for the purpose, in this case an existing Camera app on the device.

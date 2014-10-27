@@ -1,0 +1,11 @@
+Continue recording from main menu
+
+uploaded = view, not edit on device
+
+Image management activity from species recording - view current image fullscreen, discard, take new picture, select picture from device storage
+
+merge Sync activity into Recordings Management
+
+clarify multi-day recording with client
+
+TALK TO CLIENT RE: UI DESIGN
