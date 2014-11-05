@@ -6,7 +6,6 @@ RPSR Android app (RPSRrec) - UI design
 
 Activities required:
 	Main
-	Settings
 	New Recording
 	Recording
 	Record Species
@@ -18,12 +17,7 @@ Description of Activities:
 		Main activity, reached on launch
 		Required: Logo (? discuss), buttons to provide the following links:
 		New Recording, Continue Recording, Recordings Management, Settings
-		Links to: New Recording, Recording, Recordings Management, Settings
-	
-	Settings
-		Use Android-provided Settings infrastructure.
-		Required: Settings controls - user name, email, phone (for autofill), others as appropriate (discuss)
-		Links to: none
+		Links to: New Recording, Recording, Recordings Management
 	
 	New Recording
 		Prepares to start a new recording - gets site & user details (see seqars 3.1.1 FR1, 2). Passes this information to new Recording
@@ -51,5 +45,5 @@ Description of Activities:
 		Links to: none
 	
 Note on Android camera functionality:
-	The observant reader will notice that I have not described an activity to take pictures or select existing ones from the device camera roll, as specified in seqars 3.1.1 FR4. This is because, on Android, an app is not expected to handle certain specialised tasks, such as taking pictures, by itself, unless that is it's primary purpose or it requires advanced functionality. The app should instead delegate that action to an app that is designed specifically for the purpose, in this case an existing Camera app on the device.
+	The observant reader will notice that I have not described an activity to take pictures or select existing ones from the device camera roll, as specified in seqars 3.1.1 FR4. This is because, on Android, an app is not expected to handle certain specialised tasks, such as taking pictures, by itself, unless that is its primary purpose or it requires advanced functionality. The app should instead delegate that action to an app that is designed specifically for the purpose, in this case an existing Camera app on the device.
 	Our app should simply request that the operating system launch a Camera app for us, which can then be used to take a photo in the way the user is used to, and return it to our app for us to use. In a similar way, the operating system provides centralised management of multiple types of data, including images taken by the camera. It would be pointless for our app to reinvent the wheel when we can simply ask the device to display an image selection menu for us. (Implementation note: this will use a Content Resolver as provided by the operating system)

@@ -208,6 +208,7 @@ public class MainActivity_CameraTest extends Activity {
       menu.add(Menu.NONE, 44, 0, "New Recording");
       menu.add(Menu.NONE, 45, 0, "Recording");
       menu.add(Menu.NONE, 46, 0, "Record Species");
+      menu.add(Menu.NONE, 47, 0, "Photo Picker");
       return true;
    }
    
@@ -219,8 +220,10 @@ public class MainActivity_CameraTest extends Activity {
       int id = item.getItemId();
       Class clazz = null;
       switch (id) {
-         case R.id.action_settings:
-            return true;
+         case R.id.action_settings: {
+            clazz = SettingsActivity.class;
+            break;
+         }
          case 42: {
             clazz = RecordingManager.class;
             break;
@@ -239,6 +242,10 @@ public class MainActivity_CameraTest extends Activity {
          }
          case 46: {
             clazz = RecordSpeciesActivity.class;
+            break;
+         }
+         case 47: {
+            clazz = PhotoPickerActivity.class;
             break;
          }
       }
