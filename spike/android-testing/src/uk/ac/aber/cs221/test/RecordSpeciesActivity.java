@@ -14,10 +14,11 @@ public class RecordSpeciesActivity extends Activity {
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_record_species);
-      /*
-       * ((Spinner) findViewById(R.id.spinner1)) .setAdapter(new
-       * ArrayAdapter<String>(this, 0, new String[] { "D", "A", "F", "O", "R"
-       * }));
-       */
-   }   
+      
+      ((Spinner) findViewById(R.id.spinner1))
+            .setAdapter(new ArrayAdapter<String>(this,
+                  android.R.layout.simple_list_item_1, new String[] { "Dominant", "Abundant",
+                        "Frequent", "Occasional", "Rare" }));
+      
+   }
 }

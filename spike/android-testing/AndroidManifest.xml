@@ -45,6 +45,18 @@
             android:name=".RecordSpeciesActivity"
             android:label="@string/title_activity_record_species" >
         </activity>
+        <activity
+            android:name=".PhotoPickerActivity"
+            android:label="@string/title_activity_photo_picker" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.ac.aber.cs221.test.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

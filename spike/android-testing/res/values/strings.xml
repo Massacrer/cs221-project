@@ -9,5 +9,6 @@
     <string name="title_activity_new_recording">New Recording</string>
     <string name="title_activity_recording">Recording</string>
     <string name="title_activity_record_species">Record Species</string>
+    <string name="title_activity_photo_picker">Photo Picker</string>
 
 </resources>
