@@ -1,1 +1,13 @@
 https://rawgit.com/
+
+This is the prototype of the website.
+It contians VERY BASIC functionality.
+
+It serves more as a idea of the file structure.
+
+Things it currently includes:
+1. file structure.
+2. basic logging in
+3. all the pages.
+4. You can add unlimited species to the add page.
+5. you can enlarge an image on the plant page.
