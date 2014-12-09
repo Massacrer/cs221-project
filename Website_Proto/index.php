@@ -9,6 +9,8 @@
 
 <h1>Welcome to the plant proto type</h1>
 
+<em>username: jim lets you in.</em>
+
 <? require("./forms/login.php") ?>
 
 </body>
