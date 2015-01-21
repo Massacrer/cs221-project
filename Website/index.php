@@ -35,12 +35,25 @@ It contains the LOGIN form
 			<div class="row">
 				<div class="col-4"></div>
 				<div class="col-3">
+
 					<!-- LOGIN FORM -->
 					<form method="post" action="">
 						<table width="4">
 							<tr>
 								<td colspan="3">LOG IN</td>
 							</tr>
+							
+							<tr>
+								<td colspan="3">
+									<!-- RETURN FIELD -->
+									<?php  loginmessage(); ?>
+									<div id="message_after_login">
+										&nbsp;
+									</div>
+									<!-- END OF RETURN FIELD -->
+								</td>
+							</tr>
+							
 							<tr>
 								<td>Username</td>
 								<td>:</td>

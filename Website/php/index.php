@@ -16,7 +16,7 @@ if($_POST['submit']){
 
 
 
-$databasemessage = "";
+$databasemessage = "tsts";
 
 //This is the login function
 //True logs the user in
@@ -44,7 +44,7 @@ function logtheuserin(){
 //This function will return a message on a failed login
 // returns a string 
 function loginmessage(){
-	return $databasemessage;
+	echo "";
 }
 
 
