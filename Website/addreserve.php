@@ -1,7 +1,6 @@
 <!--
 Author: Katarzyna Turczynska
 This page is redirected to from the add reserve page.
-
 -->
 
 <!DOCTYPE html>

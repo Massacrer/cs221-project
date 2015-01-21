@@ -57,4 +57,4 @@ This file is part of the main 3 homepages of the website
 	</body>
 	<!-- END BODY -->
 
-</html>>
+</html>
