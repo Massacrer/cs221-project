@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 public class NewRecordingActivity extends Activity {
    
@@ -27,14 +27,14 @@ public class NewRecordingActivity extends Activity {
          public void onClick(View v) {
             Intent intent = new Intent(NewRecordingActivity.this,
                   RecordingActivity.class);
-            String userName = (String) ((TextView) findViewById(R.id.nr_Uname))
-                  .getText();
-            String siteName = (String) ((TextView) findViewById(R.id.nr_SiteName))
-                  .getText();
-            String userNumber = (String) ((TextView) findViewById(R.id.nr_uNumber))
-                  .getText();
-            String userEmail = (String) ((TextView) findViewById(R.id.nr_uEmail))
-                  .getText();
+            String userName = ((EditText) findViewById(R.id.nr_Uname))
+                  .getText().toString();
+            String siteName = ((EditText) findViewById(R.id.nr_SiteName))
+                  .getText().toString();
+            String userNumber = ((EditText) findViewById(R.id.nr_uNumber))
+                  .getText().toString();
+            String userEmail = ((EditText) findViewById(R.id.nr_uEmail))
+                  .getText().toString();
             
             intent.putExtra("userName", userName);
             intent.putExtra("siteName", siteName);
