@@ -54,7 +54,7 @@ It contains the LOGIN form
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td><input name="submit" type="submit" value="Login" /></td>
+								<td><input name="submit" type="submit" id="submit" value="Login" /></td>
 							</tr>
 						</table>
 					</form>
@@ -66,7 +66,9 @@ It contains the LOGIN form
 				<div class="col-4"></div>
 			</div>
 			<!-- END LOGIN -->
-
+			
+			<a href="register.php">Register</a>
+			
 		</div>
 		<!-- END CONTAINER -->
 

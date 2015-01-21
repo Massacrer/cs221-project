@@ -43,12 +43,12 @@ For new users to register to the website
 							<tr>
 								<td>Password</td>
 								<td>:</td>
-								<td><input name="password" type="password" id="password" /></td>
+								<td><input name="password1" type="password" id="password1" /></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
 								<td>:</td>
-								<td><input name="password2" type="password" id="password" /></td>
+								<td><input name="password2" type="password" id="password2" /></td>
 							</tr>
 							<tr>
 								<td>First Name</td>
@@ -58,7 +58,7 @@ For new users to register to the website
 							<tr>
 								<td>Second Name</td>
 								<td>:</td>
-								<td><input name="sname" type="text" id="fname" /></td>
+								<td><input name="sname" type="text" id="sname" /></td>
 							</tr>
 							<tr>
 								<td>Phone Number</td>
@@ -68,12 +68,12 @@ For new users to register to the website
 							<tr>
 								<td>E-mail Address</td>
 								<td>:</td>
-								<td><input name="myemail" type="email" id="myemail"></td>
+								<td><input name="email" type="email" id="email"></td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td><input type="submit" name="submit" value="Register" /></td>
+								<td><input type="submit" name="submit" id="submit" value="Register" /></td>
 							</tr>
 						</table>
 					</form>
