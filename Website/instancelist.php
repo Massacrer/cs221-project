@@ -17,7 +17,7 @@ This file is part of the main 3 homepages of the website
 	<!-- PHP INCLUDE -->	
 	<?php
 		require('php/loggedin.php');
-		include("php/instancelist.php");
+		//include("php/instancelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 

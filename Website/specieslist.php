@@ -17,7 +17,7 @@ This file is part of the main 3 homepages of the website
 	<!-- PHP INCLUDE -->	
 	<?php
 		require('php/loggedin.php');
-		include("php/specieslist.php");
+		//include("php/specieslist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 

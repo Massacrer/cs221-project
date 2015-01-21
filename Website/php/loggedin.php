@@ -11,9 +11,7 @@ This form checks that they are logged in.
 
 		header('Location: ./index.php');
 
-		require("./forms/login.php");
-
-		die("Login Failure. <a href='./'> Login </a>");
+		die("Login Failure. <a href='../'> Login </a>");
 	}
 
 ?>

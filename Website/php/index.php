@@ -23,7 +23,7 @@ $loginmessage = '';
 //False means they did not login
 function logtheuserin(){
 	$username = $_POST['myusername'];
-	$password = $_POST['mypassword'];
+	$password = $_POST ['mypassword'];
 	
 	
 	// include database
@@ -31,7 +31,7 @@ function logtheuserin(){
 	//connect databse
 	
 	//lookforl ine with that username
-		session_start();
+	session_start();
 	$_SESSION['auth'] = 1;
 	
 	

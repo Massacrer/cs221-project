@@ -18,7 +18,7 @@ This page is redirected to from the add reserve page.
 	<!-- PHP INCLUDE -->
 	<?php 
 		require('php/loggedin.php');
-		include("php/addreserve.php");
+		//include("php/addreserve.php");
 	?>
 	<!-- END PHP INCLUDE -->
 

@@ -30,7 +30,7 @@ For new users to register to the website
 			<div class="row">
 				<div class="row">
 					<!-- REGISTER FORM -->
-					<form method="POST" action="register.php">
+					<form method="POST" action="">
 						<table>
 							<tr>
 								<td colspan="3">Register</td>

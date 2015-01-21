@@ -17,7 +17,7 @@ This file is part of the main 3 homepages of the website
 	<!-- PHP INCLUDE -->	
 	<?php
 		require('php/loggedin.php');
-		include("php/reservelist.php");
+		//include("php/reservelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 

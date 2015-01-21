@@ -14,5 +14,7 @@
 						<a href="addreserve.php">Add Reserve</a>
 					</div>
 				</div>
+				
+				<a href="php/logout.php">Logout</a>
 
 
