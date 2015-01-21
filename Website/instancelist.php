@@ -16,6 +16,7 @@ This file is part of the main 3 homepages of the website
 
 	<!-- PHP INCLUDE -->	
 	<?php
+		require('php/loggedin.php');
 		include("php/instancelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
@@ -29,17 +30,7 @@ This file is part of the main 3 homepages of the website
 		
 			<!-- NAV BAR -->
 			<nav>
-				<div class="row">
-					<div class="col-4">
-						<a href="reservelist.php">Reserve List</a>
-					</div>	
-					<div class="col-4">
-						<a href="userpage.php">User Page</a>
-					</div>
-					<div class="col-4">
-						<a href="addreserve.php">Add Reserve</a>
-					</div>
-				</div>
+				<?php include("navbar.php"); ?>
 			</nav>
 			<!-- END NAV BAR -->
 

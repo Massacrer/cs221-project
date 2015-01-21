@@ -31,9 +31,14 @@ function logtheuserin(){
 	//connect databse
 	
 	//lookforl ine with that username
+		session_start();
+	$_SESSION['auth'] = 1;
+	
 	
 	//get the details and see if the passwords match
+	header('Location: ./reservelist.php');
 	
+
 	
 	return true;
 

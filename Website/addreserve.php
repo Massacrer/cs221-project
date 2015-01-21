@@ -17,6 +17,7 @@ This page is redirected to from the add reserve page.
 
 	<!-- PHP INCLUDE -->
 	<?php 
+		require('php/loggedin.php');
 		include("php/addreserve.php");
 	?>
 	<!-- END PHP INCLUDE -->
@@ -30,9 +31,7 @@ This page is redirected to from the add reserve page.
 			<!-- NAV BAR -->
 			<div class="row"></div>
 				<nav>
-					<div class="col-4"><a href="reserveList.php">Reserve List</a> </div>
-					<div class="col-4"><a href="userPage.php">User Page</a> </div>
-					<div class="col-4"><a href="addReserve.php">Add Reserve</a></div>
+				<?php include("navbar.php"); ?>
 				</nav> 
 			</div>
 			<!-- END NAV BAR -->

@@ -6,7 +6,7 @@ This form checks that they are logged in.
 	
 	session_start();
 	
-	if($_SESSION['auth_level'] < 1){
+	if(!isset($_SESSION['auth']) || $_SESSION['auth'] < 1){
 	//not logged in
 
 		header('Location: ./index.php');
