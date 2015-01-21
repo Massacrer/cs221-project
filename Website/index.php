@@ -12,7 +12,7 @@ It contains the LOGIN form
 	<head>
 		<title>Reserve Plant Species Recording</title>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="css/master.css">
 	</head>
 	<!-- END HEAD -->
 
