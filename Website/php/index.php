@@ -16,14 +16,14 @@ if($_POST['submit']){
 
 
 
-$databasemessage = "tsts";
+$loginmessage = '';
 
 //This is the login function
 //True logs the user in
 //False means they did not login
 function logtheuserin(){
-	//$username = $_POST[];
-	//$password = $_POST[];
+	$username = $_POST['myusername'];
+	$password = $_POST['mypassword'];
 	
 	
 	// include database
@@ -35,16 +35,15 @@ function logtheuserin(){
 	//get the details and see if the passwords match
 	
 	
-	
-	
-	//returm true;
+	return true;
 
 }
 
 //This function will return a message on a failed login
 // returns a string 
 function loginmessage(){
-	echo "";
+	global $loginmessage;
+	echo ($loginmessage);
 }
 
 

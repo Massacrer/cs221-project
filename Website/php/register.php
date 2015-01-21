@@ -9,26 +9,31 @@ this form will be called when they attempt to register.
 //If submit
 //Then call the function
 if($_POST['submit']){
-
 	userregister();
+}
+
+$registermessage = '';
+
+//This function will return a message on a failed login
+// returns a string 
+function registermessage(){
+	global $registermessage;
+	echo $registermessage;
 }
 
 
 
 
 
-
-
-
 function userregister(){
-	//$username = $_POST[];
-	//$password = $_POST[];
-	//$fnams = $_POST[];
-	//$sname = $_POST[];
-	//$number = $_POST[];
-	//$email = $_POST[];
+	$username = $_POST['username'];
+	$password = $_POST['password1'];
+	$password = $_POST['password2'];
+	$fnams = $_POST['fname'];
+	$sname = $_POST['sname'];
+	$number = $_POST['phone'];
+	$email = $_POST['email'];
 	
-
 
 
 }

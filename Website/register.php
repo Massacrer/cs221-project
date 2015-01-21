@@ -35,10 +35,18 @@ For new users to register to the website
 							<tr>
 								<td colspan="3">Register</td>
 							</tr>
+								<td colspan="3">
+									<!-- RETURN FIELD -->
+									<?php  registermessage(); ?>
+									<div id="message_after_register">
+										&nbsp;
+									</div>
+									<!-- END OF RETURN FIELD -->
+								</td>
 							<tr>
 								<td>Username</td>
 								<td>:</td>
-								<td><input name="username" type="text" id="fname" /></td>
+								<td><input name="username" type="text" id="username" /></td>
 							</tr>
 							<tr>
 								<td>Password</td>
