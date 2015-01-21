@@ -1,3 +1,9 @@
+<!-- 
+Author: Michael Higginbottom
+This is the main index page for the website.
+It contains the LOGIN form
+-->
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -9,6 +15,12 @@
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
 	<!-- END HEAD -->
+
+	<!-- PHP INCLUDE -->
+	<?php
+		include("php/index.php");
+	?>
+	<!-- END PHP INCLUDE -->
 
 	<!-- BODY -->
 	<body>
@@ -23,28 +35,30 @@
 			<div class="row">
 				<div class="col-4"></div>
 				<div class="col-3">
-					<!-- LOGIN TABLE -->
-					<table width="4">
-						<tr>
-							<td colspan="3">LOG IN</td>
-						</tr>
-						<tr>
-							<td>Username</td>
-							<td>:</td>
-							<td><input name="myusername" type="text" id="myusername" /></td>
-						</tr>
-						<tr>
-							<td>Password</td>
-							<td>:</td>
-							<td><input name="mypassword" type="password" id="mypassword" /></td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td><input name="submit" type="submit" value="Login" /></td>
-						</tr>
-					</table>
-					<!-- END LOGIN TABLE -->
+					<!-- LOGIN FORM -->
+					<form method="post" action="">
+						<table width="4">
+							<tr>
+								<td colspan="3">LOG IN</td>
+							</tr>
+							<tr>
+								<td>Username</td>
+								<td>:</td>
+								<td><input name="myusername" type="text" id="myusername" /></td>
+							</tr>
+							<tr>
+								<td>Password</td>
+								<td>:</td>
+								<td><input name="mypassword" type="password" id="mypassword" /></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><input name="submit" type="submit" value="Login" /></td>
+							</tr>
+						</table>
+					</form>
+					<!-- END LOGIN FORM -->
 				</div>
 				<div class="col-1">
 					<!-- IMAGE -->
