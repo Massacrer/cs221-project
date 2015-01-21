@@ -1,0 +1,1 @@
+This folder should contain documentation, including design documents and meeting minutes. New folders should be added as necessary to maintain a clean structure.

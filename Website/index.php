@@ -6,7 +6,7 @@
 	<head>
 		<title>Reserve Plant Species Recording</title>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="css/master.css">
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
 	<!-- END HEAD -->
 
