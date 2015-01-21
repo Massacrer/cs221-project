@@ -8,7 +8,7 @@ This file is part of the main 3 homepages of the website
 
 	<!-- HEAD -->
 	<head>
-		<title>Reserve List</title>
+		<title>Species List</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css">
 	</head>
@@ -16,7 +16,7 @@ This file is part of the main 3 homepages of the website
 
 	<!-- PHP INCLUDE -->	
 	<?php
-		include("php/reserveList.php");
+		include("php/specieslist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 

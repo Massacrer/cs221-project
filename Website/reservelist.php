@@ -16,7 +16,7 @@ This file is part of the main 3 homepages of the website
 
 	<!-- PHP INCLUDE -->	
 	<?php
-		include("php/reserveList.php");
+		include("php/reservelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 
