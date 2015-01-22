@@ -11,6 +11,7 @@ include 'ssbcrypt.php';
 //Then call the function
 if($_POST['submit']){
 	userregister();
+	echo "called function";
 }
 
 $registermessage = '';
@@ -31,7 +32,7 @@ function userregister(){
 	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
 	$username = mysqli_real_escape_string($con,$_POST['username']);
 	$password = mysqli_real_escape_string($con,$_POST['password']);
-	sechash();
+	$hash = password_hash($password, PASSWORD_DEFAULT);
 	$fname = mysqli_real_escape_string($con,$_POST['fname']);
 	$sname = mysqli_real_escape_string($con,$_POST['sname']);
 	$number = mysqli_real_escape_string($con,$_POST['phone']);
@@ -40,24 +41,26 @@ function userregister(){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 	else {
-		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email, Username) VALUES ('$fname', '$sname', '$hash', '$number', '$email', $username);"; 
+		
+		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email, Username) VALUES ('$fname', '$sname', '$hash', '$number', '$email', '$username');"; 
 		$result = mysqli_query($con, $query);
 		if(! $result) {
 			$result = 0;
-			$feedback = "Account creation failed.";
+			echo "Account creation failed.";
+			$query = "SELECT COUNT(*) FROM User WHERE Email='$email';";
+			$result = mysqli_query($con, $query);
+			if ($result == 1) {
+				echo "Account creation failed - email is already in use.";
+			}
 		}
 		else {
 			echo "Success";
+			header( 'Location: index.php' );	
 		}
 	}
 
 
 }
 
-function sechash() {
-//hashes the password for security
-	$hash = password_hash($password, PASSWORD_DEFAULT);
-	
-}
 
 ?>
