@@ -17,7 +17,6 @@
 				
 				<a href="php/logout.php">Logout</a>
 				
-				<a href="instancelist.php">Instance</a>
 				<a href="specieslist.php">Species</a>
 
 
