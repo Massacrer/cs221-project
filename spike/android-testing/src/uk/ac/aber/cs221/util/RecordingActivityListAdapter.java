@@ -5,94 +5,60 @@ import java.util.List;
 
 import uk.ac.aber.cs221.storage.Species;
 import uk.ac.aber.cs221.test.MainActivity;
+import uk.ac.aber.cs221.test.R;
+import uk.ac.aber.cs221.test.RecordingActivity;
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-public class RecordingActivityListAdapter implements ListAdapter {
-	
-	private final MainActivity mainActivity;
+public class RecordingActivityListAdapter extends BaseAdapter {
+
+	private final RecordingActivity recordingActivity;
 	private List <Species> speciesList;
 
-	
+
 	Calendar calendar = Calendar.getInstance();
-	
-   @Override
-   public void registerDataSetObserver(DataSetObserver observer) {
-      // TODO Auto-generated method stub
-      
-   }
 
-   @Override
-   public void unregisterDataSetObserver(DataSetObserver observer) {
-      // TODO Auto-generated method stub
-      
-   }
+	public RecordingActivityListAdapter (RecordingActivity context) {
+		this.recordingActivity=context;
+	}
 
-   @Override
-   public int getCount() {
-      // TODO Auto-generated method stub
-      return 0;
-   }
+	@Override
+	public int getCount() {
+		if (speciesList==null) return 0;
+		else return speciesList.size();
+	}
 
-   @Override
-   public Object getItem(int position) {
-      // TODO Auto-generated method stub
-      return null;
-   }
+	@Override
+	public Object getItem(int position) {
+		return speciesList.get(position);
+	}
 
-   @Override
-   public long getItemId(int position) {
-      // TODO Auto-generated method stub
-      return 0;
-   }
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
 
-   @Override
-   public boolean hasStableIds() {
-      // TODO Auto-generated method stub
-      return false;
-   }
 
-   @Override
-   public View getView(int position, View convertView, ViewGroup parent) {
-      
-	   	class ViewHolder {
-	   		public TextView dayText, dateText, summaryText;
-	   		public ViewGroup colouredBoxHolder;
-	   	}
-      return null;
-   }
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {	
+		//may need changing
+		Species s = speciesList.get(position);
+		View v = recordingActivity.getLayoutInflater().inflate(R.id.ra_speciesList,null);		   	
+		return v;
+	}
 
-   @Override
-   public int getItemViewType(int position) {
-      // TODO Auto-generated method stub
-      return 0;
-   }
+	@Override
+	public boolean isEmpty() {
+		if (speciesList.size()<=0 || speciesList==null) {
+			return true;
+		}
+		else return false;
+	}
 
-   @Override
-   public int getViewTypeCount() {
-      // TODO Auto-generated method stub
-      return 0;
-   }
 
-   @Override
-   public boolean isEmpty() {
-      // TODO Auto-generated method stub
-      return false;
-   }
 
-   @Override
-   public boolean areAllItemsEnabled() {
-      // TODO Auto-generated method stub
-      return false;
-   }
-
-   @Override
-   public boolean isEnabled(int position) {
-      // TODO Auto-generated method stub
-      return false;
-   }
-   
 }

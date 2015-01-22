@@ -1,5 +1,6 @@
 package uk.ac.aber.cs221.test;
 
+import uk.ac.aber.cs221.util.RecordingActivityListAdapter;
 import uk.ac.aber.cs221.util.Util;
 import android.app.Activity;
 import android.os.Bundle;
@@ -21,11 +22,7 @@ public class RecordingActivity extends Activity {
    
    private void setupList() {
       ListView list = (ListView) findViewById(R.id.ra_speciesList);
-      list.setOnClickListener(new OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            
-         }
-      });
+      list.setAdapter(new RecordingActivityListAdapter(this));
    }
+   
 }
