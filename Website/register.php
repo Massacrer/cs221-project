@@ -28,6 +28,8 @@ For new users to register to the website
 		<!-- CONTAINER -->
 		<div class="container">
 			<div class="row">
+			<!-- Back button to Login -->
+				<a href="index.php">Back to Login</a>
 				<div class="row">
 					<!-- REGISTER FORM -->
 					<form method="POST" action="">
