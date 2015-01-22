@@ -37,7 +37,7 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section>
-				<div class="row">
+				<div class="row mainsection">
 				<table>
 					<tr>
 						<td><p class="heading">Species List</p></td>
@@ -54,4 +54,4 @@ This file is part of the main 3 homepages of the website
 	</body>
 	<!-- END BODY -->
 
-</html>>
+</html>
