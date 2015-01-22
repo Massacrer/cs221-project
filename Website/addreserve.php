@@ -12,6 +12,7 @@ This page is redirected to from the add reserve page.
 		<title>Add Reserve</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
+		<link rel="stylesheet" type"=text/css" href="css/register.css" />
 	</head>
 	<!-- END HEAD -->
 
@@ -37,7 +38,7 @@ This page is redirected to from the add reserve page.
 			<!-- END NAV BAR -->
 
 			<!-- MAIN SECTION -->
-			<div class="row">
+			<div class="row mainsection">
 				<form method="POST" action="">
 					<table>
 						<tr> 

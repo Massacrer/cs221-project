@@ -12,7 +12,9 @@ For new users to register to the website
 	<head>
 		<title>Register</title>
 		<meta charset="UTF-8" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
+		<link rel="stylesheet" type="text/css" href="css/register.css" />
 	</head>
 	<!-- END HEAD -->
 
@@ -27,13 +29,18 @@ For new users to register to the website
 
 		<!-- CONTAINER -->
 		<div class="container">
-			<div class="row">
-				<div class="row">
+
+			<!-- SEPERATOR -->
+			<div class="row seperator"></div>
+			<!-- END SEPERATOR -->
+
+			<div class="row mainsection">
+				<div class="col-12 ">
 					<!-- REGISTER FORM -->
 					<form method="POST" action="">
 						<table>
 							<tr>
-								<td colspan="3">Register</td>
+								<td colspan="3"><p class="heading">Register</p></td>
 							</tr>
 								<td colspan="3">
 									<!-- RETURN FIELD -->
@@ -71,7 +78,7 @@ For new users to register to the website
 							<tr>
 								<td>Phone Number</td>
 								<td>:</td>
-								<td><input name="phone" type="number" id="phone" /></td>
+								<td><input name="phone" type="text" id="phone" /></td>
 							</tr>
 							<tr>
 								<td>E-mail Address</td>

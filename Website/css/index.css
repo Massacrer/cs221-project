@@ -1,0 +1,20 @@
+body {
+	font-family: "Lato", "Calibri", Tahoma, sans-serif;
+}
+
+.row {
+	padding-top: 100px;
+}
+
+.heading {
+	font-size: 4em;
+	font-weight: bold;
+}
+
+table {
+	margin: auto;
+}
+
+td {
+	padding: 7px;
+}

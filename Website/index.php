@@ -12,7 +12,9 @@ It contains the LOGIN form
 	<head>
 		<title>Reserve Plant Species Recording</title>
 		<meta charset="UTF-8" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 		<link rel="stylesheet" type="text/css" href="css/master.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
 	</head>
 	<!-- END HEAD -->
 
@@ -28,9 +30,6 @@ It contains the LOGIN form
 		<!-- CONTAINER -->
 		<div class="container">
 
-		<div class="row">
-			<div class="col-12"></div>
-		</div>
 			<!-- LOGIN -->
 			<div class="row">
 				<div class="col-4"></div>
@@ -40,7 +39,7 @@ It contains the LOGIN form
 					<form method="post" action="">
 						<table width="4">
 							<tr>
-								<td colspan="3">LOG IN</td>
+								<td colspan="3" class="heading">LOG IN</td>
 							</tr>
 							
 							<tr>
@@ -51,13 +50,15 @@ It contains the LOGIN form
 										&nbsp;
 									</div>
 									<!-- END OF RETURN FIELD -->
+									
 								</td>
 							</tr>
-							
+
 							<tr>
 								<td>Username</td>
 								<td>:</td>
 								<td><input name="myusername" type="text" id="myusername" /></td>
+
 							</tr>
 							<tr>
 								<td>Password</td>
@@ -67,20 +68,18 @@ It contains the LOGIN form
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td><input name="submit" type="submit" id="submit" value="Login" /></td>
+								<td><input name="submit" type="submit" id="submit" value="Login" />&nbsp;Or <a href="register.php">Register</a></td>
 							</tr>
 						</table>
 					</form>
 					<!-- END LOGIN FORM -->
 				</div>
 				<div class="col-1">
-					<!-- IMAGE -->
+					<img src="res/logo.png" />
 				</div>
 				<div class="col-4"></div>
 			</div>
 			<!-- END LOGIN -->
-			
-			<a href="register.php">Register</a>
 			
 		</div>
 		<!-- END CONTAINER -->
