@@ -39,14 +39,16 @@ It contains the LOGIN form
 		
 			<!-- LOGIN -->
 			<div class="row">
-				<div class="col-4"></div>
-				<div class="col-3">
+				<div class="col-3"></div>
+				<div class="col-6">
 
 					<!-- LOGIN FORM -->
 					<form method="post" action="">
 						<table width="4">
 							<tr>
 								<td colspan="3" class="heading">LOG IN</td>
+								<td rowspan="4" class="align-fix"><img src="res/logo.png" /></td>
+							</tr></td>
 							</tr>
 							
 							<tr>
@@ -81,7 +83,7 @@ It contains the LOGIN form
 					</form>
 					<!-- END LOGIN FORM -->
 				</div>
-				<div class="col-4"></div>
+				<div class="col-3"></div>
 			</div>
 			<!-- END LOGIN -->
 			
