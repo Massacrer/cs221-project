@@ -20,7 +20,7 @@ public class NewRecordingActivity extends Activity {
    }
    
    private void setupOnClickListener() {
-      Button button = (Button) findViewById(R.id.nr_StartButton);
+      Button button = (Button) findViewById(R.id.ma_StartButton);
       
       button.setOnClickListener(new OnClickListener() {
          @Override
