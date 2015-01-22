@@ -11,6 +11,7 @@ This file is part of the main 3 homepages of the website
 		<title>Reserve List</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css">
+		<link rel="stylesheet" type="text/css" href="css/instancelist.css" />
 	</head>
 	<!-- END HEAD -->
 
@@ -35,7 +36,10 @@ This file is part of the main 3 homepages of the website
 			<!-- END NAV BAR -->
 
 			<!-- MAIN SECTION -->
-			<section>
+			<section class="mainsection">
+				<div class="row">
+					<p class="heading">Instance List</p>
+				</div>
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
 				</div>
@@ -48,4 +52,4 @@ This file is part of the main 3 homepages of the website
 	</body>
 	<!-- END BODY -->
 
-</html>>
+</html>
