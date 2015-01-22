@@ -1,5 +1,8 @@
 body {
 	font-family: "Lato", "Calibri", Tahoma, sans-serif;
+	background-image: url("../res/ClearSwirls.png");
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .row {
@@ -18,6 +21,7 @@ table {
 td {
 	padding: 7px;
 }
+
 
 #plantimage{
 	position:absolute;
