@@ -25,7 +25,7 @@ This file is part of the main 3 homepages of the website
 
 	<!-- BODY -->
 	<body>
-
+	
 		<!-- CONTAINER -->
 		<div class="container">
 		
