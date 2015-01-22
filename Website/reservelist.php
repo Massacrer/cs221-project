@@ -35,7 +35,7 @@ This file is part of the main 3 homepages of the website
 			<!-- END NAV BAR -->
 
 			<!-- MAIN SECTION -->
-			<section>
+			<section class="mainsection">
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
 				</div>
