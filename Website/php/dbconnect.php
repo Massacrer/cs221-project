@@ -22,7 +22,9 @@ $con;
  }
  
  function closedatabase(){
+	global $con;
 	if($con) {mysqli_close($con);} 
  } 
  
+
  ?>

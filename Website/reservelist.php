@@ -39,7 +39,7 @@ This file is part of the main 3 homepages of the website
 			<section class="mainsection">
 			<table>
 				<tr>
-				<td><p class="heading">Reserve List</p></td>
+				<td><p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserve List"; }else{echo "Users List";} ?></p></td>
 				</tr>
 			</table>	
 				<div class="row">

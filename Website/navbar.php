@@ -14,7 +14,7 @@
 </div>
 <div class="col-2 listelement">
 <!-- TODO: ADD THE USERNAME AFTER THIS -->
-<a href="reservelist.php">USER PAGE</a>
+<a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>">USER PAGE</a>
 </div>
 <div class="col-2 listelement">
 <a href="addreserve.php">ADD RESERVE</a>
@@ -23,6 +23,5 @@
 <a href="php/logout.php">LOGOUT</a>
 </div>
 </div>
-<a href="specieslist.php">SPECIES</a>
 
   

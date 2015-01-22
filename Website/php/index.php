@@ -66,7 +66,7 @@ function logtheuserin(){
 				if (password_verify($password, $row[4])) {
 					session_start();
 					$_SESSION['auth'] = 1;
-					$_SESSION['user'] = $username;
+					$_SESSION['user'] = $row[0];
 					
 					header('Location: ./reservelist.php');
 				}

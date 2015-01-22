@@ -6,6 +6,13 @@
 	
 		$con = opendatabase();
 		$query = "SELECT * FROM Reserve"; 
+		
+		
+		if(isset($_GET['name'])){
+			$name = mysqli_real_escape_string($con, $_GET['name']);
+			$query = $query . " WHERE reserveUserid = '20'";		
+		}
+		
 		$result = mysqli_query($con, $query);
 	
 
@@ -20,7 +27,7 @@
 					<div class="row">
 						<div class="col-12">
 							<!-- GENERATED NAME HERE -->
-							<?php echo $row['1']; ?>
+							<?php echo "<a href='specieslist.php?id=" . $row['0'] . " '>" . $row['1'] . "</a>"; ?>
 						</div>
 					</div>
 					<div class="row">
