@@ -6,20 +6,20 @@
 				<link rel="stylesheet" type="text/css" href="css/navbar.css" />
 				<div class="row list">
 					<div class="col-3 listelement">
-						<a href="reservelist.php">Reserve List</a>
+						<a href="reservelist.php">RESERVE LIST</a>
 					</div>	
 					<div class="col-3 listelement">
 						<!-- TODO: ADD THE USERNAME AFTER THIS -->
-						<a href="reservelist.php">User Page</a>
+						<a href="reservelist.php">USER PAGE</a>
 					</div>
 					<div class="col-3 listelement">
-						<a href="addreserve.php">Add Reserve</a>
+						<a href="addreserve.php">ADD RESERVE</a>
 					</div>
 					<div class="col-3 listelement">
-						<a href="php/logout.php">Logout</a>
+						<a href="php/logout.php">LOGOUT</a>
 					</div>
 				</div>
 				
-				<a href="specieslist.php">Species</a>
+				<a href="specieslist.php">SPECIES</a>
 
 
