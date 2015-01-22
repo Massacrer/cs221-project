@@ -2,8 +2,8 @@
 //nav bar
 // Author: Niall
 -->
-<link rel="stylesheet" type="text/css" href="master.css" />
-<link rel="stylesheet" type="text/css" href="navbar.css" />
+<link rel="stylesheet" type="text/css" href="css/master.css" />
+<link rel="stylesheet" type="text/css" href="css/navbar.css" />
 <div class="row list">
 <div class="col-2 logo">
 <img src="logoNav.png">
