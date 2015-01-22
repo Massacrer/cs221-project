@@ -2,6 +2,7 @@
 //nav bar
 // Author: Niall
 -->
+				<link rel="stylesheet" type="text/css" css="css/navbar.css" />
 				<div class="row">
 					<div class="col-4">
 						<a href="reservelist.php">Reserve List</a>
