@@ -1,0 +1,27 @@
+ 
+body {
+background-color: #dddddd;
+font-family: "Lato", "Calibri", Tahoma, sans-serif;
+}
+.seperator {
+min-height: 50px;
+height: 50px;
+}
+.heading {
+font-size: 2em;
+font-weight: bold;
+}
+table {
+margin: auto;
+}
+td {
+padding: 10px;
+}
+.mainsection {
+padding: 20px;
+background-color: #ffffff;
+box-shadow: 0px 0px 10px #888888;
+border: 1px solid black;
+}
+
+ 
