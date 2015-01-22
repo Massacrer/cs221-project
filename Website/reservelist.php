@@ -37,6 +37,7 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section class="mainsection">
+				<p class="heading">Reserve List</p>
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
 				</div>
