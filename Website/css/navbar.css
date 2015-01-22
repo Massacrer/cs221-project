@@ -1,0 +1,11 @@
+.list {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.listelement {
+	border: 3px solid black;
+	text-align: center;
+	line-height: 200%;
+	font-size: 2em;
+}
