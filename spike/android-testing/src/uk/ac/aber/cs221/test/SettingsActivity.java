@@ -21,6 +21,8 @@ import android.support.v4.app.NavUtils;
 
 import java.util.List;
 
+import uk.ac.aber.cs221.util.Util;
+
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
  * handset devices, settings are presented as a single list. On tablets,
@@ -44,18 +46,7 @@ public class SettingsActivity extends PreferenceActivity {
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-      setupActionBar();
-   }
-   
-   /**
-    * Set up the {@link android.app.ActionBar}, if the API is available.
-    */
-   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-   private void setupActionBar() {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-         // Show the Up button in the action bar.
-         getActionBar().setDisplayHomeAsUpEnabled(true);
-      }
+      Util.setupActionBar(this);
    }
    
    @Override
