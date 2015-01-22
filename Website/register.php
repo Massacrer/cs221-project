@@ -30,12 +30,11 @@ For new users to register to the website
 		<!-- CONTAINER -->
 		<div class="container">
 
-			<!-- SEPERATOR -->
-			<div class="row seperator"></div>
-			<!-- END SEPERATOR -->
-
 			<div class="row mainsection">
 				<div class="col-12 ">
+			
+					<!-- Back button to Login -->
+					<a href="index.php">Back to Login</a>
 					<!-- REGISTER FORM -->
 					<form method="POST" action="">
 						<table>
