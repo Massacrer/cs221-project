@@ -1,5 +1,6 @@
 package uk.ac.aber.cs221.test;
 
+import uk.ac.aber.cs221.util.Util;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,5 +61,6 @@ public class MainActivity extends Activity {
 				}
 		});
 
+		Util.setupActionBar(this);
 	}
 }

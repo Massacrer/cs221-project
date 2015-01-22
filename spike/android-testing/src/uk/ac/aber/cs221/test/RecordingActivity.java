@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import uk.ac.aber.cs221.util.Util;
 
 public class RecordingActivity extends Activity {
-   
-   @Override
-   protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_recording);
-   }
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		Util.setupActionBar(this);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_recording);
+	}
 }
