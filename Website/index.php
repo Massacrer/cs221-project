@@ -15,6 +15,7 @@ It contains the LOGIN form
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 		<link rel="stylesheet" type="text/css" href="css/master.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript" src="js/checkLoginPassword.js">	</script>
 	</head>
 	<!-- END HEAD -->
 
@@ -43,7 +44,7 @@ It contains the LOGIN form
 				<div class="col-6">
 
 					<!-- LOGIN FORM -->
-					<form method="post" action="">
+					<form method="post" onsubmit="return checkLoginPassword();">
 						<table width="4">
 							<tr>
 								<td colspan="3" class="heading">LOG IN</td>
@@ -66,7 +67,7 @@ It contains the LOGIN form
 							<tr>
 								<td>Username</td>
 								<td>:</td>
-								<td><input name="myusername" type="text" id="myusername" /></td>
+								<td><input name="myusername" type="text" id="myusername"/></td>
 
 							</tr>
 							<tr>
