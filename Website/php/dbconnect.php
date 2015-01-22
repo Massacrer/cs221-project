@@ -11,4 +11,14 @@ Author: Niall
 $username = "nib28";
 $server = "db.dcs.aber.ac.uk";
  
+ function opendatabase(){
+	mysqli_connect();
+ 
+ 
+ }
+ 
+ function closedatabase(){
+	mysqli_close(); 
+ } 
+ 
  ?>

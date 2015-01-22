@@ -1,11 +1,12 @@
 <!--
-Author: Niall
+Authors: Niall, Cai
 This file is for the logging in
 They will run this script
 -->
 <?php
 
 include 'ssbcrypt.php';
+
 //if submit
 //call the methods
 if($_POST['submit']){
@@ -14,14 +15,11 @@ if($_POST['submit']){
 
 
 
-
-
-$loginmessage = '';
-
 //This is the login function
 //True logs the user in
 //False means they did not login
 function logtheuserin(){
+
 	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
 	$username = mysqli_real_escape_string($con,$_POST['myusername']);
 	$password = mysqli_real_escape_string($con,$_POST['mypassword']);
@@ -58,19 +56,7 @@ function logtheuserin(){
 	
 	
 		}
-	
-	return true;
 
 	}
 }
-
-//This function will return a message on a failed login
-// returns a string 
-function loginmessage(){
-	global $loginmessage;
-	echo ($loginmessage);
-}
-
-
-
 ?>

@@ -6,12 +6,14 @@ this form will be called when they attempt to register.
 -->
 <?php
 
+
 include 'ssbcrypt.php';
+
 //If submit
 //Then call the function
 if($_POST['submit']){
 	userregister();
-	echo "called function";
+
 }
 
 $registermessage = '';

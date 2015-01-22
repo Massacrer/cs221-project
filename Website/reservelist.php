@@ -11,6 +11,7 @@ This file is part of the main 3 homepages of the website
 		<title>Reserve List</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css">
+		<link rel="stylesheet" type="text/css" href="css/reservelist.css" />
 	</head>
 	<!-- END HEAD -->
 
@@ -36,6 +37,11 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section class="mainsection">
+			<table>
+				<tr>
+				<td><p class="heading">Reserve List</p></td>
+				</tr>
+			</table>	
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
 				</div>
