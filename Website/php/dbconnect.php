@@ -7,5 +7,6 @@ Author: Niall
  
  //connect to the database
  
+// Ill use my details
  
  ?>
