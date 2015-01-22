@@ -38,7 +38,11 @@ This file is part of the main 3 homepages of the website
 			<!-- MAIN SECTION -->
 			<section class="mainsection">
 				<div class="row">
-					<p class="heading">Instance List</p>
+					<table>
+				<tr>
+				<td><p class="heading">Instance List</p></td>
+				</tr>
+			</table>
 				</div>
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
