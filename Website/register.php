@@ -16,7 +16,7 @@ For new users to register to the website
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/register.css" />
 		
-		<script type="text/javascript" src="emailValidation.js">	</script>
+		<script type="text/javascript" src="js/emailValidation.js"></script>
 	</head>
 	<!-- END HEAD -->
 
@@ -38,7 +38,7 @@ For new users to register to the website
 					<!-- Back button to Login -->
 					<a href="index.php">Back to Login</a>
 					<!-- REGISTER FORM -->
-					<form method="POST" action="">
+					<form method="POST" onsubmit="return checkRegistration();">
 						<table>
 							<tr>
 								<td colspan="3"><p class="heading">Register</p></td>
@@ -54,7 +54,7 @@ For new users to register to the website
 							<tr>
 								<td>Username</td>
 								<td>:</td>
-								<td><input name="username" type="text" id="username" /></td>
+								<td><input name="username" type="text" id="username" required/></td>
 							</tr>
 							<tr>
 								<td>Password</td>
@@ -69,12 +69,12 @@ For new users to register to the website
 							<tr>
 								<td>First Name</td>
 								<td>:</td>
-								<td><input name="fname" type="text" id="fname" /></td>
+								<td><input name="fname" type="text" id="fname" required/></td>
 							</tr>
 							<tr>
 								<td>Second Name</td>
 								<td>:</td>
-								<td><input name="sname" type="text" id="sname" /></td>
+								<td><input name="sname" type="text" id="sname" required/></td>
 							</tr>
 							<tr>
 								<td>Phone Number</td>
@@ -84,15 +84,13 @@ For new users to register to the website
 							<tr>
 								<td>E-mail Address</td>
 								<td>:</td>
-								<td><input name="email" type="email" id="email" required></td>
-								<div id="error">
-										&nbsp;
-								</div>
+								<td><input name="email" type="text" id="email" ></td>
+								
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td><input type="submit" name="submit" id="submit" value="Register" onclick='checkEmail();'/></td>
+								<td><input type="submit" name="submit" id="submit" value="Register" /></td>
 								
 							</tr>
 						</table>
