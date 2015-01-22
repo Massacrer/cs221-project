@@ -6,7 +6,7 @@ function checkEmail() {
 			var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
 			if (!filter.test(eMail.value)) {
-			document.getElementById("message_after_register").innerHTML = "Incorrect Login Details";
+			document.getElementById("message_after_register").innerHTML = "Wrong Email Address";
 			//alert('Please provide a valid email address');
 			//email.focus;
 			return false;
