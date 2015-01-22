@@ -12,7 +12,7 @@ This page is redirected to from the add reserve page.
 		<title>Add Reserve</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
-		<link rel="stylesheet" type"=text/css" href="css/register.css" />
+		<link rel="stylesheet" type="text/css" href="css/register.css" />
 	</head>
 	<!-- END HEAD -->
 
@@ -30,7 +30,7 @@ This page is redirected to from the add reserve page.
 		<div class="container">
 
 			<!-- NAV BAR -->
-			<div class="row"></div>
+			<div class="row">
 				<nav>
 				<?php include("navbar.php"); ?>
 				</nav> 
