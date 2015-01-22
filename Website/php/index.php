@@ -53,10 +53,15 @@ function logtheuserin(){
 				}
 			}
 	
-	
+		
 	
 		}
 
 	}
+	
+}
+
+function loginmessage() {
+/**/
 }
 ?>
