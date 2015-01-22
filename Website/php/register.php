@@ -30,7 +30,12 @@ function registermessage(){
 
 
 function userregister(){
-	
+	 /*
+ 
+ Opens a connection to the database
+ sanitises the data inputs using the mySQLi escape string function
+ 
+ */
 	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
 	$username = mysqli_real_escape_string($con,$_POST['username']);
 	$password = mysqli_real_escape_string($con,$_POST['password']);
@@ -39,14 +44,16 @@ function userregister(){
 	$sname = mysqli_real_escape_string($con,$_POST['sname']);
 	$number = mysqli_real_escape_string($con,$_POST['phone']);
 	$email = mysqli_real_escape_string($con,$_POST['email']);
+	//checks if the connection succeeds
 	if (mysqli_connect_errno()) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 	else {
-		
+		// creates a query to register the user on the database
 		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email, Username) VALUES ('$fname', '$sname', '$hash', '$number', '$email', '$username');"; 
 		$result = mysqli_query($con, $query);
 		if(! $result) {
+		// checks if the user's email has already been registered
 			$result = 0;
 			echo "Account creation failed.";
 			$query = "SELECT COUNT(*) FROM User WHERE Email='$email';";
