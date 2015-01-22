@@ -5,18 +5,17 @@ They will run this script
 -->
 <?php
 
+include ('dbconnect.php');
 
 //if submit
 //call the methods
 if($_POST['submit']){
+	opendatabase();
 	logtheuserin();
+	closedatabase();
 }
 
 
-
-
-
-$loginmessage = '';
 
 //This is the login function
 //True logs the user in
@@ -31,24 +30,30 @@ function logtheuserin(){
 	//connect databse
 	
 	//lookforl ine with that username
-	session_start();
-	$_SESSION['auth'] = 1;
-	
-	
-	//get the details and see if the passwords match
-	header('Location: ./reservelist.php');
-	
 
 	
-	return true;
+	
+	//checks if the user has logged in successfully
+	//true logs the user in
+	//false they don't log in
+	if($username == "jim"){	
+		session_start();
+		$_SESSION['auth'] = 1;
+		header('Location: ./reservelist.php');
+		return true;
+	}else{
+		header('Location: ./index.php?attempt=1');
+		return false;
+	}
 
 }
 
 //This function will return a message on a failed login
 // returns a string 
 function loginmessage(){
-	global $loginmessage;
-	echo ($loginmessage);
+	if($_GET['attempt'] > 0){
+		echo ("Incorrect Login Details");
+	}
 }
 
 

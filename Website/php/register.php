@@ -6,10 +6,14 @@ this form will be called when they attempt to register.
 -->
 <?php
 
+include ('dbconnect.php');
+
 //If submit
 //Then call the function
 if($_POST['submit']){
+	opendatabase();
 	userregister();
+	closedatabase();
 }
 
 $registermessage = '';
