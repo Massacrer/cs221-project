@@ -1,12 +1,24 @@
 package uk.ac.aber.cs221.util;
 
+import java.util.Calendar;
+import java.util.List;
+
+import uk.ac.aber.cs221.storage.Species;
+import uk.ac.aber.cs221.test.MainActivity;
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 
 public class RecordingActivityListAdapter implements ListAdapter {
+	
+	private final MainActivity mainActivity;
+	private List <Species> speciesList;
 
+	
+	Calendar calendar = Calendar.getInstance();
+	
    @Override
    public void registerDataSetObserver(DataSetObserver observer) {
       // TODO Auto-generated method stub
@@ -45,7 +57,11 @@ public class RecordingActivityListAdapter implements ListAdapter {
 
    @Override
    public View getView(int position, View convertView, ViewGroup parent) {
-      // TODO Auto-generated method stub
+      
+	   	class ViewHolder {
+	   		public TextView dayText, dateText, summaryText;
+	   		public ViewGroup colouredBoxHolder;
+	   	}
       return null;
    }
 
