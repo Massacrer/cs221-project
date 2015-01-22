@@ -9,8 +9,8 @@ This page is redirected to from the add reserve page.
 	<head>
 		<title>Add Reserve</title>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="master.css" />
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="css/master.css" />
+		<link rel="stylesheet" type="text/css" href="css/addreserve.css" />
 	</head>
 	<!-- END HEAD -->
 	
