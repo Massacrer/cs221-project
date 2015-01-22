@@ -24,13 +24,9 @@ function logtheuserin(){
 	$username = $_POST['myusername'];
 	$password = $_POST ['mypassword'];
 	
+	//hash the paasword
 	
-	// include database
-	
-	//connect databse
-	
-	//lookforl ine with that username
-
+	//check against the database
 	
 	
 	//checks if the user has logged in successfully

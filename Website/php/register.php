@@ -1,12 +1,13 @@
 <!--
-Author: Niall
+Authors: Niall, Cai
 This is the screen the user will login to
 this form will be called when they attempt to register.
 
 -->
 <?php
 
-include ('dbconnect.php');
+
+include 'ssbcrypt.php';
 
 //If submit
 //Then call the function
@@ -30,16 +31,37 @@ function registermessage(){
 
 
 function userregister(){
-	$username = $_POST['username'];
-	$password = $_POST['password1'];
-	$password = $_POST['password2'];
-	$fnams = $_POST['fname'];
-	$sname = $_POST['sname'];
-	$number = $_POST['phone'];
-	$email = $_POST['email'];
 	
+	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
+	$username = mysqli_real_escape_string($con,$_POST['username']);
+	$password = mysqli_real_escape_string($con,$_POST['password']);
+	sechash();
+	$fname = mysqli_real_escape_string($con,$_POST['fname']);
+	$sname = mysqli_real_escape_string($con,$_POST['sname']);
+	$number = mysqli_real_escape_string($con,$_POST['phone']);
+	$email = mysqli_real_escape_string($con,$_POST['email']);
+	if (mysqli_connect_errno()) {
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	else {
+		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email, Username) VALUES ('$fname', '$sname', '$hash', '$number', '$email', $username);"; 
+		$result = mysqli_query($con, $query);
+		if(! $result) {
+			$result = 0;
+			$feedback = "Account creation failed.";
+		}
+		else {
+			echo "Success";
+		}
+	}
 
 
+}
+
+function sechash() {
+//hashes the password for security
+	$hash = password_hash($password, PASSWORD_DEFAULT);
+	
 }
 
 ?>

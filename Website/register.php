@@ -57,12 +57,12 @@ For new users to register to the website
 							<tr>
 								<td>Password</td>
 								<td>:</td>
-								<td><input name="password1" type="password" id="password1" /></td>
+								<td><input name="password" type="password" id="password" /></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
 								<td>:</td>
-								<td><input name="password2" type="password" id="password2" /></td>
+								<td><input name="passwordCOnfirm" type="password" id="passwordConfirm" /></td>
 							</tr>
 							<tr>
 								<td>First Name</td>
