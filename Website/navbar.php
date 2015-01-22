@@ -19,7 +19,3 @@
 						<a href="php/logout.php">LOGOUT</a>
 					</div>
 				</div>
-				
-				<a href="specieslist.php">SPECIES</a>
-
-
