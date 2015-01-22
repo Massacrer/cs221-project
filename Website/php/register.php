@@ -27,6 +27,7 @@ function registermessage(){
 
 
 function userregister(){
+	
 	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
 	$username = mysqli_real_escape_string($con,$_POST['username']);
 	$password = mysqli_real_escape_string($con,$_POST['password']);
@@ -39,8 +40,7 @@ function userregister(){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 	else {
-	echo $hash;
-		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email) VALUES ('$fname', '$sname', '$hash', '$number', '$email');"; 
+		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email, Username) VALUES ('$fname', '$sname', '$hash', '$number', '$email', $username);"; 
 		$result = mysqli_query($con, $query);
 		if(! $result) {
 			$result = 0;
