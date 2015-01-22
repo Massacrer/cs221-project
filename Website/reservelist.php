@@ -18,7 +18,7 @@ This file is part of the main 3 homepages of the website
 	<!-- PHP INCLUDE -->	
 	<?php
 		require('php/loggedin.php');
-		//include("php/reservelist.php");
+		include("php/reservelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 
@@ -44,6 +44,7 @@ This file is part of the main 3 homepages of the website
 			</table>	
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
+					<?php outputtable(); ?>
 				</div>
 			</section>
 			<!-- END MAIN SECTION -->

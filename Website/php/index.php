@@ -5,7 +5,7 @@ They will run this script
 -->
 <?php
 
-include 'ssbcrypt.php';
+require 'ssbcrypt.php';
 
 //if submit
 //call the methods
@@ -32,11 +32,13 @@ function logtheuserin(){
 		
 		if(! $result) {
 			echo "Could not retrieve result.";
+					header('Location: index.php?error=1');
 		}
 		else{
 			$row = mysqli_fetch_row($result);
 			if (!$row){ 
 				echo "Incorrect User/Password"; 
+					header('Location: index.php?error=1');
 			}
 			else{			
 				for ($i=0;$i<7;$i++) {
@@ -50,6 +52,7 @@ function logtheuserin(){
 				}
 				else {
 					echo "password didn't verify";
+					header('Location: index.php?error=1');
 				}
 			}
 	
@@ -63,5 +66,8 @@ function logtheuserin(){
 
 function loginmessage() {
 /**/
+	if(isset($_GET['error'])){
+		echo "Invalid User Details.";
+	}
 }
 ?>
