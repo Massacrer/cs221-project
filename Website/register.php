@@ -15,6 +15,8 @@ For new users to register to the website
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/register.css" />
+		
+		<script type="text/javascript" src="emailValidation.js">	</script>
 	</head>
 	<!-- END HEAD -->
 
@@ -77,17 +79,21 @@ For new users to register to the website
 							<tr>
 								<td>Phone Number</td>
 								<td>:</td>
-								<td><input name="phone" type="text" id="phone" /></td>
+								<td><input name="phone" type="text" id="phone" pattern="\d{5}-\d{3}-\d{3}|\d{11}|\d{4}-\d{4}-\d{3}-\d{3}|\d{14}" title='Example 0791-695-8912 or 0044-7916-958-912' required /></td>
 							</tr>
 							<tr>
 								<td>E-mail Address</td>
 								<td>:</td>
-								<td><input name="email" type="email" id="email"></td>
+								<td><input name="email" type="email" id="email" required></td>
+								<div id="error">
+										&nbsp;
+								</div>
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td><input type="submit" name="submit" id="submit" value="Register" /></td>
+								<td><input type="submit" name="submit" id="submit" value="Register" onclick='checkEmail();'/></td>
+								
 							</tr>
 						</table>
 					</form>

@@ -15,6 +15,7 @@ It contains the LOGIN form
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 		<link rel="stylesheet" type="text/css" href="css/master.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript" src="js/checkLoginPassword.js">	</script>
 	</head>
 	<!-- END HEAD -->
 
@@ -66,18 +67,18 @@ It contains the LOGIN form
 							<tr>
 								<td>Username</td>
 								<td>:</td>
-								<td><input name="myusername" type="text" id="myusername" /></td>
+								<td><input name="myusername" type="text" id="myusername"required/></td>
 
 							</tr>
 							<tr>
 								<td>Password</td>
 								<td>:</td>
-								<td><input name="mypassword" type="password" id="mypassword" /></td>
+								<td><input name="mypassword" type="password" id="mypassword" required /></td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-								<td><input name="submit" type="submit" id="submit" value="Login" />&nbsp;Or <a href="register.php">Register</a></td>
+								<td><input name="submit" type="submit" id="submit" value="Login" onclick='checkLoginPassword();' />&nbsp;Or <a href="register.php">Register</a></td>
 							</tr>
 						</table>
 					</form>
