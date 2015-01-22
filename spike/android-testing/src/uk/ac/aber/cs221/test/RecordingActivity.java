@@ -23,12 +23,6 @@ public class RecordingActivity extends Activity {
    private void setupList() {
       ListView list = (ListView) findViewById(R.id.ra_speciesList);
       list.setAdapter(new RecordingActivityListAdapter(this));
-      list.setOnClickListener(new OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            
-         }
-      });
    }
-     
+   
 }
