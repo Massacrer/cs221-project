@@ -27,14 +27,29 @@ function registermessage(){
 
 
 function userregister(){
-	$username = $_POST['username'];
-	$password = $_POST['password1'];
-	//$password = $_POST['password2']; redundant
-	$fnams = $_POST['fname'];
-	$sname = $_POST['sname'];
-	$number = $_POST['phone'];
-	$email = $_POST['email'];
-	
+	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
+	$username = mysqli_real_escape_string($con,$_POST['username']);
+	$password = mysqli_real_escape_string($con,$_POST['password']);
+	sechash();
+	$fname = mysqli_real_escape_string($con,$_POST['fname']);
+	$sname = mysqli_real_escape_string($con,$_POST['sname']);
+	$number = mysqli_real_escape_string($con,$_POST['phone']);
+	$email = mysqli_real_escape_string($con,$_POST['email']);
+	if (mysqli_connect_errno()) {
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	else {
+	echo $hash;
+		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email) VALUES ('$fname', '$sname', '$hash', '$number', '$email');"; 
+		$result = mysqli_query($con, $query);
+		if(! $result) {
+			$result = 0;
+			$feedback = "Account creation failed.";
+		}
+		else {
+			echo "Success";
+		}
+	}
 
 
 }
@@ -42,6 +57,7 @@ function userregister(){
 function sechash() {
 //hashes the password for security
 	$hash = password_hash($password, PASSWORD_DEFAULT);
+	
 }
 
 ?>
