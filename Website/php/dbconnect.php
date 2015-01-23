@@ -26,5 +26,18 @@ $con;
 	if($con) {mysqli_close($con);} 
  } 
  
-
+function getnamefromid($id){
+	$con = opendatabase();
+	$id = mysqli_real_escape_string($con, $id);
+	$query = "SELECT Username FROM User WHERE ID = '". $id ."' LIMIT 1";
+	
+	$result = mysqli_query($con, $query);
+		
+	while ($row=mysqli_fetch_row($result)){
+		return $row['0'];
+	}
+	
+	
+	closedatabase();
+}
  ?>

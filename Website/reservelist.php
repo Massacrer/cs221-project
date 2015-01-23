@@ -12,6 +12,8 @@ This file is part of the main 3 homepages of the website
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css">
 		<link rel="stylesheet" type="text/css" href="css/reservelist.css" />
+		
+		<script type="text/javascript" src="js/reservelist.js"></script>
 	</head>
 	<!-- END HEAD -->
 
@@ -39,7 +41,7 @@ This file is part of the main 3 homepages of the website
 			<section class="mainsection">
 			<table>
 				<tr>
-				<td><p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserve List"; }else{echo "Users List";} ?></p></td>
+				<td><p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves";} ?></p></td>
 				</tr>
 			</table>	
 				<div class="row">

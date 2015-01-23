@@ -5,12 +5,12 @@
 	function outputtable(){
 	
 		$con = opendatabase();
-		$query = "SELECT * FROM Reserve"; 
+		$query = "SELECT * FROM Reserve WHERE reservehidden = '0'"; 
 		
 		
 		if(isset($_GET['name'])){
 			$name = mysqli_real_escape_string($con, $_GET['name']);
-			$query = $query . " WHERE reserveUserid = '20'";		
+			$query = $query . " && reserveUserid = '" . $name . "'";		
 		}
 		
 		$result = mysqli_query($con, $query);
@@ -21,7 +21,6 @@
 		while ($row=mysqli_fetch_row($result))
 		{
 			?>
-			<hr>
 			<div class="row">
 				<div class="col-12">
 					<div class="row">
@@ -33,7 +32,7 @@
 					<div class="row">
 						<div class="col-10">
 							<!-- GENERATED LOCATION HERE -->
-							<?php echo $row['2']; ?>
+							<?php echo "Loc: " . $row['2']; ?>
 
 						</div>
 						<div class="col-2">
@@ -42,26 +41,30 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-10">
+						<div class="col-10 descriptionreserve" id="smalldecrip_<?php echo $row['0']; ?>" >
 							<!-- GENERATED DESCRIPTION (0..100) -->
 							<?php
 							$longer = false;
 							
 								$str = "" . $row['4'];
-								if (strlen($str) > 100){
-									$str = substr($str, 0, 100) . '...';
+								if (strlen($str) > 90){
+									$str = substr($str, 0, 90) . '... <u><a onclick="showdescription(' . $row['0'] . ', 1)";>(More)</a></u>';
 									$longer = true;
 								}
 								echo $str;
 							?>
 						</div>
+						<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
+							<?php if($longer) {echo $row['4'] . '<u><a onclick="showdescription(' . $row['0'] . ', 0)";>(Less)</a></u>';} ?>
+						</div>
 						<div class="col-2">
-							<? if($longer){echo "More";}
-							?>
+							<?
+							 echo "<a href='reservelist.php?name=" . $row['6'] . "'>" . getnamefromid($row['6'])  . "</a>";?>
 						</div>
 					</div>
 				</div>
 			</div>
+
 			
 			
 			<?

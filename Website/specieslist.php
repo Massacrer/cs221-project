@@ -18,7 +18,7 @@ This file is part of the main 3 homepages of the website
 	<!-- PHP INCLUDE -->	
 	<?php
 		require('php/loggedin.php');
-		//include("php/specieslist.php");
+		include("php/specieslist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 
@@ -44,6 +44,7 @@ This file is part of the main 3 homepages of the website
 					</tr>
 				</table>
 					<!-- PHP GENERATED CONTENT -->
+					<?php outputtable(); ?>
 				</div>
 			</section>
 			<!-- END MAIN SECTION -->
