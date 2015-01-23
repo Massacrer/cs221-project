@@ -8,7 +8,7 @@
 	<div class="row list">
 		<div class="col-12 logo">
 			<!-- CSS IN NAV BACKGROUND -->
-			<ul>
+			<ul class="navlist">
 				<li class="listelement"><a href="reservelist.php">RESERVE LIST</a></li>
 				<li class="listelement"><a href="addreserve.php">ADD RESERVE</a></li>
 				<li class="listelement"><a href="php/logout.php">LOGOUT</a><li>
