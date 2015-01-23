@@ -17,7 +17,13 @@ import android.util.Log;
 public class Uploader extends AsyncTask<JSONObject, JSONObject, JSONObject> {
 
     @Override
+    /*
+    *
+    * protected method runs in the backround with an asynchronous thread
+    *
+    */
     protected JSONObject doInBackground(JSONObject... json) {
+
         JSONObject j = json[0];
         HttpClient client = new DefaultHttpClient();
         HttpConnectionParams.setConnectionTimeout(client.getParams(), 100000);
@@ -25,6 +31,7 @@ public class Uploader extends AsyncTask<JSONObject, JSONObject, JSONObject> {
         JSONObject jResponse = null;
         HttpPost post = new HttpPost(url);
         try {
+
             StringEntity se = new StringEntity("json="+j.toString());
             post.addHeader("content-type", "application/x-www-form-urlencoded");
             post.setEntity(se);
@@ -32,7 +39,7 @@ public class Uploader extends AsyncTask<JSONObject, JSONObject, JSONObject> {
             HttpResponse response;
             response = client.execute(post);
             String serverResponse = org.apache.http.util.EntityUtils.toString(response.getEntity());
-
+            // takes the server response as json
             jResponse=new JSONObject(serverResponse);
             Log.i("Server Response:", jResponse.getString("msg"));
         } catch (Exception e) { e.printStackTrace();}
