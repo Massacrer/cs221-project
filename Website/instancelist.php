@@ -10,25 +10,22 @@ This file is part of the main 3 homepages of the website
 	<head>
 		<title>Reserve List</title>
 		<meta charset="UTF-8" />
-		<link 
 		<link rel="stylesheet" type="text/css" href="css/master.css">
-		<link rel="stylesheet" type="text/css" href="css/reservelist.css" />
-		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
-		<script type="text/javascript" src="js/reservelist.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/instancelist.css" />
 	</head>
 	<!-- END HEAD -->
 
 	<!-- PHP INCLUDE -->	
 	<?php
 		require('php/loggedin.php');
-		include("php/reservelist.php");
+		//include("php/instancelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 
 
 	<!-- BODY -->
 	<body>
-
+	
 		<!-- CONTAINER -->
 		<div class="container">
 		
@@ -40,14 +37,11 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section class="mainsection">
-			<table>
-				<tr>
-				<td><p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves";} ?></p></td>
-				</tr>
-			</table>	
+				<div class="row">
+					<p class="heading">Instance List</p>
+				</div>
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
-					<?php outputtable(); ?>
 				</div>
 			</section>
 			<!-- END MAIN SECTION -->
