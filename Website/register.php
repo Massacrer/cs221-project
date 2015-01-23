@@ -32,17 +32,19 @@ For new users to register to the website
 		<!-- CONTAINER -->
 		<div class="container">
 
+			<!-- MAIN SECTION -->
 			<div class="row mainsection">
 				<div class="col-12 ">
-			
 					<!-- Back button to Login -->
 					<a href="index.php">Back to Login</a>
+
 					<!-- REGISTER FORM -->
 					<form method="POST" onsubmit="return checkRegistration();">
 						<table>
 							<tr>
 								<td colspan="3"><p class="heading">Register</p></td>
 							</tr>
+							<tr>
 								<td colspan="3">
 									<!-- RETURN FIELD -->
 									<?php  registermessage(); ?>
@@ -51,6 +53,7 @@ For new users to register to the website
 									</div>
 									<!-- END OF RETURN FIELD -->
 								</td>
+							</tr>
 							<tr>
 								<td>Username</td>
 								<td>:</td>
@@ -85,19 +88,20 @@ For new users to register to the website
 								<td>E-mail Address</td>
 								<td>:</td>
 								<td><input name="email" type="text" id="email" ></td>
-								
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td><input type="submit" name="submit" id="submit" value="Register" /></td>
-								
 							</tr>
 						</table>
 					</form>
 					<!-- END REGISTER FORM -->
+
 				</div>
 			</div>
+			<!-- END MAIN SECTION -->
+
 		</div>
 		<!-- END CONTAINER -->
 

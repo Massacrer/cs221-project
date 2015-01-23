@@ -30,13 +30,6 @@ It contains the LOGIN form
 
 		<!-- CONTAINER -->
 		<div class="container">
-
-			<!-- Image for logon screen -->
-			<div class="col-1" id="plantimage">
-			&nbsp;
-			</div>
-		
-		
 		
 			<!-- LOGIN -->
 			<div class="row">
@@ -49,18 +42,16 @@ It contains the LOGIN form
 							<tr>
 								<td colspan="3" class="heading">LOG IN</td>
 								<td rowspan="4" class="align-fix"><img src="res/logo.png" /></td>
-							</tr></td>
+							</tr>
 							</tr>
 							
 							<tr>
 								<td colspan="3">
 									<!-- RETURN FIELD -->
-									
 									<div id="message_after_login">
 										<?php  loginmessage(); ?>
 									</div>
 									<!-- END OF RETURN FIELD -->
-									
 								</td>
 							</tr>
 
@@ -68,7 +59,6 @@ It contains the LOGIN form
 								<td>Username</td>
 								<td>:</td>
 								<td><input name="myusername" type="text" id="myusername"/></td>
-
 							</tr>
 							<tr>
 								<td>Password</td>
@@ -83,6 +73,7 @@ It contains the LOGIN form
 						</table>
 					</form>
 					<!-- END LOGIN FORM -->
+
 				</div>
 				<div class="col-3"></div>
 			</div>

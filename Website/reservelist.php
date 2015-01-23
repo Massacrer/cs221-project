@@ -39,14 +39,17 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section class="mainsection">
-			<table>
-				<tr>
-				<td><p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves";} ?></p></td>
-				</tr>
-			</table>	
+				<div class="row">
+					<div class="col-12">
+						<p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves";} ?></p></td>
+					</div>
+				</div>
+
 				<div class="row results">
-					<!-- PHP GENERATED CONTENT -->
-					<?php outputtable(); ?>
+					<div class="col-12">
+						<!-- PHP GENERATED CONTENT -->
+						<?php outputtable(); ?>
+					</div>
 				</div>
 			</section>
 			<!-- END MAIN SECTION -->
