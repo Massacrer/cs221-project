@@ -4,11 +4,11 @@ import java.util.Date;
 import android.location.Location;
 
 public class Recording {
-   private int id = 0;
-   private String name, description;
-   private Location loc;
-   private Date date;
-   private String userName, userEmail, userNumber;
+   public int id = 0;
+   public String name, description;
+   public Location loc;
+   public Date date;
+   public String userName, userEmail, userNumber;
    
    // package-private constructor
    Recording() {

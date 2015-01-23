@@ -2,16 +2,16 @@ package uk.ac.aber.cs221.storage;
 
 import java.util.List;
 
-import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public class SpeciesStorage extends Storage<Species> {
    private static SpeciesStorage instance;
    private static final String table = "species";
-   private final Context context;
+   private SQLiteDatabase database;
    
-   SpeciesStorage(Context context) {
+   SpeciesStorage() {
       instance = this;
-      this.context = context;
    }
    
    public static SpeciesStorage getInstance() {
@@ -19,7 +19,7 @@ public class SpeciesStorage extends Storage<Species> {
    }
    
    @Override
-   public List<Species> getList() {
+   public Cursor getCursor() {
       // TODO Auto-generated method stub
       return null;
    }
