@@ -50,17 +50,17 @@ function userregister(){
 	}
 	else {
 		// creates a query to register the user on the database
-		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email, Username) VALUES ('$fname', '$sname', '$hash', '$number', '$email', '$username');"; 
+		$query = "INSERT INTO User (Forename, Surname, Password, Phone, Email, Username, Hidden) VALUES ('$fname', '$sname', '$hash', '$number', '$email', '$username', '0');"; 
 		$result = mysqli_query($con, $query);
 		if(! $result) {
-		// checks if the user's email has already been registered
+		// checks if the user's Username or Email has already been registered
 			$result = 0;
-			echo "Account creation failed.";
-			$query = "SELECT COUNT(*) FROM User WHERE Email='$email';";
+			
+			$query = "SELECT COUNT(*) FROM User WHERE Username='$username' LIMIT 1;";
 			$result = mysqli_query($con, $query);
 			if ($result == 1) {
-				echo "Account creation failed - email is already in use.";
-			}
+				echo "Account creation failed - Username is already in use.";
+			} 
 		}
 		else {
 			echo "Success";
