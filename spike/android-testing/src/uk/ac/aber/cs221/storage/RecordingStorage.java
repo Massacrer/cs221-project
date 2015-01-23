@@ -1,5 +1,6 @@
 package uk.ac.aber.cs221.storage;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -9,11 +10,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
 
 public class RecordingStorage extends Storage<Recording> {
    private static RecordingStorage instance;
    private static final String table = "recordings";
    private Storage.DatabaseHelper database;
+   
+   private static final String dateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSS";
    
    RecordingStorage(Context context) {
       instance = this;
@@ -54,8 +58,16 @@ public class RecordingStorage extends Storage<Recording> {
    }
    
    private String dateTimeString(Date date) {
-      String format = "yyyy-MM-dd HH:mm:ss.SSS";
-      return new SimpleDateFormat(format, Locale.UK).format(date);
+      return new SimpleDateFormat(dateTimeFormat, Locale.UK).format(date);
+   }
+   
+   private Date dateFromString(String date) {
+      try {
+         return new SimpleDateFormat(dateTimeFormat, Locale.UK).parse(date);
+      }
+      catch (ParseException e) {
+         return null;
+      }
    }
    
    @Override
@@ -70,6 +82,15 @@ public class RecordingStorage extends Storage<Recording> {
          recording.name = cursor.getString(cursor.getColumnIndex("name"));
          recording.description = cursor.getString(cursor
                .getColumnIndex("description"));
+         
+         Location loc = new Location("RPSRrec");
+         loc.setLatitude(cursor.getDouble(cursor.getColumnIndex("latitude")));
+         loc.setLongitude(cursor.getDouble(cursor.getColumnIndex("longitude")));
+         recording.loc = loc;
+         
+         recording.date = dateFromString(cursor.getString(cursor
+               .getColumnIndex("date")));
+         
          return recording;
       }
       else {
