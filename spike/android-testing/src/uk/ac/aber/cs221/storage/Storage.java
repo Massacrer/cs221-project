@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public abstract class Storage<T> {
+   static final String dateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSS";
+   
    public abstract Cursor getCursor();
    
    public abstract long store(T t);
