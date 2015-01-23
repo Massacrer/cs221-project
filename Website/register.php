@@ -87,7 +87,12 @@ For new users to register to the website
 							<tr>
 								<td>E-mail Address</td>
 								<td>:</td>
+<<<<<<< HEAD
+								<td><input name="email" type="email" id="email" ></td>
+								
+=======
 								<td><input name="email" type="text" id="email" ></td>
+>>>>>>> 738cc5efcb75093c0e48695d2377a29bcc133317
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
