@@ -3,9 +3,22 @@
 	include('php/dbconnect.php');
 
 	function outputtable(){
-	
+			
 		$con = opendatabase();
-		$query = "SELECT * FROM Reserve WHERE reservehidden = '0'"; 
+		
+		$where = "";
+		
+		if(isset($_GET['user'])){  header('Location: reservelist.php?name=' . getidfromname(mysqli_real_escape_string($con, $_GET['user'])));  }		
+		if(isset($_GET['place']) && strlen($_GET['place']) > 1){  $where = $where . " && reserveLocation LIKE '%" . mysqli_real_escape_string($con, $_GET['place']) . "%'";  }
+		if(isset($_GET['fromday'])){  $where = $where . "";  }		
+		if(isset($_GET['frommonth'])){  $where = $where . "";  }
+		if(isset($_GET['fromyear'])){  $where = $where . "";  }		
+		if(isset($_GET['today'])){  $where = $where . "";  }
+		if(isset($_GET['tomonth'])){  $where = $where . "";  }
+		if(isset($_GET['toyear'])){  $where = $where . "";  }
+	
+
+		$query = "SELECT * FROM Reserve WHERE reservehidden = '0'" . $where; 
 		
 		
 		if(isset($_GET['name'])){
@@ -36,7 +49,7 @@
 						</div>
 						<div class="col-2">
 							<!-- GENERATED TIME + DATE HERE -->
-							<strong>Date + Time: </strong><?php echo $row['3']; ?>
+							<?php echo $row['3']; ?>
 						</div>
 					</div>
 					<div class="row">

@@ -40,4 +40,19 @@ function getnamefromid($id){
 	
 	closedatabase();
 }
+
+function getidfromname($name){
+	$con = opendatabase();
+	$id = mysqli_real_escape_string($con, $name);
+	$query = "SELECT ID FROM User WHERE Username = '". $name ."' LIMIT 1";
+	
+	$result = mysqli_query($con, $query);
+		
+	while ($row=mysqli_fetch_row($result)){
+		return $row['0'];
+	}
+	
+	
+	closedatabase();
+}
  ?>
