@@ -23,6 +23,7 @@ public class RecordSpeciesActivity extends Activity {
 		Util.setupActionBar(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_record_species);
+		this.setupOnClickListener();
 
 		((Spinner) findViewById(R.id.spinner1))
 		.setAdapter(new ArrayAdapter<String>(this,
@@ -38,6 +39,8 @@ public class RecordSpeciesActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+				Toast.makeText(RecordSpeciesActivity.this, "button has been pressed", Toast.LENGTH_LONG).show();
+				
 				gps = new GpsLocator(RecordSpeciesActivity.this);
 				
 				if(gps.canGetLocation()){
@@ -45,7 +48,7 @@ public class RecordSpeciesActivity extends Activity {
 					double latitude = gps.getLatitude();
 					double longitude = gps.getLongitude();
 					
-					Toast.makeText(getApplicationContext(), "your Latitude is : " + latitude + "\nYour Longitude is : " + longitude, Toast.LENGTH_LONG).show();
+					Toast.makeText(RecordSpeciesActivity.this, "your Latitude is : " + latitude + "\nYour Longitude is : " + longitude, Toast.LENGTH_LONG).show();
 				}else{
 					
 					gps.showSettingsAlert();
