@@ -25,13 +25,20 @@ public class SpeciesStorage extends Storage<Species> {
    }
    
    @Override
-   public void store(Species species) {
-      // TODO Auto-generated method stub
-      
+   public long store(Species species) {
+      // name text not null, comment text not null, image_1 text not null,
+      // image_2 text not null, latitude real, longitude real
+      return 0;
    }
    
    @Override
    public Species get(int id) {
+      // TODO Auto-generated method stub
+      return null;
+   }
+   
+   @Override
+   public Species createNew() {
       // TODO Auto-generated method stub
       return null;
    }

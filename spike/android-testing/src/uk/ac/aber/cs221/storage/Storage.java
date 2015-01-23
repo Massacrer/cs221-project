@@ -10,9 +10,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public abstract class Storage<T> {
    public abstract Cursor getCursor();
    
-   public abstract void store(T t);
+   public abstract long store(T t);
    
    public abstract T get(int id);
+   
+   public abstract T createNew();
    
    static class DatabaseHelper extends SQLiteOpenHelper {
       private String recordings_create = "name text not null, description text not null, latitude real, longitude real, date text not null, user_name text not null, user_email not null, user_number not null";

@@ -43,7 +43,7 @@ public class RecordingStorage extends Storage<Recording> {
    }
    
    @Override
-   public void store(Recording recording) {
+   public long store(Recording recording) {
       ContentValues values = new ContentValues();
       values.put("name", recording.name);
       values.put("description", recording.description);
@@ -54,7 +54,7 @@ public class RecordingStorage extends Storage<Recording> {
       values.put("user_number", recording.userNumber);
       values.put("user_email", recording.userEmail);
       
-      database.getWritableDatabase().insert(table, null, values);
+      return database.getWritableDatabase().insert(table, null, values);
    }
    
    private String dateTimeString(Date date) {
@@ -102,5 +102,12 @@ public class RecordingStorage extends Storage<Recording> {
       else {
          return null;
       }
+   }
+   
+   @Override
+   public Recording createNew() {
+      Recording recording = new Recording();
+      store(recording);
+      return recording;
    }
 }
