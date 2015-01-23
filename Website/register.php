@@ -16,7 +16,7 @@ For new users to register to the website
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/register.css" />
 		
-		<script type="text/javascript" src="js/emailValidation.js"></script>
+		<script type="text/javascript" src="js/checkRegistration.js"></script>
 	</head>
 	<!-- END HEAD -->
 
@@ -64,7 +64,7 @@ For new users to register to the website
 							<tr>
 								<td>Confirm Password</td>
 								<td>:</td>
-								<td><input name="passwordCOnfirm" type="password" id="passwordConfirm" /></td>
+								<td><input name="passwordCOnfirm" type="password" id="passwordConfirm" onsubmit="return checkPassword();"/></td>
 							</tr>
 							<tr>
 								<td>First Name</td>
