@@ -60,7 +60,20 @@ public class RecordingStorage extends Storage<Recording> {
    
    @Override
    public Recording get(int id) {
-      // TODO Auto-generated method stub
-      return null;
+      Cursor cursor = database.getReadableDatabase().rawQuery(
+            "SELECT * FROM " + table + " WHERE ID = " + id + " LIMIT 1;",
+            new String[] {});
+      if (cursor.getCount() > 0) {
+         Recording recording = new Recording();
+         
+         recording.id = cursor.getInt(cursor.getColumnIndex("id"));
+         recording.name = cursor.getString(cursor.getColumnIndex("name"));
+         recording.description = cursor.getString(cursor
+               .getColumnIndex("description"));
+         return recording;
+      }
+      else {
+         return null;
+      }
    }
 }
