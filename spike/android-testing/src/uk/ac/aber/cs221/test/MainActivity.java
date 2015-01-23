@@ -61,6 +61,5 @@ public class MainActivity extends Activity {
 				}
 		});
 
-		Util.setupActionBar(this);
 	}
 }
