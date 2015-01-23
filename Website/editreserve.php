@@ -11,7 +11,7 @@ This page is redirected to from the add reserve page.
 		<title>Add Reserve</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
-		<link rel="stylesheet" type="text/css" href="css/addreserve.css" />
+		<link rel="stylesheet" type="text/css" href="css/editreserve.css" />
 	</head>
 	<!-- END HEAD -->
 	
