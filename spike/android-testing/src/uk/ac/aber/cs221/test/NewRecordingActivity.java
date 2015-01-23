@@ -38,7 +38,6 @@ public class NewRecordingActivity extends Activity {
             String userEmail = ((EditText) findViewById(R.id.nr_uEmail))
                   .getText().toString();
             
-            intent.putExtra("new", true);
             intent.putExtra("userName", userName);
             intent.putExtra("siteName", siteName);
             intent.putExtra("userNumber", userNumber);

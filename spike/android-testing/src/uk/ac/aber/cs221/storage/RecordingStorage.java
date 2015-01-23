@@ -17,8 +17,6 @@ public class RecordingStorage extends Storage<Recording> {
    private static final String table = "recordings";
    private Storage.DatabaseHelper database;
    
-   private static final String dateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSS";
-   
    RecordingStorage(Context context) {
       instance = this;
       database = new Storage.DatabaseHelper(context);
@@ -34,12 +32,10 @@ public class RecordingStorage extends Storage<Recording> {
    @Override
    public Cursor getCursor() {
       SQLiteDatabase connection = database.getReadableDatabase();
-      String[] columns = { "columns", "here" };
       Cursor cursor = connection.query(table, null, null, null, null, null,
             null);
       database.close();
       return cursor;
-      
    }
    
    @Override
