@@ -1,14 +1,9 @@
 package uk.ac.aber.cs221.storage;
 
-import java.util.List;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.location.Location;
 
 public class SpeciesStorage extends Storage<Species> {
    private static SpeciesStorage instance;

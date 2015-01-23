@@ -20,74 +20,80 @@ import uk.ac.aber.cs221.util.GpsLocator;
 import uk.ac.aber.cs221.util.Util;
 
 public class RecordSpeciesActivity extends Activity {
-
-	GpsLocator gps;
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		Util.setupActionBar(this);
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_record_species);
-		this.setupOnClickListener();
-
-		((Spinner) findViewById(R.id.spinner1))
-		.setAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, new String[] { "Dominant", "Abundant",
-				"Frequent", "Occasional", "Rare" }));
-	}
-
-
-	public void setupOnClickListener() {
-		Button buttonSave = (Button) findViewById(R.id.rec_sp_SaveButton);
-
-		buttonSave.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				SpeciesStorage storage = SpeciesStorage.getInstance(this);
-				Species newSpecies = storage.createNew();
-				gps = new GpsLocator(RecordSpeciesActivity.this);
-
-				if(gps.canGetLocation()){
-
-					double latitude = gps.getLatitude();
-					double longitude = gps.getLongitude();
-
-					Toast.makeText(RecordSpeciesActivity.this, "your Latitude is : " + latitude + "\nYour Longitude is : " + longitude, Toast.LENGTH_LONG).show();
-					Location temp = new Location("");
-					temp.setLatitude(latitude);
-					temp.setLongitude(longitude);
-					newSpecies.loc=temp;
-				}else{
-
-					gps.showSettingsAlert();
-				}
-				AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
-				newSpecies.name=(nameField.getText().toString());
-				AutoCompleteTextView commentField = (AutoCompleteTextView) findViewById(R.id.rec_sp_Comment);
-				newSpecies.comment=(commentField.getText().toString());
-				storage.store(newSpecies);
-			}
-		});
-		Button buttonScene = (Button) findViewById(R.id.rec_sp_ScenePic);
-
-		buttonScene.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(RecordSpeciesActivity.this,
-						PhotoPickerActivity.class);
-				startActivity(intent);
-			}
-		});
-		Button buttonSpecimen = (Button) findViewById(R.id.ma_ContinueButton);
-
-		buttonSpecimen.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(RecordSpeciesActivity.this,
-						PhotoPickerActivity.class);
-				startActivity(intent);
-			}
-		});
-	}
+   
+   GpsLocator gps;
+   
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+      Util.setupActionBar(this);
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_record_species);
+      this.setupOnClickListener();
+      
+      ((Spinner) findViewById(R.id.spinner1))
+            .setAdapter(new ArrayAdapter<String>(this,
+                  android.R.layout.simple_list_item_1, new String[] {
+                        "Dominant", "Abundant", "Frequent", "Occasional",
+                        "Rare" }));
+   }
+   
+   public void setupOnClickListener() {
+      Button buttonSave = (Button) findViewById(R.id.rec_sp_SaveButton);
+      
+      buttonSave.setOnClickListener(new OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            
+            SpeciesStorage storage = SpeciesStorage
+                  .getInstance(RecordSpeciesActivity.this);
+            Species newSpecies = storage.createNew();
+            gps = new GpsLocator(RecordSpeciesActivity.this);
+            
+            if (gps.canGetLocation()) {
+               
+               double latitude = gps.getLatitude();
+               double longitude = gps.getLongitude();
+               
+               Toast.makeText(
+                     RecordSpeciesActivity.this,
+                     "your Latitude is : " + latitude
+                           + "\nYour Longitude is : " + longitude,
+                     Toast.LENGTH_LONG).show();
+               Location temp = new Location("");
+               temp.setLatitude(latitude);
+               temp.setLongitude(longitude);
+               newSpecies.loc = temp;
+            }
+            else {
+               
+               gps.showSettingsAlert();
+            }
+            AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
+            newSpecies.name = (nameField.getText().toString());
+            AutoCompleteTextView commentField = (AutoCompleteTextView) findViewById(R.id.rec_sp_Comment);
+            newSpecies.comment = (commentField.getText().toString());
+            storage.store(newSpecies);
+         }
+      });
+      Button buttonScene = (Button) findViewById(R.id.rec_sp_ScenePic);
+      
+      buttonScene.setOnClickListener(new OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            Intent intent = new Intent(RecordSpeciesActivity.this,
+                  PhotoPickerActivity.class);
+            startActivity(intent);
+         }
+      });
+      Button buttonSpecimen = (Button) findViewById(R.id.ma_ContinueButton);
+      
+      buttonSpecimen.setOnClickListener(new OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            Intent intent = new Intent(RecordSpeciesActivity.this,
+                  PhotoPickerActivity.class);
+            startActivity(intent);
+         }
+      });
+   }
 }
