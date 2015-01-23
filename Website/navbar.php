@@ -2,18 +2,31 @@
 //nav bar
 // Author: Niall
 -->
-<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
+
 <link rel="stylesheet" type="text/css" href="css/master.css" />
 <link rel="stylesheet" type="text/css" href="css/navbar.css" />
-	<div class="row list">
-		<div class="col-12 logo">
-			<!-- CSS IN NAV BACKGROUND -->
-			<ul>
-				<li class="listelement"><a href="reservelist.php">RESERVE LIST</a></li>
-				<li class="listelement"><a href="addreserve.php">ADD RESERVE</a></li>
-				<li class="listelement"><a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>">USER PAGE</a></li>
-				<li class="listelement"><a href="php/logout.php">LOGOUT</a><li>
-			</ul>
+
+		<div class="row list">
+			<div class="col-3 green">
+				<div class="row">
+					<div class="col-3 logo"></div>
+					<div class="col-9 title">
+						<p class="titletext">RESERVE PLANT SPECIES RECORDING</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-2 listelement">
+				<a href="reservelist.php">RESERVE LIST</a>
+			</div>
+			<div class="col-2 listelement">
+				<a href="addreserve.php">ADD RESERVE</a>
+			</div>
+			<div class="col-2 listelement">
+				<a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>">USER PAGE</a>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1 listelement">
+				<a href="php/logout.php">LOGOUT</a>
+			</div>			
 		</div>
-		
 	</div>
