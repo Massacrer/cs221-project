@@ -2,7 +2,7 @@
 //nav bar
 // Author: Niall
 -->
-
+<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 <link rel="stylesheet" type="text/css" href="css/master.css" />
 <link rel="stylesheet" type="text/css" href="css/navbar.css" />
 	<div class="row list">

@@ -9,10 +9,10 @@ This file is part of the main 3 homepages of the website
 	<!-- HEAD -->
 	<head>
 		<title>Reserve List</title>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="css/master.css">
-		<link rel="stylesheet" type="text/css" href="css/reservelist.css" />
+		<meta charset="UTF-8" />		
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/reservelist.css" />
+		<link rel="stylesheet" type="text/css" href="css/master.css">
 		<script type="text/javascript" src="js/reservelist.js"></script>
 	</head>
 	<!-- END HEAD -->
