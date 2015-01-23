@@ -68,6 +68,11 @@ table {
 /* END CSS RESETS */
 
 /* UNIVERSAL CSS */
+
+body {
+	font-family: "Lato", "Calibri", Tahoma, sans-serif;
+}
+
 a:link, a:visited , a:hover, a:active 
 		{
 		color: black;
