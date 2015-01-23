@@ -23,15 +23,14 @@ This page is redirected to from the add reserve page.
 	
 	<!-- BODY -->
 	<body>
+	
 		<!-- CONTAINER -->
 		<div class="container">
 		
 			<!-- NAV BAR -->
-			<div class="row">
 				<nav>
 					<?php include("navbar.php"); ?>
 				</nav>
-			</div>
 			<!-- END NAV BAR -->
 			
 			<!-- MAIN SECTION -->
