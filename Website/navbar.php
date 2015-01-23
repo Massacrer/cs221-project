@@ -9,7 +9,6 @@
 		<div class="col-12 logo">
 			<!-- CSS IN NAV BACKGROUND -->
 			<ul>
-				<li class="col-2 logo">
 				<li class="listelement"><a href="reservelist.php">RESERVE LIST</a></li>
 				<li class="listelement"><a href="addreserve.php">ADD RESERVE</a></li>
 				<li class="listelement"><a href="php/logout.php">LOGOUT</a><li>
