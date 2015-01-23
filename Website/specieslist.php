@@ -13,6 +13,7 @@ This file is part of the main 3 homepages of the website
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/master.css">
 		<link rel="stylesheet" type="text/css" href="css/specieslist.css">
+		<script type="text/javascript" src="js/reservelist.js"></script>
 	</head>
 	<!-- END HEAD -->
 
@@ -20,6 +21,7 @@ This file is part of the main 3 homepages of the website
 	<?php
 		require('php/loggedin.php');
 		include("php/specieslist.php");
+		include("php/reservelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 
@@ -46,7 +48,13 @@ This file is part of the main 3 homepages of the website
 				<div class="row mainsection results">
 					<div class="col-12">
 						<!-- PHP GENERATED CONTENT -->
-						<?php outputtable(); ?>
+						<?php
+						outputtable();?>
+						<hr>
+						<p class="heading">The actual plants</p>
+						<?php 
+						outputspeciestable(); 
+						 ?>
 					</div>
 				</div>
 			</section>

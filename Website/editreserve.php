@@ -17,7 +17,7 @@ This page is redirected to from the add reserve page.
 	<!-- PHP INCLUDE -->
 	<?php
 		require('php/loggedin.php');
-		//include("php/addreserve.php");
+		include("php/editreserve.php");
 	?>
 	<!-- END PHP INCLUDE -->
 	
@@ -36,33 +36,11 @@ This page is redirected to from the add reserve page.
 			<!-- MAIN SECTION -->
 			<div class="row mainsection">
 				<div class="col-12 ">
-					<form method="POST" action="">
-						<table>
-							<tr>
-								<td colspan="3"><p class="heading">Add Reserve</p></td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>:</td>
-								<td colspan="3"><input type="text" name="Name"></td>
-							</tr>
-							<tr>
-								<td>Location</td>
-								<td>:</td>
-								<td colspan="3"><input type="text" name="Location"></td>
-							</tr>
-							<tr>
-								<td>OS Grid Reference</td>
-								<td>:</td>
-								<td><input type="text" name="OSGridReference"></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td><button type="button">Add Reserve</button></td>
-							</tr>
-						</table>
-					</form>
+					<p class="heading">Edit Reserve</p>
+					
+						To edit one of your reserves, please press the edit button!
+						
+
 				</div>
 			</div>
 			<!-- END MAIN SECTION -->

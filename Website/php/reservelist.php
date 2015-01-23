@@ -1,6 +1,6 @@
 <?php
 
-	include('php/dbconnect.php');
+	include_once('php/dbconnect.php');
 
 	function outputtable(){
 			
@@ -8,14 +8,19 @@
 		
 		$where = "";
 		
-		if(isset($_GET['user'])){  header('Location: reservelist.php?name=' . getidfromname(mysqli_real_escape_string($con, $_GET['user'])));  }		
-		if(isset($_GET['place']) && strlen($_GET['place']) > 1){  $where = $where . " && reserveLocation LIKE '%" . mysqli_real_escape_string($con, $_GET['place']) . "%'";  }
-		if(isset($_GET['fromday'])){  $where = $where . "";  }		
-		if(isset($_GET['frommonth'])){  $where = $where . "";  }
-		if(isset($_GET['fromyear'])){  $where = $where . "";  }		
-		if(isset($_GET['today'])){  $where = $where . "";  }
-		if(isset($_GET['tomonth'])){  $where = $where . "";  }
-		if(isset($_GET['toyear'])){  $where = $where . "";  }
+		if(isset($_GET['user'])  && strlen($_GET['user']) > 1){  
+			header('Location: reservelist.php?name=' . getidfromname(mysqli_real_escape_string($con, $_GET['user'])));  
+		}		
+		if(isset($_GET['place']) && strlen($_GET['place']) > 1){  
+			$where = $where . " && reserveLocation LIKE '%" . mysqli_real_escape_string($con, $_GET['place']) . "%'";  
+		}
+		if(isset($_GET['frommonth']) && strlen($_GET['frommonth']) > 1 && isset($_GET['fromday'] ) && strlen($_GET['fromday']) > 1 && isset($_GET['fromyear']) && strlen($_GET['fromyear']) > 1){
+			//yyyy-mm-dd hh:mm:ss
+			$where = $where . " && reserveDatetimeCreation LIKE '" . mysqli_real_escape_string($con, $_GET['fromyear']) . "-" . mysqli_real_escape_string($con, $_GET['frommonth']) . "-" . mysqli_real_escape_string($con, $_GET['fromday']) . "%'"; 
+		}	
+		if(isset($_GET['id']) && strlen($_GET['id']) > 0){
+			$where =" && reserveId = '" . mysqli_real_escape_string($con, $_GET['id']) . "'"; 
+		}
 	
 
 		$query = "SELECT * FROM Reserve WHERE reservehidden = '0'" . $where; 
@@ -27,10 +32,7 @@
 		}
 		
 		$result = mysqli_query($con, $query);
-	
-
-		printf("Select returned %d rows.\n", mysqli_num_rows($result));
-		
+			
 		while ($row=mysqli_fetch_row($result))
 		{
 			?>
@@ -69,7 +71,7 @@
 						<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
 							<?php if($longer) {echo $row['4'] . '<u><a onclick="showdescription(' . $row['0'] . ', 0)";>(Less)</a></u>';} ?>
 						</div>
-						<div class="col-2">
+						<div class="col-2"id="personsname">
 							<?
 							 echo "<a href='reservelist.php?name=" . $row['6'] . "'>" . getnamefromid($row['6'])  . "</a>";?>
 						</div>

@@ -47,8 +47,7 @@ This file is part of the main 3 homepages of the website
 				<div class="row">
 					<form method="GET" onsubmit="">
 						Place <input type="text" placeholder="Place Name" name="place"/><br>
-						Date From <input type="text" placeholder="dd" name="fromday" /><input type="text" placeholder="mm" name="frommonth" /><input type="text" placeholder="yyyy" name="fromyear" /><br>
-						Date To <input type="text" placeholder="dd" name="today" /><input type="text" placeholder="mm" name="tomonth" /><input type="text" placeholder="yyyy" name="toyear" /><br>
+						Date <input type="text" placeholder="dd" name="fromday" /><input type="text" placeholder="mm" name="frommonth" /><input type="text" placeholder="yyyy" name="fromyear" /><br>
 						User <input type="text" placeholder="A username" name="user"/><br>
 						<input type="submit" />
 					</form>

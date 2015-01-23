@@ -1,8 +1,8 @@
 <?php
 
-	include('php/dbconnect.php');
+	include_once('php/dbconnect.php');
 
-	function outputtable(){
+	function outputspeciestable(){
 	
 		$con = opendatabase();
 		$query = "SELECT * FROM Species WHERE SpeciesHidden = '0'"; 
@@ -15,9 +15,6 @@
 		
 		$result = mysqli_query($con, $query);
 	
-
-		printf("Select returned %d rows.\n", mysqli_num_rows($result));
-		
 		while ($row=mysqli_fetch_row($result))
 		{?>
 			<div class="row">
@@ -25,7 +22,8 @@
 					<div class="row">
 						<div class="col-2">
 							<!-- PUT PICTURE HERE -->
-							<?php echo $row['9']; ?>
+							<img src="http://placehold.it/150x150">
+							<?php// echo $row['9']; ?>
 						</div>
 						<div class="col-10">
 							<div class="row">
