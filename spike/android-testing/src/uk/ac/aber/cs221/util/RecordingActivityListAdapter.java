@@ -45,11 +45,17 @@ public class RecordingActivityListAdapter extends BaseAdapter {
    
    @Override
    public View getView(int position, View convertView, ViewGroup parent) {
-      // may need changing
+      
       Species s = speciesList.get(position);
-      View v = recordingActivity.getLayoutInflater().inflate(
-            R.id.ra_speciesList, null);
-      return v;
+      View view;
+      if (convertView == null) {
+         view = recordingActivity.getLayoutInflater().inflate(
+               R.id.ra_speciesList, null);
+      }
+      else {
+         view = convertView;
+      }
+      return view;
    }
    
    @Override
