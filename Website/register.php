@@ -84,7 +84,7 @@ For new users to register to the website
 							<tr>
 								<td>E-mail Address</td>
 								<td>:</td>
-								<td><input name="email" type="text" id="email" ></td>
+								<td><input name="email" type="email" id="email" ></td>
 								
 							</tr>
 							<tr>
