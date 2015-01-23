@@ -90,6 +90,12 @@ public class RecordingStorage extends Storage<Recording> {
          
          recording.date = dateFromString(cursor.getString(cursor
                .getColumnIndex("date")));
+         recording.userName = cursor.getString(cursor
+               .getColumnIndex("user_name"));
+         recording.userEmail = cursor.getString(cursor
+               .getColumnIndex("user_email"));
+         recording.userNumber = cursor.getString(cursor
+               .getColumnIndex("user_number"));
          
          return recording;
       }
