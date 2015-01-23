@@ -15,50 +15,50 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 public class RecordingActivityListAdapter extends BaseAdapter {
-
-	private final RecordingActivity recordingActivity;
-	private List <Species> speciesList;
-
-
-	Calendar calendar = Calendar.getInstance();
-
-	public RecordingActivityListAdapter (RecordingActivity context) {
-		this.recordingActivity=context;
-	}
-
-	@Override
-	public int getCount() {
-		if (speciesList==null) return 0;
-		else return speciesList.size();
-	}
-
-	@Override
-	public Object getItem(int position) {
-		return speciesList.get(position);
-	}
-
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
-
-
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {	
-		//may need changing
-		Species s = speciesList.get(position);
-		View v = recordingActivity.getLayoutInflater().inflate(R.id.ra_speciesList,null);		   	
-		return v;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		if (speciesList.size()<=0 || speciesList==null) {
-			return true;
-		}
-		else return false;
-	}
-
-
-
+   
+   private final RecordingActivity recordingActivity;
+   private List<Species> speciesList;
+   
+   Calendar calendar = Calendar.getInstance();
+   
+   public RecordingActivityListAdapter(RecordingActivity context) {
+      this.recordingActivity = context;
+   }
+   
+   @Override
+   public int getCount() {
+      if (speciesList == null)
+         return 0;
+      else
+         return speciesList.size();
+   }
+   
+   @Override
+   public Object getItem(int position) {
+      return speciesList.get(position);
+   }
+   
+   @Override
+   public long getItemId(int position) {
+      return position;
+   }
+   
+   @Override
+   public View getView(int position, View convertView, ViewGroup parent) {
+      // may need changing
+      Species s = speciesList.get(position);
+      View v = recordingActivity.getLayoutInflater().inflate(
+            R.id.ra_speciesList, null);
+      return v;
+   }
+   
+   @Override
+   public boolean isEmpty() {
+      if (speciesList.size() <= 0 || speciesList == null) {
+         return true;
+      }
+      else
+         return false;
+   }
+   
 }
