@@ -1,6 +1,7 @@
 package uk.ac.aber.cs221.test;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,6 +52,26 @@ public class RecordSpeciesActivity extends Activity {
 					
 					gps.showSettingsAlert();
 				}
+			}
+		});
+		Button buttonScene = (Button) findViewById(R.id.rec_sp_ScenePic);
+
+		buttonScene.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(RecordSpeciesActivity.this,
+						PhotoPickerActivity.class);
+					startActivity(intent);
+			}
+		});
+		Button buttonSpecimen = (Button) findViewById(R.id.ma_ContinueButton);
+
+		buttonSpecimen.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(RecordSpeciesActivity.this,
+						PhotoPickerActivity.class);
+					startActivity(intent);
 			}
 		});
 	}
