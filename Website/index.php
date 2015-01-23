@@ -10,6 +10,7 @@ It contains the LOGIN form
 
 	<!-- HEAD -->
 	<head>
+		<link rel="shortcut icon" href="res/icon.ico">
 		<title>Reserve Plant Species Recording</title>
 		<meta charset="UTF-8" />
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
