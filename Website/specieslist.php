@@ -11,6 +11,7 @@ This file is part of the main 3 homepages of the website
 		<title>Species List</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css">
+		<link rel="stylesheet" type="text/css" href="css/specieslist.css">
 	</head>
 	<!-- END HEAD -->
 
@@ -36,7 +37,12 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section>
-				<div class="row">
+				<div class="row mainsection">
+				<table>
+					<tr>
+						<td><p class="heading">Species List</p></td>
+					</tr>
+				</table>
 					<!-- PHP GENERATED CONTENT -->
 				</div>
 			</section>
@@ -48,4 +54,4 @@ This file is part of the main 3 homepages of the website
 	</body>
 	<!-- END BODY -->
 
-</html>>
+</html>

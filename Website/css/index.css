@@ -1,5 +1,11 @@
 body {
 	font-family: "Lato", "Calibri", Tahoma, sans-serif;
+	background: url("../res/ClearSwirls.png") no-repeat center center fixed;
+	background-size: cover;
+}
+
+.align-fix {
+	vertical-align: top;
 }
 
 .row {
@@ -13,8 +19,14 @@ body {
 
 table {
 	margin: auto;
+	vertical-align: top;
 }
 
 td {
 	padding: 7px;
+}
+
+#message_after_login{
+	color: #DF0101;
+	font-weight: bold;
 }

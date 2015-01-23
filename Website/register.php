@@ -15,6 +15,8 @@ For new users to register to the website
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/register.css" />
+		
+		<script type="text/javascript" src="js/emailValidation.js"></script>
 	</head>
 	<!-- END HEAD -->
 
@@ -30,14 +32,13 @@ For new users to register to the website
 		<!-- CONTAINER -->
 		<div class="container">
 
-			<!-- SEPERATOR -->
-			<div class="row seperator"></div>
-			<!-- END SEPERATOR -->
-
 			<div class="row mainsection">
 				<div class="col-12 ">
+			
+					<!-- Back button to Login -->
+					<a href="index.php">Back to Login</a>
 					<!-- REGISTER FORM -->
-					<form method="POST" action="">
+					<form method="POST" onsubmit="return checkRegistration();">
 						<table>
 							<tr>
 								<td colspan="3"><p class="heading">Register</p></td>
@@ -53,42 +54,44 @@ For new users to register to the website
 							<tr>
 								<td>Username</td>
 								<td>:</td>
-								<td><input name="username" type="text" id="username" /></td>
+								<td><input name="username" type="text" id="username" required/></td>
 							</tr>
 							<tr>
 								<td>Password</td>
 								<td>:</td>
-								<td><input name="password1" type="password" id="password1" /></td>
+								<td><input name="password" type="password" id="password" /></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
 								<td>:</td>
-								<td><input name="password2" type="password" id="password2" /></td>
+								<td><input name="passwordCOnfirm" type="password" id="passwordConfirm" /></td>
 							</tr>
 							<tr>
 								<td>First Name</td>
 								<td>:</td>
-								<td><input name="fname" type="text" id="fname" /></td>
+								<td><input name="fname" type="text" id="fname" required/></td>
 							</tr>
 							<tr>
 								<td>Second Name</td>
 								<td>:</td>
-								<td><input name="sname" type="text" id="sname" /></td>
+								<td><input name="sname" type="text" id="sname" required/></td>
 							</tr>
 							<tr>
 								<td>Phone Number</td>
 								<td>:</td>
-								<td><input name="phone" type="text" id="phone" /></td>
+								<td><input name="phone" type="text" id="phone" pattern="\d{5}-\d{3}-\d{3}|\d{11}|\d{4}-\d{4}-\d{3}-\d{3}|\d{14}" title='Example 0791-695-8912 or 0044-7916-958-912' required /></td>
 							</tr>
 							<tr>
 								<td>E-mail Address</td>
 								<td>:</td>
-								<td><input name="email" type="email" id="email"></td>
+								<td><input name="email" type="text" id="email" ></td>
+								
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td><input type="submit" name="submit" id="submit" value="Register" /></td>
+								
 							</tr>
 						</table>
 					</form>

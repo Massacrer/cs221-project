@@ -11,13 +11,14 @@ This file is part of the main 3 homepages of the website
 		<title>Reserve List</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css">
+		<link rel="stylesheet" type="text/css" href="css/reservelist.css" />
 	</head>
 	<!-- END HEAD -->
 
 	<!-- PHP INCLUDE -->	
 	<?php
 		require('php/loggedin.php');
-		//include("php/reservelist.php");
+		include("php/reservelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 
@@ -35,9 +36,15 @@ This file is part of the main 3 homepages of the website
 			<!-- END NAV BAR -->
 
 			<!-- MAIN SECTION -->
-			<section>
+			<section class="mainsection">
+			<table>
+				<tr>
+				<td><p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserve List"; }else{echo "Users List";} ?></p></td>
+				</tr>
+			</table>	
 				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
+					<?php outputtable(); ?>
 				</div>
 			</section>
 			<!-- END MAIN SECTION -->

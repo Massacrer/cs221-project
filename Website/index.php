@@ -15,6 +15,7 @@ It contains the LOGIN form
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
 		<link rel="stylesheet" type="text/css" href="css/master.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript" src="js/checkLoginPassword.js">	</script>
 	</head>
 	<!-- END HEAD -->
 
@@ -30,24 +31,33 @@ It contains the LOGIN form
 		<!-- CONTAINER -->
 		<div class="container">
 
+			<!-- Image for logon screen -->
+			<div class="col-1" id="plantimage">
+			&nbsp;
+			</div>
+		
+		
+		
 			<!-- LOGIN -->
 			<div class="row">
-				<div class="col-4"></div>
-				<div class="col-3">
+				<div class="col-3"></div>
+				<div class="col-6">
 
 					<!-- LOGIN FORM -->
-					<form method="post" action="">
+					<form method="post" onsubmit="return checkLoginPassword();">
 						<table width="4">
 							<tr>
 								<td colspan="3" class="heading">LOG IN</td>
+								<td rowspan="4" class="align-fix"><img src="res/logo.png" /></td>
+							</tr></td>
 							</tr>
 							
 							<tr>
 								<td colspan="3">
 									<!-- RETURN FIELD -->
-									<?php  loginmessage(); ?>
+									
 									<div id="message_after_login">
-										&nbsp;
+										<?php  loginmessage(); ?>
 									</div>
 									<!-- END OF RETURN FIELD -->
 									
@@ -57,7 +67,7 @@ It contains the LOGIN form
 							<tr>
 								<td>Username</td>
 								<td>:</td>
-								<td><input name="myusername" type="text" id="myusername" /></td>
+								<td><input name="myusername" type="text" id="myusername"/></td>
 
 							</tr>
 							<tr>
@@ -74,10 +84,7 @@ It contains the LOGIN form
 					</form>
 					<!-- END LOGIN FORM -->
 				</div>
-				<div class="col-1">
-					<img src="res/logo.png" />
-				</div>
-				<div class="col-4"></div>
+				<div class="col-3"></div>
 			</div>
 			<!-- END LOGIN -->
 			

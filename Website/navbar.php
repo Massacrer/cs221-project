@@ -2,19 +2,26 @@
 //nav bar
 // Author: Niall
 -->
-				<div class="row">
-					<div class="col-4">
-						<a href="reservelist.php">Reserve List</a>
-					</div>	
-					<div class="col-4">
-						<!-- TODO: ADD THE USERNAME AFTER THIS -->
-						<a href="reservelist.php">User Page</a>
-					</div>
-					<div class="col-4">
-						<a href="addreserve.php">Add Reserve</a>
-					</div>
-				</div>
-				
-				<a href="php/logout.php">Logout</a>
 
+<link rel="stylesheet" type="text/css" href="css/master.css" />
+<link rel="stylesheet" type="text/css" href="css/navbar.css" />
+<div class="row list">
+<div class="col-2 logo">
+<img src="logoNav.png">
+</div>
+<div class="col-2 listelement">
+<a href="reservelist.php">RESERVE LIST</a>
+</div>
+<div class="col-2 listelement">
+<!-- TODO: ADD THE USERNAME AFTER THIS -->
+<a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>">USER PAGE</a>
+</div>
+<div class="col-2 listelement">
+<a href="addreserve.php">ADD RESERVE</a>
+</div>
+<div class="col-2 listelement">
+<a href="php/logout.php">LOGOUT</a>
+</div>
+</div>
 
+  
