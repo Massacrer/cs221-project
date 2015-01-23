@@ -9,6 +9,7 @@ This file is part of the main 3 homepages of the website
 	<!-- HEAD -->
 	<head>
 		<title>Reserve List</title>
+		<link rel="shortcut icon" href="res/icon.ico">
 		<meta charset="UTF-8" />		
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/reservelist.css" />

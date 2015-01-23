@@ -10,6 +10,7 @@ For new users to register to the website
 
 	<!-- HEAD -->
 	<head>
+		<link rel="shortcut icon" href="res/icon.ico">
 		<title>Register</title>
 		<meta charset="UTF-8" />
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'> 
