@@ -11,13 +11,13 @@
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/nr_StartButton"
+            android:id="@+id/ma_StartButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/rec_sp_SpecPic"
+            android:id="@+id/ma_ContinueButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -29,13 +29,13 @@
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/ma_ManageRecordingsButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/ma_SettingsButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />

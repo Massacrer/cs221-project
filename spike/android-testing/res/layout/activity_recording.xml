@@ -4,12 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <ListView
+        android:id="@+id/ra_speciesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </ListView>
+
     <LinearLayout
-        android:id="@+id/speciesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="gone" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -52,7 +59,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/newSpecies"
+        android:id="@+id/ra_newSpecies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="6" />
