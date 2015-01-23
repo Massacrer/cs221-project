@@ -1,8 +1,6 @@
 .list {
 	margin-top: 10px;
 	margin-bottom: 10px;
-	margin-left: 20%;
-	margin-right: 20%;
 }
 
 .listelement {
@@ -13,6 +11,8 @@
 }
 
 .logo {
+	margin-left: 20%;
+	margin-right: 20%;
 	background: url("res/logoNavBar.png") no-repeat center center fixed;
 }
 
