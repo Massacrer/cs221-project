@@ -11,8 +11,8 @@
 			<ul class="navlist">
 				<li class="listelement"><a href="reservelist.php">RESERVE LIST</a></li>
 				<li class="listelement"><a href="addreserve.php">ADD RESERVE</a></li>
-				<li class="listelement"><a href="php/logout.php">LOGOUT</a><li>
 				<li class="listelement"><a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>">USER PAGE</a></li>
+				<li class="listelement"><a href="php/logout.php">LOGOUT</a><li>
 			</ul>
 		</div>
 		
