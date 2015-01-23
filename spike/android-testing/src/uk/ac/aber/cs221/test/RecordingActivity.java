@@ -1,9 +1,7 @@
 package uk.ac.aber.cs221.test;
 
-import uk.ac.aber.cs221.storage.Recording;
-import uk.ac.aber.cs221.storage.RecordingStorage;
-import uk.ac.aber.cs221.util.RecordingActivityListAdapter;
-import uk.ac.aber.cs221.util.Util;
+import uk.ac.aber.cs221.storage.*;
+import uk.ac.aber.cs221.util.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class RecordingActivity extends Activity {
    private Recording recording;
@@ -47,6 +46,9 @@ public class RecordingActivity extends Activity {
    private void setupList() {
       ListView list = (ListView) findViewById(R.id.ra_speciesList);
       list.setAdapter(new RecordingActivityListAdapter(this));
+      TextView emptyView = new TextView(this);
+      emptyView.setText("No species' recorded");
+      list.setEmptyView(emptyView);
    }
    
    private void setupOnClickListener() {

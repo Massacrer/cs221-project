@@ -62,6 +62,7 @@
         android:id="@+id/ra_newSpecies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="6" />
+        android:layout_weight="6"
+        android:text="New Species" />
 
 </LinearLayout>
