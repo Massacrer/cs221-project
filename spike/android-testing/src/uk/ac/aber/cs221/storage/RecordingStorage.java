@@ -67,14 +67,14 @@ public class RecordingStorage extends Storage<Recording> {
    }
    
    @Override
-   public Recording get(int id) {
+   public Recording get(long id) {
       Cursor cursor = database.getReadableDatabase().rawQuery(
-            "SELECT * FROM " + table + " WHERE ID = " + id + " LIMIT 1;",
+            "SELECT * FROM " + table + " WHERE ID = " + id + " LIMIT 1",
             new String[] {});
       if (cursor.getCount() > 0) {
-         Recording recording = new Recording();
+         Recording recording = new Recording(cursor.getLong(cursor
+               .getColumnIndex("_id")));
          
-         recording.id = cursor.getInt(cursor.getColumnIndex("id"));
          recording.name = cursor.getString(cursor.getColumnIndex("name"));
          recording.description = cursor.getString(cursor
                .getColumnIndex("description"));
@@ -102,8 +102,7 @@ public class RecordingStorage extends Storage<Recording> {
    
    @Override
    public Recording createNew() {
-      Recording recording = new Recording();
-      store(recording);
-      return recording;
+      Recording recording = new Recording(0);
+      return get(store(recording));
    }
 }

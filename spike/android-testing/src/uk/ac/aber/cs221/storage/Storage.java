@@ -14,7 +14,7 @@ public abstract class Storage<T> {
    
    public abstract long store(T t);
    
-   public abstract T get(int id);
+   public abstract T get(long id);
    
    public abstract T createNew();
    

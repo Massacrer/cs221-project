@@ -7,8 +7,6 @@ import uk.ac.aber.cs221.util.Util;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,6 +25,16 @@ public class RecordingActivity extends Activity {
       this.setupList();
       this.setupOnClickListener();
       this.setupRecording();
+   }
+   
+   @Override
+   public void onPause() {
+      storeSpeciesList();
+   }
+   
+   private void storeSpeciesList() {
+      // TODO: store list of species in recording - possibly add them elsewhere
+      storage.store(recording);
    }
    
    private void setupRecording() {
@@ -51,8 +59,6 @@ public class RecordingActivity extends Activity {
                   RecordSpeciesActivity.class);
             startActivity(intent);
          }
-         
       });
    }
-   
 }
