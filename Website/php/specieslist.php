@@ -37,15 +37,15 @@
 							<div class="row">
 								<div class="col-4">
 									<!-- GENERATED DAFOR HERE -->
-									DAFOR: <?php echo $row['2']; ?>
+									<strong>DAFOR: </strong><?php echo $row['2']; ?>
 								</div>
 								<div class="col-4">
 									<!-- GENERATED LOCATION HERE -->
-									Location: <?php echo $row['4']; ?>
+									<strong>Location: </strong><?php echo $row['4']; ?>
 								</div>
 								<div class="col-4">
 									<!-- GENERATED TIME/DATE HERE -->
-									Time/Date: <?php echo $row['5']; ?>
+									<strong>Time/Date: </strong><?php echo $row['5']; ?>
 								</div>
 							</div>
 							<div class="row">

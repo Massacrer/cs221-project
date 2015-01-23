@@ -32,12 +32,11 @@
 					<div class="row">
 						<div class="col-10">
 							<!-- GENERATED LOCATION HERE -->
-							<?php echo "Loc: " . $row['2']; ?>
-
+							<strong>Location: </strong><?php echo $row['2']; ?>
 						</div>
 						<div class="col-2">
 							<!-- GENERATED TIME + DATE HERE -->
-							<?php echo $row['3']; ?>
+							<strong>Date + Time: </strong><?php echo $row['3']; ?>
 						</div>
 					</div>
 					<div class="row">

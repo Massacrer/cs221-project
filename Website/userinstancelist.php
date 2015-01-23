@@ -8,18 +8,15 @@ This file is part of the main 3 homepages of the website
 
 	<!-- HEAD -->
 	<head>
-		<title>Species List</title>
+		<title>User Instance List</title>
 		<meta charset="UTF-8" />
-		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/master.css">
-		<link rel="stylesheet" type="text/css" href="css/specieslist.css">
 	</head>
 	<!-- END HEAD -->
 
 	<!-- PHP INCLUDE -->	
 	<?php
-		require('php/loggedin.php');
-		include("php/specieslist.php");
+		include("php/userinstancelist.php");
 	?>
 	<!-- END PHP INCLUDE -->
 
@@ -32,20 +29,24 @@ This file is part of the main 3 homepages of the website
 		
 			<!-- NAV BAR -->
 			<nav>
-				<?php include("navbar.php"); ?>
+				<div class="row">
+					<div class="col-4">
+						<a href="reserveList.php">Reserve List</a>
+					</div>	
+					<div class="col-4">
+						<a href="userPage.php">User Page</a>
+					</div>
+					<div class="col-4">
+						<a href="addReserve.php">Add Reserve</a>
+					</div>
+				</div>
 			</nav>
 			<!-- END NAV BAR -->
 
 			<!-- MAIN SECTION -->
 			<section>
-				<div class="row mainsection results">
-				<table>
-					<tr>
-						<td><p class="heading">Species List</p></td>
-					</tr>
-				</table>
+				<div class="row">
 					<!-- PHP GENERATED CONTENT -->
-					<?php outputtable(); ?>
 				</div>
 			</section>
 			<!-- END MAIN SECTION -->
@@ -56,4 +57,4 @@ This file is part of the main 3 homepages of the website
 	</body>
 	<!-- END BODY -->
 
-</html>
+</html>>
