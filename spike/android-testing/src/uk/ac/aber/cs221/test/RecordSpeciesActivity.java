@@ -39,8 +39,6 @@ public class RecordSpeciesActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				Toast.makeText(RecordSpeciesActivity.this, "button has been pressed", Toast.LENGTH_LONG).show();
-				
 				gps = new GpsLocator(RecordSpeciesActivity.this);
 				
 				if(gps.canGetLocation()){

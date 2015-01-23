@@ -14,13 +14,16 @@
             android:id="@+id/ma_StartButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="New Recording" />
 
         <Button
             android:id="@+id/ma_ContinueButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="Self Destuct" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -32,13 +35,16 @@
             android:id="@+id/ma_ManageRecordingsButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="Manage Recordings" />
 
         <Button
             android:id="@+id/ma_SettingsButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="Settings" />
+
     </LinearLayout>
 
 </LinearLayout>

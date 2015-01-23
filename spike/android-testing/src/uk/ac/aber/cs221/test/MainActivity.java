@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
 	private void setupOnClickListener() {
 		Button buttonStart = (Button) findViewById(R.id.ma_StartButton);
-		//Button buttonContinue = (Button) findViewById(R.id.ma_ContinueButton);
+		// Button buttonContinue = (Button)findViewById(R.id.ma_ContinueButton);
 		Button buttonManage = (Button) findViewById(R.id.ma_ManageRecordingsButton);
 		Button buttonSettings = (Button) findViewById(R.id.ma_SettingsButton);
 
@@ -30,35 +30,34 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
 						NewRecordingActivity.class);
-					startActivity(intent);
-				}
+				startActivity(intent);
+			}
 		});
-		
-		/*buttonContinue.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this,
-						NewRecordingActivity.class);
-					startActivity(intent);
-				}
-		});*/
-		
+
+		/*
+		 * buttonContinue.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { Intent intent = new
+		 * Intent(MainActivity.this, NewRecordingActivity.class);
+		 * startActivity(intent); } });
+		 */
+
 		buttonManage.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
 						RecordingManager.class);
-					startActivity(intent);
-				}
+				startActivity(intent);
+			}
 		});
-		
+
 		buttonSettings.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
 						SettingsActivity.class);
-					startActivity(intent);
-				}
+				startActivity(intent);
+			}
 		});
 
 	}
