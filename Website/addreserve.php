@@ -28,9 +28,9 @@ This page is redirected to from the add reserve page.
 		<div class="container">
 		
 			<!-- NAV BAR -->
-				<nav>
-					<?php include("navbar.php"); ?>
-				</nav>
+			<nav>
+				<?php include("navbar.php"); ?>
+			</nav>
 			<!-- END NAV BAR -->
 			
 			<!-- MAIN SECTION -->
@@ -66,8 +66,10 @@ This page is redirected to from the add reserve page.
 				</div>
 			</div>
 			<!-- END MAIN SECTION -->
+			
 		</div>
 		<!-- END CONTAINER -->
+
 	</body>
 	<!-- END BODY -->
 </html>

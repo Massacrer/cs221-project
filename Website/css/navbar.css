@@ -1,3 +1,7 @@
+body {
+	font-family: "Lato", "Calibri", Tahoma, sans-serif;
+}
+
 .list {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -11,8 +15,13 @@
 }
 
 .logo {
-	margin-left: 10%;
-	background: url("res/logoNavBar.png") no-repeat center center fixed;
+	background-image: url("res/logoNavBar.png");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+ul {
+`	margin-left: 20%;
 }
 
 ul li {

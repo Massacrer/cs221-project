@@ -38,14 +38,16 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section>
+				<div class="row">
+					<div class="col-12">
+						<p class="heading">Species List</p>
+					</div>
+				</div>
 				<div class="row mainsection results">
-				<table>
-					<tr>
-						<td><p class="heading">Species List</p></td>
-					</tr>
-				</table>
-					<!-- PHP GENERATED CONTENT -->
-					<?php outputtable(); ?>
+					<div class="col-12">
+						<!-- PHP GENERATED CONTENT -->
+						<?php outputtable(); ?>
+					</div>
 				</div>
 			</section>
 			<!-- END MAIN SECTION -->
