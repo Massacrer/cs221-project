@@ -59,12 +59,12 @@ For new users to register to the website
 							<tr>
 								<td>Password</td>
 								<td>:</td>
-								<td><input name="password" type="password" id="password" /></td>
+								<td><input name="password" type="password" id="password" required /></td>
 							</tr>
 							<tr>
 								<td>Confirm Password</td>
 								<td>:</td>
-								<td><input name="passwordCOnfirm" type="password" id="passwordConfirm" onsubmit="return checkPassword();"/></td>
+								<td><input name="passwordCOnfirm" type="password" id="passwordConfirm" required /></td>
 							</tr>
 							<tr>
 								<td>First Name</td>

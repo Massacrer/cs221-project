@@ -1,5 +1,14 @@
 function checkRegistration(){
-return checkEmail();
+var returnVal = true;
+if (!checkPassword()) {
+return false;
+}
+
+if(!checkEmail()){
+return false;
+}
+
+return returnVal;
 }
 
  
