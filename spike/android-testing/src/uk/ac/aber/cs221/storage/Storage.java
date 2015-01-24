@@ -20,7 +20,7 @@ public abstract class Storage<T> {
    
    static class DatabaseHelper extends SQLiteOpenHelper {
       private String recordings_create = "name text not null, description text not null, latitude real, longitude real, date text not null, user_name text not null, user_email not null, user_number not null";
-      private String species_create = "name text not null, comment text not null, image_1 text not null, image_2 text not null, latitude real, longitude real";
+      private String species_create = "name text not null, comment text not null, abundance integer not null, image_1 text not null, image_2 text not null, latitude real, longitude real";
       
       public DatabaseHelper(Context context) {
          super(context, "database", null, 1);

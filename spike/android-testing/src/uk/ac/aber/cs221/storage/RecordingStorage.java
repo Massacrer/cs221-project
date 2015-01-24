@@ -69,7 +69,7 @@ public class RecordingStorage extends Storage<Recording> {
    @Override
    public Recording get(long id) {
       Cursor cursor = database.getReadableDatabase().rawQuery(
-            "SELECT * FROM " + table + " WHERE ID = " + id + " LIMIT 1",
+            "SELECT * FROM " + table + " WHERE _id = " + id + " LIMIT 1",
             new String[] {});
       if (cursor.getCount() > 0) {
          Recording recording = new Recording(cursor.getLong(cursor
