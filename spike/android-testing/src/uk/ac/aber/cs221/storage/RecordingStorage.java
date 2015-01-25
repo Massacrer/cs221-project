@@ -14,8 +14,6 @@ public class RecordingStorage extends Storage<Recording> {
    RecordingStorage(Context context) {
       instance = this;
       database = new Storage.DatabaseHelper(context);
-      // TODO:DEBUG REMOVE THIS CALL FOR PRODUCTION
-      
    }
    
    public static RecordingStorage getInstance(Context context) {
@@ -25,12 +23,11 @@ public class RecordingStorage extends Storage<Recording> {
       return instance;
    }
    
-   @Override
    public Cursor getCursor() {
       SQLiteDatabase connection = database.getReadableDatabase();
       Cursor cursor = connection.query(table, null, null, null, null, null,
             null);
-      // database.close();
+      // database.close(); // needs to be left open for the cursor to work
       return cursor;
    }
    
@@ -92,14 +89,8 @@ public class RecordingStorage extends Storage<Recording> {
    
    @Override
    public Recording createNew() {
-      ContentValues values = new ContentValues();
-      values.put("name", "name");
-      long id = database.getWritableDatabase().insert(table, null, values);
+      long id = database.getWritableDatabase().insert(table, "name",
+            new ContentValues());
       return get(id);
-      
-      /*
-       * Recording recording = new Recording(0); return get(store(recording));
-       */
-      
    }
 }

@@ -16,8 +16,6 @@ public abstract class Storage<T> {
    static final String idColumn = "_id INTEGER PRIMARY KEY AUTOINCREMENT";
    static final String nn = "";// "NOT NULL";
    
-   public abstract Cursor getCursor();
-   
    public abstract long store(T t);
    
    public abstract T get(long id);

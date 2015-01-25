@@ -17,20 +17,10 @@ public class SpeciesStorage extends Storage<Species> {
    }
    
    public static SpeciesStorage getInstance(Context context) {
-      
       if (instance == null) {
          instance = new SpeciesStorage(context);
       }
       return instance;
-   }
-   
-   @Override
-   public Cursor getCursor() {
-      SQLiteDatabase connection = database.getReadableDatabase();
-      Cursor c = connection.query(table, null, null, null, null, null, null);
-      // database.close();
-      return c;
-      
    }
    
    @Override
@@ -44,8 +34,6 @@ public class SpeciesStorage extends Storage<Species> {
       values.put("image_2", species.imageFile2);
       values.put("latitude", species.loc.getLatitude());
       values.put("longitude", species.loc.getLongitude());
-      // name text not null, comment text not null, image_1 text not null,
-      // image_2 text not null, latitude real, longitude real
       return database.getWritableDatabase().insert(table, null, values);
       
    }
@@ -77,15 +65,16 @@ public class SpeciesStorage extends Storage<Species> {
          loc.setLongitude(cursor.getLong(cursor
                .getColumnIndexOrThrow("longitude")));
          species.loc = loc;
-         
+         return species;
       }
       return null;
    }
    
    @Override
    public Species createNew() {
-      Species species = new Species(0);
-      return get(store(species));
+      long id = database.getWritableDatabase().insert(table, "name",
+            new ContentValues());
+      return get(id);
    }
    
    public Cursor getByRecordingId(long recordingId) {
