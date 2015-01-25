@@ -4,6 +4,7 @@ import uk.ac.aber.cs221.storage.*;
 import uk.ac.aber.cs221.util.*;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,13 +22,14 @@ public class RecordingActivity extends Activity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_recording);
       
-      this.setupList();
       this.setupOnClickListener();
       this.setupRecording();
+      this.setupList();
    }
    
    @Override
    public void onPause() {
+      super.onPause();
       storeSpeciesList();
    }
    
@@ -37,6 +39,9 @@ public class RecordingActivity extends Activity {
    }
    
    private void setupRecording() {
+      // TODO:DEBUG REMOVE THIS CALL FOR PRODUCTION
+      this.deleteDatabase("database");
+      
       storage = RecordingStorage.getInstance(this);
       
       int id = getIntent().getExtras().getInt("id");
@@ -45,7 +50,11 @@ public class RecordingActivity extends Activity {
    
    private void setupList() {
       ListView list = (ListView) findViewById(R.id.ra_speciesList);
-      list.setAdapter(new RecordingActivityListAdapter(this));
+      
+      Cursor cursor = SpeciesStorage.getInstance(this).getByRecordingId(
+            this.recording.id);
+      
+      list.setAdapter(new RecordingActivityCursorListAdapter(this, cursor, true));
       TextView emptyView = new TextView(this);
       emptyView.setText("No species' recorded");
       list.setEmptyView(emptyView);

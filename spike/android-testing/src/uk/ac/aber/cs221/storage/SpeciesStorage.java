@@ -8,7 +8,7 @@ import android.content.Context;
 
 public class SpeciesStorage extends Storage<Species> {
    private static SpeciesStorage instance;
-   private static final String table = "species";
+   public static final String table = "species";
    private DatabaseHelper database;
    
    SpeciesStorage(Context context) {
@@ -28,7 +28,7 @@ public class SpeciesStorage extends Storage<Species> {
    public Cursor getCursor() {
       SQLiteDatabase connection = database.getReadableDatabase();
       Cursor c = connection.query(table, null, null, null, null, null, null);
-      database.close();
+      // database.close();
       return c;
       
    }
@@ -38,6 +38,7 @@ public class SpeciesStorage extends Storage<Species> {
       ContentValues values = new ContentValues();
       values.put("name", species.name);
       values.put("comment", species.comment);
+      values.put("date", dateTimeString(species.date));
       values.put("abundance", species.abundance);
       values.put("image_1", species.imageFile1);
       values.put("image_2", species.imageFile2);
@@ -56,29 +57,42 @@ public class SpeciesStorage extends Storage<Species> {
             new String[] {});
       if (cursor.getCount() > 0) {
          Species species = new Species(cursor.getLong(cursor
-               .getColumnIndex("_id")));
+               .getColumnIndexOrThrow("_id")));
          
-         species.name = cursor.getString(cursor.getColumnIndex("name"));
-         species.comment = cursor.getString(cursor.getColumnIndex("comment"));
-         species.abundance = cursor.getInt(cursor.getColumnIndex("abundance"));
+         species.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+         species.comment = cursor.getString(cursor
+               .getColumnIndexOrThrow("comment"));
+         species.date = dateFromString(cursor.getString(cursor
+               .getColumnIndexOrThrow("date")));
+         species.abundance = cursor.getInt(cursor
+               .getColumnIndexOrThrow("abundance"));
          species.imageFile1 = cursor.getString(cursor
-               .getColumnIndex("imageFile1"));
+               .getColumnIndexOrThrow("imageFile1"));
          species.imageFile2 = cursor.getString(cursor
-               .getColumnIndex("imageFile2"));
+               .getColumnIndexOrThrow("imageFile2"));
          
          Location loc = new Location("RPSRrec");
-         loc.setLatitude(cursor.getLong(cursor.getColumnIndex("latitude")));
-         loc.setLongitude(cursor.getLong(cursor.getColumnIndex("longitude")));
+         loc.setLatitude(cursor.getLong(cursor
+               .getColumnIndexOrThrow("latitude")));
+         loc.setLongitude(cursor.getLong(cursor
+               .getColumnIndexOrThrow("longitude")));
          species.loc = loc;
          
       }
-      // toDO
       return null;
    }
    
    @Override
    public Species createNew() {
-      
-      return null;
+      Species species = new Species(0);
+      return get(store(species));
+   }
+   
+   public Cursor getByRecordingId(long recordingId) {
+      SQLiteDatabase connection = database.getReadableDatabase();
+      Cursor cursor = connection.rawQuery("SELECT * FROM " + table
+            + " WHERE recording = " + recordingId, new String[] {});
+      // connection.close();
+      return cursor;
    }
 }
