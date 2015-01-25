@@ -1,11 +1,14 @@
 package uk.ac.aber.cs221.test;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -26,7 +29,7 @@ public class RecordSpeciesActivity extends Activity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_record_species);
       Util.setupActionBar(this);
-      setupSaveButton();
+      setupButtons();
       setupSpinner();
       setupPhotoPickerButtons();
    }
@@ -55,12 +58,23 @@ public class RecordSpeciesActivity extends Activity {
    private void setupSpecies() {
       SpeciesStorage storage = SpeciesStorage.getInstance(this);
       Bundle extras = getIntent().getExtras();
-      if (extras == null) {
-         this.species = storage.createNew();
-      }
-      else {
-         long id = extras.getLong("id");
-         this.species = (id == 0) ? storage.createNew() : storage.get(id);
+      if (extras != null) {
+         long recordingId = extras.getLong("recordingId");
+         long speciesId = extras.getLong("speciesId");
+         
+         if (recordingId != 0) {
+            this.species = storage.createNew();
+            this.species.recordingId = recordingId;
+         }
+         else
+            if (speciesId != 0) {
+               this.species = storage.get(speciesId);
+            }
+            else {
+               throw new RuntimeException(
+                     "called RecordSpeciesActivity without ids");
+            }
+         
       }
    }
    
@@ -70,21 +84,45 @@ public class RecordSpeciesActivity extends Activity {
       ((TextView) findViewById(R.id.rec_sp_Comment)).setText(species.comment);
       ((Spinner) findViewById(R.id.abundanceSpinner))
             .setSelection(species.abundance);
+      
+      Cursor cursor = null;
+      ((AutoCompleteTextView) findViewById(R.id.rec_sp_SpName))
+            .setAdapter(new CursorAdapter(RecordSpeciesActivity.this, cursor,
+                  false) {
+               @Override
+               public View newView(Context context, Cursor cursor,
+                     ViewGroup parent) {
+                  return null;
+               }
+               
+               @Override
+               public void bindView(View view, Context context, Cursor cursor) {
+                  
+               }
+            });
    }
    
-   private void setupSaveButton() {
-      Button buttonSave = (Button) findViewById(R.id.rec_sp_SaveButton);
-      buttonSave.setOnClickListener(new OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            SpeciesStorage storage = SpeciesStorage
-                  .getInstance(RecordSpeciesActivity.this);
-            
-            storeDetails();
-            storage.store(species);
-            RecordSpeciesActivity.this.finish();
-         }
-      });
+   private void setupButtons() {
+      ((Button) findViewById(R.id.rec_sp_SaveButton))
+            .setOnClickListener(new OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  storeDetails();
+                  SpeciesStorage.getInstance(RecordSpeciesActivity.this).store(
+                        species);
+                  RecordSpeciesActivity.this.finish();
+               }
+            });
+      
+      ((Button) findViewById(R.id.rec_sp_delete))
+            .setOnClickListener(new OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  SpeciesStorage.getInstance(RecordSpeciesActivity.this)
+                        .delete(RecordSpeciesActivity.this.species.id);
+                  RecordSpeciesActivity.this.finish();
+               }
+            });
    }
    
    private void storeDetails() {
@@ -100,7 +138,7 @@ public class RecordSpeciesActivity extends Activity {
                RecordSpeciesActivity.this,
                "your Latitude is : " + latitude + "\nYour Longitude is : "
                      + longitude, Toast.LENGTH_LONG).show();
-         Location temp = new Location("");
+         Location temp = new Location("RPSRrec");
          temp.setLatitude(latitude);
          temp.setLongitude(longitude);
          species.loc = temp;
@@ -113,6 +151,8 @@ public class RecordSpeciesActivity extends Activity {
       species.name = (nameField.getText().toString());
       TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);
       species.comment = (commentField.getText().toString());
+      species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
+            .getSelectedItemPosition();
    }
    
    private void setupPhotoPickerButtons() {

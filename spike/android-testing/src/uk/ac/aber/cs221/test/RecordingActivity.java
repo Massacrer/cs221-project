@@ -49,7 +49,7 @@ public class RecordingActivity extends Activity {
    
    public void rowSelectCallback(View selected) {
       Intent intent = new Intent(this, RecordSpeciesActivity.class);
-      intent.putExtra("id", (Long) selected.getTag());
+      intent.putExtra("speciesId", (Long) selected.getTag());
       startActivity(intent);
    }
    
