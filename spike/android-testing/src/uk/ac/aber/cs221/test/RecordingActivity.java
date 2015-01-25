@@ -27,7 +27,7 @@ public class RecordingActivity extends Activity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_recording);
       
-      this.setupOnClickListener();
+      this.setupOnClickListeners();
       this.setupRecording();
       this.setupList();
    }
@@ -45,6 +45,12 @@ public class RecordingActivity extends Activity {
             .getAdapter();
       adapter.changeCursor(SpeciesStorage.getInstance(this).getByRecordingId(
             this.recording.id));
+   }
+   
+   public void rowSelectCallback(View selected) {
+      Intent intent = new Intent(this, RecordSpeciesActivity.class);
+      intent.putExtra("id", (Long) selected.getTag());
+      startActivity(intent);
    }
    
    private void storeRecording() {
@@ -88,9 +94,8 @@ public class RecordingActivity extends Activity {
       Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }
    
-   private void setupOnClickListener() {
+   private void setupOnClickListeners() {
       Button buttonAddSpecies = (Button) findViewById(R.id.ra_newSpecies);
-      
       buttonAddSpecies.setOnClickListener(new OnClickListener() {
          @Override
          public void onClick(View v) {

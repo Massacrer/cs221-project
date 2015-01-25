@@ -9,6 +9,8 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +29,19 @@ public class RecordSpeciesActivity extends Activity {
       setupSaveButton();
       setupSpinner();
       setupPhotoPickerButtons();
+   }
+   
+   @Override
+   protected void onPause() {
+      super.onPause();
+      SpeciesStorage.getInstance(this).store(species);
+   }
+   
+   @Override
+   protected void onResume() {
+      super.onResume();
       setupSpecies();
+      setupFields();
    }
    
    private void setupSpinner() {
@@ -50,6 +64,14 @@ public class RecordSpeciesActivity extends Activity {
       }
    }
    
+   private void setupFields() {
+      ((TextView) findViewById(R.id.rec_sp_SpName)).setText(species.name);
+      // work with imageView1 here
+      ((TextView) findViewById(R.id.rec_sp_Comment)).setText(species.comment);
+      ((Spinner) findViewById(R.id.abundanceSpinner))
+            .setSelection(species.abundance);
+   }
+   
    private void setupSaveButton() {
       Button buttonSave = (Button) findViewById(R.id.rec_sp_SaveButton);
       buttonSave.setOnClickListener(new OnClickListener() {
@@ -67,8 +89,6 @@ public class RecordSpeciesActivity extends Activity {
    
    private void storeDetails() {
       // TODO: fill in every field of this.species from the ui data here
-      
-      species.recordingId = this.getIntent().getLongExtra("recordingId", -1);
       
       gps = new GpsLocator(RecordSpeciesActivity.this);
       if (gps.canGetLocation()) {

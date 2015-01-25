@@ -62,7 +62,7 @@ public class RecordingManager extends Activity {
    
    public void rowSelectCallback(View selected) {
       Intent intent = new Intent(this, RecordingActivity.class);
-      intent.putExtra("id", (Long) ((ViewGroup) selected).getTag());
+      intent.putExtra("id", (Long) selected.getTag());
       startActivity(intent);
    }
    

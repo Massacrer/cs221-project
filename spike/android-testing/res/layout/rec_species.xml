@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Species Name" />
+        android:text="Species Name"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/rec_sp_TimeSeen"
