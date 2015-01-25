@@ -18,9 +18,11 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import uk.ac.aber.cs221.storage.RecordingStorage;
@@ -36,6 +38,7 @@ public class RecordingManager extends Activity {
       setContentView(R.layout.activity_recording_management);
       this.setUpOnClickServer();
       setupList();
+      setupOnClickListener();
    }
    
    private void setupList() {
@@ -47,8 +50,31 @@ public class RecordingManager extends Activity {
       Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }
    
+   private void refreshList() {
+      ListView list = (ListView) findViewById(R.id.rmgr_list);
+      CursorAdapter adapter = (CursorAdapter) list.getAdapter();
+      /*
+       * adapter.notifyDataSetChanged(); list.refreshDrawableState();
+       * list.invalidateViews();
+       */
+      adapter.changeCursor(RecordingStorage.getInstance(this).getCursor());
+   }
+   
    private void setupOnClickListener() {
-      
+      ((Button) findViewById(R.id.rmgr_deleteButton))
+            .setOnClickListener(new OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  List<Long> selected = getSelectedRecordings();
+                  if (selected.size() > 0) {
+                     for (Long id : selected) {
+                        RecordingStorage.getInstance(RecordingManager.this)
+                              .delete(id);
+                     }
+                  }
+                  refreshList();
+               }
+            });
    }
    
    private List<Long> getSelectedRecordings() {

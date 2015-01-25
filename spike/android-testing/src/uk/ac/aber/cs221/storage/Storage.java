@@ -21,6 +21,8 @@ public abstract class Storage<T> {
    
    public abstract T createNew();
    
+   public abstract void delete(long id);
+   
    public static String dateTimeString(Date date) {
       if (date == null) {
          return null;

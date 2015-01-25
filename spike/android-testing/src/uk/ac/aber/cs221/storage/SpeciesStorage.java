@@ -90,4 +90,9 @@ public class SpeciesStorage extends Storage<Species> {
       // connection.close();
       return cursor;
    }
+   
+   @Override
+   public void delete(long id) {
+      database.getWritableDatabase().delete(table, "_id = " + id, null);
+   }
 }

@@ -94,4 +94,9 @@ public class RecordingStorage extends Storage<Recording> {
             new ContentValues());
       return get(id);
    }
+   
+   @Override
+   public void delete(long id) {
+      database.getWritableDatabase().delete(table, "_id = " + id, null);
+   }
 }
