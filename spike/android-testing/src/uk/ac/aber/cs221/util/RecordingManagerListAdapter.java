@@ -1,55 +1,38 @@
 package uk.ac.aber.cs221.util;
-import java.util.Calendar;
-import java.util.List;
-import uk.ac.aber.cs221.storage.Recording;
+
 import uk.ac.aber.cs221.test.R;
-import uk.ac.aber.cs221.test.RecordingManager;
+import android.content.Context;
+import android.database.Cursor;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.CursorAdapter;
+import android.widget.TextView;
 
-public class RecordingManagerListAdapter extends BaseAdapter {
-
-private  RecordingManager recordingManager;
-private List <Recording> recordingList;
-
-
-Calendar calendar = Calendar.getInstance();
-
-public RecordingManagerListAdapter (RecordingManager context){
-this.recordingManager=context;
-
-}
-
-@Override
-public int getCount() {
-if (recordingList==null) return 0;
-else return recordingList.size();
-}
-
-@Override
-public Object getItem(int position) {	
-	return recordingList.get(position);
-}
-
-@Override
-public long getItemId(int position) {
-return position;
-}
-
-@Override
-public View getView(int position, View convertView, ViewGroup parent) {
-Recording r = recordingList.get(position);
-View v = recordingManager.getLayoutInflater().inflate(R.id.recordingsList,null);
-	return v;
-}	
-
-@Override
-public boolean isEmpty() {
-	if(recordingList.size()<=0 || recordingList==null){
-    return true;
-	}
-	else return false;
-}
-
+public class RecordingManagerListAdapter extends CursorAdapter {
+   
+   public RecordingManagerListAdapter(Context context, Cursor c,
+         boolean autoRequery) {
+      super(context, c, autoRequery);
+   }
+   
+   @Override
+   public View newView(Context context, Cursor cursor, ViewGroup parent) {
+      return LayoutInflater.from(context).inflate(R.layout.rmgr_recording,
+            parent, false);
+   }
+   
+   @Override
+   public void bindView(View view, Context context, Cursor cursor) {
+      TextView recName = (TextView) view.findViewById(R.id.rmgr_recName);
+      TextView recDetails = (TextView) view.findViewById(R.id.rmgr_recDetails);
+      
+      String recordingName = cursor.getString(cursor
+            .getColumnIndexOrThrow("name"));
+      String recordingDescription = cursor.getString(cursor
+            .getColumnIndexOrThrow("description"));
+      
+      recName.setText(recordingName);
+      recDetails.setText(recordingDescription);
+   }
 }

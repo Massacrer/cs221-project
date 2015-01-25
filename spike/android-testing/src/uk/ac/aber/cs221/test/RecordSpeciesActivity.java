@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import uk.ac.aber.cs221.storage.*;
 import uk.ac.aber.cs221.util.*;
@@ -30,7 +31,7 @@ public class RecordSpeciesActivity extends Activity {
    }
    
    private void setupSpinner() {
-      ((Spinner) findViewById(R.id.spinner1))
+      ((Spinner) findViewById(R.id.abundanceSpinner))
             .setAdapter(new ArrayAdapter<String>(this,
                   android.R.layout.simple_list_item_1, new String[] {
                         "Dominant", "Abundant", "Frequent", "Occasional",
@@ -39,8 +40,14 @@ public class RecordSpeciesActivity extends Activity {
    
    private void setupSpecies() {
       SpeciesStorage storage = SpeciesStorage.getInstance(this);
-      long id = getIntent().getExtras().getLong("id");
-      this.species = (id == 0) ? storage.createNew() : storage.get(id);
+      Bundle extras = getIntent().getExtras();
+      if (extras == null) {
+         this.species = storage.createNew();
+      }
+      else {
+         long id = extras.getLong("id");
+         this.species = (id == 0) ? storage.createNew() : storage.get(id);
+      }
    }
    
    private void setupSaveButton() {
@@ -53,12 +60,15 @@ public class RecordSpeciesActivity extends Activity {
             
             storeDetails();
             storage.store(species);
+            RecordSpeciesActivity.this.finish();
          }
       });
    }
    
    private void storeDetails() {
       // TODO: fill in every field of this.species from the ui data here
+      
+      species.recordingId = this.getIntent().getLongExtra("recordingId", -1);
       
       gps = new GpsLocator(RecordSpeciesActivity.this);
       if (gps.canGetLocation()) {
@@ -81,7 +91,7 @@ public class RecordSpeciesActivity extends Activity {
       
       AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
       species.name = (nameField.getText().toString());
-      AutoCompleteTextView commentField = (AutoCompleteTextView) findViewById(R.id.rec_sp_Comment);
+      TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);
       species.comment = (commentField.getText().toString());
    }
    

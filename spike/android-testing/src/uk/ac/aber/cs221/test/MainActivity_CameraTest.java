@@ -78,7 +78,7 @@ public class MainActivity_CameraTest extends Activity {
          
          Uri uri = new Uri.Builder().path(currentImage.getPath()).build();
          // DEBUG
-         ((TextView) findViewById(R.id.rmgr_RecName)).setText(uri.toString());
+         ((TextView) findViewById(R.id.rmgr_recName)).setText(uri.toString());
          Log.i("CS221_test", uri.toString());
       }
       catch (IOException e) {

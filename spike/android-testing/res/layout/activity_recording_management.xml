@@ -5,12 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <ListView
+        android:id="@+id/rmgr_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </ListView>
+
     <LinearLayout
         android:id="@+id/recordingsList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="gone" >
 
         <include
             android:layout_width="wrap_content"
@@ -22,7 +30,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/rmgr_RecName"
+                android:id="@+id/rmgr_recName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -31,11 +39,11 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/rmgr_RecDetails"
+                android:id="@+id/rmgr_recDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/rmgr_RecName"
+                android:layout_below="@id/rmgr_recName"
                 android:text="31/12/2014: 15 species recorded" />
 
             <CheckBox

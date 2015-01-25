@@ -32,7 +32,7 @@ public class RecordingStorage extends Storage<Recording> {
    }
    
    @Override
-   public long store(Recording recording) {
+   public void store(Recording recording) {
       ContentValues values = new ContentValues();
       values.put("name", recording.name);
       values.put("description", recording.description);
@@ -46,7 +46,8 @@ public class RecordingStorage extends Storage<Recording> {
       values.put("user_number", recording.userNumber);
       values.put("user_email", recording.userEmail);
       
-      return database.getWritableDatabase().insert(table, null, values);
+      database.getWritableDatabase().update(table, values,
+            "_id = " + recording.id, null);
    }
    
    @Override

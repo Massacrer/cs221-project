@@ -20,8 +20,11 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import uk.ac.aber.cs221.storage.RecordingStorage;
+import uk.ac.aber.cs221.util.RecordingManagerListAdapter;
 import uk.ac.aber.cs221.util.Util;
 
 public class RecordingManager extends Activity {
@@ -32,6 +35,16 @@ public class RecordingManager extends Activity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_recording_management);
       this.setUpOnClickServer();
+      setupList();
+   }
+   
+   private void setupList() {
+      Cursor cursor = RecordingStorage.getInstance(this).getCursor();
+      
+      ListView listView = (ListView) findViewById(R.id.rmgr_list);
+      listView.setAdapter(new RecordingManagerListAdapter(this, cursor, true));
+      String message = "Cursor contains " + cursor.getCount() + " rows";
+      Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }
    
    @Override
@@ -96,30 +109,5 @@ public class RecordingManager extends Activity {
             
          }
       });
-      
-   }
-   
-   class RecordingAdapter extends CursorAdapter {
-      
-      public RecordingAdapter(Context context, Cursor cursor) {
-         super(context, cursor, CursorAdapter.FLAG_AUTO_REQUERY);
-      }
-      
-      @Override
-      public View newView(Context context, Cursor cursor, ViewGroup parent) {
-         return LayoutInflater.from(context).inflate(R.layout.rmgr_recording,
-               parent, false);
-      }
-      
-      @Override
-      public void bindView(View view, Context context, Cursor cursor) {
-         TextView name = (TextView) view.findViewById(R.id.rmgr_RecName);
-         TextView details = (TextView) view.findViewById(R.id.rmgr_RecDetails);
-         
-         name.setText(cursor.getString(cursor.getColumnIndexOrThrow("name")));
-         details.setText(cursor.getString(cursor
-               .getColumnIndexOrThrow("description")));
-      }
-      
    }
 }

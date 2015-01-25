@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
+    android:overScrollMode="always"
     tools:context="${relativePackage}.${activityClass}" >
 
     <EditText
@@ -12,31 +13,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Site Details (e.g. name)" >
+        android:hint="Site name"
+        android:inputType="textCapWords" >
 
         <requestFocus />
     </EditText>
+
+    <EditText
+        android:id="@+id/nr_siteDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Site description"
+        android:inputType="textMultiLine" />
 
     <EditText
         android:id="@+id/nr_Uname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Your name" />
+        android:hint="Your name"
+        android:inputType="textCapWords" />
 
     <EditText
         android:id="@+id/nr_uNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Phone number" />
+        android:hint="Phone number"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/nr_uEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Email address" />
+        android:hint="Email address"
+        android:inputType="textEmailAddress" />
 
     <Button
         android:id="@+id/nr_StartButton"

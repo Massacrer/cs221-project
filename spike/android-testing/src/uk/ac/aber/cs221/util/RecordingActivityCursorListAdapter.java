@@ -31,7 +31,7 @@ public class RecordingActivityCursorListAdapter extends CursorAdapter {
    
    @Override
    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      return LayoutInflater.from(context).inflate(R.layout.rec_species, null,
+      return LayoutInflater.from(context).inflate(R.layout.rec_species, parent,
             false);
    }
 }

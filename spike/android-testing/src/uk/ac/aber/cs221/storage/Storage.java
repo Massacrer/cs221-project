@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -16,7 +15,7 @@ public abstract class Storage<T> {
    static final String idColumn = "_id INTEGER PRIMARY KEY AUTOINCREMENT";
    static final String nn = "";// "NOT NULL";
    
-   public abstract long store(T t);
+   public abstract void store(T t);
    
    public abstract T get(long id);
    

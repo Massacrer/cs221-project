@@ -24,7 +24,7 @@ public class SpeciesStorage extends Storage<Species> {
    }
    
    @Override
-   public long store(Species species) {
+   public void store(Species species) {
       ContentValues values = new ContentValues();
       values.put("name", species.name);
       values.put("comment", species.comment);
@@ -34,18 +34,21 @@ public class SpeciesStorage extends Storage<Species> {
       values.put("image_2", species.imageFile2);
       values.put("latitude", species.loc.getLatitude());
       values.put("longitude", species.loc.getLongitude());
-      return database.getWritableDatabase().insert(table, null, values);
+      values.put("recording", species.recordingId);
       
+      database.getWritableDatabase().update(table, values,
+            "_id = " + species.id, null);
    }
    
    @Override
    public Species get(long id) {
       Cursor cursor = database.getReadableDatabase().rawQuery(
-            "SELECT * FROM " + table + " WHERE _id = " + id + " LIMIT 1;",
+            "SELECT * FROM " + table + " WHERE _id = " + id + " LIMIT 1",
             new String[] {});
       if (cursor.getCount() > 0) {
-         Species species = new Species(cursor.getLong(cursor
-               .getColumnIndexOrThrow("_id")));
+         int columnIndex = cursor.getColumnIndexOrThrow("_id");
+         cursor.moveToFirst();
+         Species species = new Species(cursor.getLong(columnIndex));
          
          species.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
          species.comment = cursor.getString(cursor
@@ -55,9 +58,11 @@ public class SpeciesStorage extends Storage<Species> {
          species.abundance = cursor.getInt(cursor
                .getColumnIndexOrThrow("abundance"));
          species.imageFile1 = cursor.getString(cursor
-               .getColumnIndexOrThrow("imageFile1"));
+               .getColumnIndexOrThrow("image_1"));
          species.imageFile2 = cursor.getString(cursor
-               .getColumnIndexOrThrow("imageFile2"));
+               .getColumnIndexOrThrow("image_2"));
+         species.recordingId = cursor.getLong(cursor
+               .getColumnIndexOrThrow("recording"));
          
          Location loc = new Location("RPSRrec");
          loc.setLatitude(cursor.getLong(cursor
@@ -74,7 +79,8 @@ public class SpeciesStorage extends Storage<Species> {
    public Species createNew() {
       long id = database.getWritableDatabase().insert(table, "name",
             new ContentValues());
-      return get(id);
+      Species s = get(id);
+      return s;// get(id);
    }
    
    public Cursor getByRecordingId(long recordingId) {

@@ -5,7 +5,7 @@ import java.util.Date;
 import android.location.Location;
 
 public class Species {
-   public long id;
+   public long id, recordingId;
    public int abundance;
    public Date date;
    public String name, comment, imageFile1, imageFile2;

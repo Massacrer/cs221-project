@@ -1,5 +1,7 @@
 package uk.ac.aber.cs221.test;
 
+import java.util.Calendar;
+
 import uk.ac.aber.cs221.storage.*;
 import uk.ac.aber.cs221.util.*;
 import android.app.Activity;
@@ -11,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RecordingActivity extends Activity {
    private Recording recording;
@@ -30,22 +33,34 @@ public class RecordingActivity extends Activity {
    @Override
    public void onPause() {
       super.onPause();
-      storeSpeciesList();
+      storeRecording();
    }
    
-   private void storeSpeciesList() {
-      // TODO: store list of species in recording - possibly add them elsewhere
+   private void storeRecording() {
       storage.store(recording);
    }
    
    private void setupRecording() {
       // TODO:DEBUG REMOVE THIS CALL FOR PRODUCTION
-      this.deleteDatabase("database");
+      // this.deleteDatabase("database");
       
       storage = RecordingStorage.getInstance(this);
       
       long id = getIntent().getExtras().getLong("id");
-      recording = (id == 0) ? storage.createNew() : storage.get(id);
+      if (id == 0) {
+         recording = storage.createNew();
+         
+         // set recording.date to now
+         recording.date = Calendar.getInstance().getTime();
+         recording.userName = getIntent().getStringExtra("userName");
+         recording.userNumber = getIntent().getStringExtra("userNumber");
+         recording.userEmail = getIntent().getStringExtra("userEmail");
+         recording.name = getIntent().getStringExtra("siteName");
+         recording.description = getIntent().getStringExtra("siteDescription");
+      }
+      else {
+         recording = storage.get(id);
+      }
    }
    
    private void setupList() {
@@ -54,11 +69,12 @@ public class RecordingActivity extends Activity {
       Cursor cursor = SpeciesStorage.getInstance(this).getByRecordingId(
             this.recording.id);
       
-      list.setAdapter(new RecordingActivityCursorListAdapter(this, cursor,
-            false));
+      list.setAdapter(new RecordingActivityCursorListAdapter(this, cursor, true));
       TextView emptyView = new TextView(this);
       emptyView.setText("No species' recorded");
       list.setEmptyView(emptyView);
+      String message = "Cursor contains " + cursor.getCount() + " rows";
+      Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }
    
    private void setupOnClickListener() {
@@ -69,6 +85,7 @@ public class RecordingActivity extends Activity {
          public void onClick(View v) {
             Intent intent = new Intent(RecordingActivity.this,
                   RecordSpeciesActivity.class);
+            intent.putExtra("recordingId", RecordingActivity.this.recording.id);
             startActivity(intent);
          }
       });
