@@ -10,7 +10,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,15 @@ public class RecordingActivity extends Activity {
    public void onPause() {
       super.onPause();
       storeRecording();
+   }
+   
+   @Override
+   protected void onResume() {
+      super.onResume();
+      CursorAdapter adapter = (CursorAdapter) ((ListView) findViewById(R.id.ra_speciesList))
+            .getAdapter();
+      adapter.changeCursor(SpeciesStorage.getInstance(this).getByRecordingId(
+            this.recording.id));
    }
    
    private void storeRecording() {
@@ -72,7 +83,7 @@ public class RecordingActivity extends Activity {
       list.setAdapter(new RecordingActivityCursorListAdapter(this, cursor, true));
       TextView emptyView = new TextView(this);
       emptyView.setText("No species' recorded");
-      list.setEmptyView(emptyView);
+      // list.setEmptyView(emptyView);
       String message = "Cursor contains " + cursor.getCount() + " rows";
       Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }

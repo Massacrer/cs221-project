@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -27,7 +28,8 @@ public class RecordingManagerListAdapter extends CursorAdapter {
    }
    
    @Override
-   public void bindView(View view, Context context, Cursor cursor) {
+   public void bindView(final View view, final Context context,
+         final Cursor cursor) {
       TextView recName = (TextView) view.findViewById(R.id.rmgr_recName);
       TextView recDetails = (TextView) view.findViewById(R.id.rmgr_recDetails);
       
@@ -41,5 +43,11 @@ public class RecordingManagerListAdapter extends CursorAdapter {
       
       // tag the view with its id
       view.setTag(cursor.getLong(cursor.getColumnIndexOrThrow("_id")));
+      view.setOnClickListener(new OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            ((RecordingManager) context).rowSelectCallback(view);
+         }
+      });
    }
 }

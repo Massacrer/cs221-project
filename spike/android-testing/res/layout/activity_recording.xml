@@ -12,57 +12,10 @@
 
     </ListView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="gone" >
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#ccccaa" >
-
-            <TextView
-                android:id="@+id/rec_sp_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:text="Species Name" />
-
-            <TextView
-                android:id="@+id/rec_sp_TimeSeen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rec_sp_Name"
-                android:text="Time Seen" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rec_sp_TimeSeen"
-                android:src="@drawable/abc_ic_clear_normal" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/abc_ic_clear_normal" />
-        </RelativeLayout>
-
-        <include layout="@layout/rec_species" />
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/ra_newSpecies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Species" />
+        android:text="Add Species" />
 
 </LinearLayout>

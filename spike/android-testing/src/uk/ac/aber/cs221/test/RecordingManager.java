@@ -38,7 +38,7 @@ public class RecordingManager extends Activity {
       setContentView(R.layout.activity_recording_management);
       this.setUpOnClickServer();
       setupList();
-      setupOnClickListener();
+      setupOnClickListeners();
    }
    
    private void setupList() {
@@ -60,16 +60,25 @@ public class RecordingManager extends Activity {
       adapter.changeCursor(RecordingStorage.getInstance(this).getCursor());
    }
    
-   private void setupOnClickListener() {
+   public void rowSelectCallback(View selected) {
+      Intent intent = new Intent(this, RecordingActivity.class);
+      intent.putExtra("id", (Long) ((ViewGroup) selected).getTag());
+      startActivity(intent);
+   }
+   
+   private void setupOnClickListeners() {
       ((Button) findViewById(R.id.rmgr_deleteButton))
             .setOnClickListener(new OnClickListener() {
                @Override
                public void onClick(View v) {
-                  List<Long> selected = getSelectedRecordings();
+                  List<ViewGroup> selected = getSelectedRows();
                   if (selected.size() > 0) {
-                     for (Long id : selected) {
+                     for (ViewGroup vg : selected) {
                         RecordingStorage.getInstance(RecordingManager.this)
-                              .delete(id);
+                              .delete((Long) vg.getTag());
+                        CheckBox checkBox = (CheckBox) vg
+                              .findViewById(R.id.rmgr_syncCheck);
+                        checkBox.setChecked(false);
                      }
                   }
                   refreshList();
@@ -77,15 +86,15 @@ public class RecordingManager extends Activity {
             });
    }
    
-   private List<Long> getSelectedRecordings() {
-      ArrayList<Long> list = new ArrayList<Long>();
+   private List<ViewGroup> getSelectedRows() {
+      ArrayList<ViewGroup> list = new ArrayList<ViewGroup>();
       ViewGroup parent = ((ViewGroup) findViewById(R.id.rmgr_list));
       for (int child = 0; child < parent.getChildCount(); child++) {
          ViewGroup listEntry = (ViewGroup) parent.getChildAt(child);
          CheckBox checkBox = (CheckBox) listEntry
                .findViewById(R.id.rmgr_syncCheck);
          if (checkBox.isChecked()) {
-            list.add((Long) listEntry.getTag());
+            list.add(listEntry);
          }
       }
       return list;
