@@ -1,5 +1,9 @@
 package uk.ac.aber.cs221.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,18 +14,14 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.database.Cursor;
-import android.os.Bundle;
-import android.support.v4.widget.CursorAdapter;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import uk.ac.aber.cs221.storage.RecordingStorage;
 import uk.ac.aber.cs221.util.RecordingManagerListAdapter;
@@ -47,11 +47,22 @@ public class RecordingManager extends Activity {
       Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }
    
-   @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
-      menu.add(Menu.NONE, 42, 0, "layout");
-      menu.add(Menu.NONE, 43, 0, "title");
-      return super.onCreateOptionsMenu(menu);
+   private void setupOnClickListener() {
+      
+   }
+   
+   private List<Long> getSelectedRecordings() {
+      ArrayList<Long> list = new ArrayList<Long>();
+      ViewGroup parent = ((ViewGroup) findViewById(R.id.rmgr_list));
+      for (int child = 0; child < parent.getChildCount(); child++) {
+         ViewGroup listEntry = (ViewGroup) parent.getChildAt(child);
+         CheckBox checkBox = (CheckBox) listEntry
+               .findViewById(R.id.rmgr_syncCheck);
+         if (checkBox.isChecked()) {
+            list.add((Long) listEntry.getTag());
+         }
+      }
+      return list;
    }
    
    private void setUpOnClickServer() {
@@ -102,7 +113,7 @@ public class RecordingManager extends Activity {
             }
          }
       });
-      Button cancelButton = (Button) findViewById(R.id.rmgr_cancelButton);
+      Button cancelButton = (Button) findViewById(R.id.rmgr_deleteButton);
       cancelButton.setOnClickListener(new OnClickListener() {
          @Override
          public void onClick(View v) {

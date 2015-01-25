@@ -39,7 +39,7 @@
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_new_recording"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize" android:noHistory="true">
         </activity>
         <activity
             android:name=".RecordingActivity"

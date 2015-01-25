@@ -60,6 +60,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/rmgr_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" >
@@ -72,10 +73,10 @@
             android:text="Upload" />
 
         <Button
-            android:id="@+id/rmgr_cancelButton"
+            android:id="@+id/rmgr_deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel" />
+            android:text="Delete" />
 
     </LinearLayout>
 

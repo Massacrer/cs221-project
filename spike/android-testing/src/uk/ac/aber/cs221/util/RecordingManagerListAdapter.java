@@ -1,11 +1,15 @@
 package uk.ac.aber.cs221.util;
 
 import uk.ac.aber.cs221.test.R;
+import uk.ac.aber.cs221.test.RecordingManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -34,5 +38,8 @@ public class RecordingManagerListAdapter extends CursorAdapter {
       
       recName.setText(recordingName);
       recDetails.setText(recordingDescription);
+      
+      // tag the view with its id
+      view.setTag(cursor.getLong(cursor.getColumnIndexOrThrow("_id")));
    }
 }
