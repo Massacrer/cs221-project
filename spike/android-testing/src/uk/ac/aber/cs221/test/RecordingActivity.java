@@ -44,7 +44,7 @@ public class RecordingActivity extends Activity {
       
       storage = RecordingStorage.getInstance(this);
       
-      int id = getIntent().getExtras().getInt("id");
+      long id = getIntent().getExtras().getLong("id");
       recording = (id == 0) ? storage.createNew() : storage.get(id);
    }
    
@@ -54,7 +54,8 @@ public class RecordingActivity extends Activity {
       Cursor cursor = SpeciesStorage.getInstance(this).getByRecordingId(
             this.recording.id);
       
-      list.setAdapter(new RecordingActivityCursorListAdapter(this, cursor, true));
+      list.setAdapter(new RecordingActivityCursorListAdapter(this, cursor,
+            false));
       TextView emptyView = new TextView(this);
       emptyView.setText("No species' recorded");
       list.setEmptyView(emptyView);
