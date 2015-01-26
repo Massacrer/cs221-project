@@ -3,7 +3,8 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#33cc33" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
             android:layout_weight="1" 
             android:drawableTop="@drawable/add"
             android:text="New Recording"
+            android:background="#82FA58"
             android:textSize="24sp"
             android:padding="16dp" />
         
@@ -28,7 +30,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Continue Recording"
-            android:drawableTop="@drawable/edit"
+            android:drawableTop="@drawable/search"
+            android:background="#82FA58"
             android:textSize="24sp"
             android:padding="16dp" />
 
@@ -45,7 +48,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Manage Recordings"
-            android:drawableTop="@drawable/search"
+            android:drawableTop="@drawable/edit"
+            android:background="#82FA58"
             android:textSize="24sp"
             android:padding="16dp" />
 
@@ -56,6 +60,7 @@
             android:layout_weight="1"
             android:text="Settings"
             android:drawableTop="@drawable/settings"
+            android:background="#82FA58"
             android:textSize="24sp"
             android:padding="16dp" />
 
