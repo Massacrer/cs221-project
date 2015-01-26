@@ -43,16 +43,16 @@
 					</div>
 					<div class="row">
 						<div class="col-10 padding">
-							<strong>Location: </strong><?php echo $row['2']; ?>
+							<strong>Lat: </strong><?php echo $row['2']; ?><strong> Lng: </strong><?php echo $row['3']; ?>
 						</div>
 						<div class="col-2 padding">
-							<?php echo $row['3']; ?>
+							<?php echo $row['4']; ?>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-10 padding">
 							<?php
-								$str = "" . $row['4'];
+								$str = "" . $row['5'];
 								if (strlen($str) > 90){
 									$str = substr($str, 0, 90) . '...';
 								}
@@ -60,7 +60,7 @@
 							?>
 						</div>	
 						<div class="col-2 elementusername" id="personsname" >
-							<a class='elementbutton button' href='reservelist.php?name=<?php echo $row['6'];?>'><?php echo getnamefromid($row["6"]); ?></a>
+							<a class='elementbutton button' href='reservelist.php?name=<?php echo $row['7'];?>'><?php echo getnamefromid($row["7"]); ?></a>
 						</div>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 			<hr />	
 				<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
 						<?php 
-							echo $row['4'];
+							echo $row['5'];
 						?>
 				</div>			
 			<?

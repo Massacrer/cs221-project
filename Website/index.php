@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!-- 
 Author: Michael Higginbottom
 This is the main index page for the website.

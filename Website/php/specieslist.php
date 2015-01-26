@@ -39,11 +39,11 @@
 								</div>
 								<div class="col-4">
 									<!-- GENERATED LOCATION HERE -->
-									<strong>Location: </strong><?php echo $row['4']; ?>
+									<strong>Lat: </strong><?php echo $row['4']; ?> <strong>Lng: </strong><?php echo $row['5']; ?>
 								</div>
 								<div class="col-4">
 									<!-- GENERATED TIME/DATE HERE -->
-									<strong>Time/Date: </strong><?php echo $row['5']; ?>
+									<strong>Time/Date: </strong><?php echo $row['6']; ?>
 								</div>
 							</div>
 							<div class="row">
