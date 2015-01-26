@@ -99,4 +99,15 @@ public class RecordingStorage extends Storage<Recording> {
    public void delete(long id) {
       database.getWritableDatabase().delete(table, "_id = " + id, null);
    }
+   
+   public long getLastRecordingId() {
+      Cursor cursor = database.getReadableDatabase().rawQuery(
+            "SELECT _id FROM " + table + " ORDER BY date DESC LIMIT 1", null);
+      if (cursor.moveToFirst()) {
+         return cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+      }
+      else {
+         return 0;
+      }
+   }
 }
