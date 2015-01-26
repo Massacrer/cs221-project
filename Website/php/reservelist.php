@@ -66,14 +66,19 @@
 								echo $str;
 							?>
 						</div>					
-						<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
-							<?php if($longer) {echo $row['4'] . '<u><a onclick="showdescription(' . $row['0'] . ', 0)";>(Less)</a></u>';} ?>
-						</div>
+
 						<div class="col-2 elementusername" id="personsname" >
 							<?php echo "<a class='elementbutton button' href='reservelist.php?name=" . $row['6'] . "'>" . getnamefromid($row['6'])  . "</a>";?>
 						</div>
 					</div>
 					</a>
+					<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
+						<?php echo "<a class='heading' href='specieslist.php?id=" . $row['0'] . " '>";
+						if($longer) {
+							echo $row['4'] . '<u><a onclick="showdescription(' . $row['0'] . ', 0)";>(Less)</a></u>' . "</a>";
+						} 
+						?>
+					</div>
 				</div>
 			</div>
 			<hr />			
