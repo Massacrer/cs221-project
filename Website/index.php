@@ -52,7 +52,7 @@ It contains the LOGIN form
 									<div id="message_after_login">
 										<?php  loginmessage(); ?>
 									</div>
-									<!-- END OF RETURN FIELD -->
+									<!-- END RETURN FIELD -->
 								</td>
 							</tr>
 

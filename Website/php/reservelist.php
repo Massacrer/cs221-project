@@ -36,30 +36,28 @@
 		while ($row=mysqli_fetch_row($result))
 		{
 			?>
+			
 			<div class="row">
-				<div class="col-12">
+				<div class="col-12 element">
+					<?php echo "<a class='heading' href='specieslist.php?id=" . $row['0'] . " '>";?>
+					<span></span>
 					<div class="row">
 						<div class="col-12">
-							<!-- GENERATED NAME HERE -->
-							<?php echo "<a href='specieslist.php?id=" . $row['0'] . " '>" . $row['1'] . "</a>"; ?>
+							<?php echo $row[1]; ?>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-10">
-							<!-- GENERATED LOCATION HERE -->
+						<div class="col-10 padding">
 							<strong>Location: </strong><?php echo $row['2']; ?>
 						</div>
-						<div class="col-2">
-							<!-- GENERATED TIME + DATE HERE -->
+						<div class="col-2 padding">
 							<?php echo $row['3']; ?>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-10 descriptionreserve" id="smalldecrip_<?php echo $row['0']; ?>" >
-							<!-- GENERATED DESCRIPTION (0..100) -->
+						<div class="col-10 descriptionreserve padding" id="smalldecrip_<?php echo $row['0']; ?>" >
 							<?php
-							$longer = false;
-							
+								$longer = false;
 								$str = "" . $row['4'];
 								if (strlen($str) > 90){
 									$str = substr($str, 0, 90) . '... <u><a onclick="showdescription(' . $row['0'] . ', 1)";>(More)</a></u>';
@@ -67,25 +65,22 @@
 								}
 								echo $str;
 							?>
-						</div>
+						</div>					
 						<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
 							<?php if($longer) {echo $row['4'] . '<u><a onclick="showdescription(' . $row['0'] . ', 0)";>(Less)</a></u>';} ?>
 						</div>
-						<div class="col-2"id="personsname">
-							<?
-							 echo "<a href='reservelist.php?name=" . $row['6'] . "'>" . getnamefromid($row['6'])  . "</a>";?>
+						<div class="col-2 elementusername" id="personsname" >
+							<?php echo "<a class='elementbutton button' href='reservelist.php?name=" . $row['6'] . "'>" . getnamefromid($row['6'])  . "</a>";?>
 						</div>
 					</div>
+					</a>
 				</div>
 			</div>
-
-			
-			
+			<hr />			
 			<?
 		}
 		// Free result set
 		mysqli_free_result($result);
 		closedatabase();
 	}
-
 ?>

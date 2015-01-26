@@ -10,6 +10,7 @@ This page is redirected to from the add reserve page.
 		<link rel="shortcut icon" href="res/icon.ico">
 		<title>Edit Reserve</title>
 		<meta charset="UTF-8" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/editreserve.css" />
 	</head>
@@ -36,6 +37,12 @@ This page is redirected to from the add reserve page.
 			
 			<!-- MAIN SECTION -->
 			<div class="row mainsection">
+				<div class="row">
+					<div class="col-12">
+						<a href="">Edit Reserve</a>
+						<hr />
+					</div>
+				</div>
 				<div class="col-12 ">
 					<p class="heading">Edit Reserve</p>
 					

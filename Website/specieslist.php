@@ -40,18 +40,24 @@ This file is part of the main 3 homepages of the website
 			<!-- END NAV BAR -->
 
 			<!-- MAIN SECTION -->
-			<section>
+			<section class="mainsection">
 				<div class="row">
 					<div class="col-12">
+						<p class="locationtext"><a href="reservelist.php">Reserve List</a> -> <a href="">SpeciesList</a></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<hr />
 						<p class="heading">Species List</p>
 					</div>
 				</div>
-				<div class="row mainsection results">
+				<div class="row results">
 					<div class="col-12">
 						<!-- PHP GENERATED CONTENT -->
 						<?php
 						outputtable();?>
-						<hr>
+						<hr />
 						<p class="heading">The actual plants</p>
 						<?php 
 						outputspeciestable(); 

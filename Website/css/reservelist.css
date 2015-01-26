@@ -3,22 +3,81 @@ body {
 
 }
 
+strong {
+	font-weight: bold;
+}
+
+.padding {
+	padding: 5px;
+}
+
+.elementheading {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 3px;
+}
+
 .seperator {
 	min-height: 50px;
 	height: 50px;
 }
 
-.heading {
-	font-size: 2em;
+.elementusername {
+	text-align: right;
 	font-weight: bold;
+	font-size: 15px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.target {
+	cursor: pointer;
+}
+
+.elementbutton {
+	padding: 5px;
+	border-radius: 25px;
+	box-shadow: 0px 0px 5px #777777;
+	background-color: #82FA58;
+	border: 1px solid black;
+}
+
+.heading {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+span {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.element a {
+	text-decoration: none;
+	color: #000000;
+}
+
+.element:hover {
+	background-color: #33CC33;
+}
+
+.element:active {
+	background-color: #fff;
+}
+
+.resized {
+	width: 45px;
 }
 
 table {
 	margin: auto;
+	vertical-align: top;
 }
 
 td {
-	padding: 10px;
+	padding: 7px;
 }
 
 .mainsection {
