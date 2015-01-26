@@ -8,7 +8,7 @@ This page is redirected to from the add reserve page.
 	<!-- HEAD -->
 	<head>
 		<link rel="shortcut icon" href="res/icon.ico">
-		<title>Add Reserve</title>
+		<title>Edit Reserve</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/editreserve.css" />
