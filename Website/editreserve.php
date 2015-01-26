@@ -48,34 +48,7 @@ This page is redirected to from the add reserve page.
 					
 						To edit one of your reserves, please press the edit button!
 						
-						Eventaully this will be replaced with the php!
-						
-						The reserve:
-						<input type="text" placeholder="Name of reserve" >
-						<input type="text" placeholder="time" > 
-						<input type="text" placeholder="location" > 
-						<input type="text" placeholder="description (needs large box)" > 
-						
-						<hr>
-							There could be many of these
-							species #1
-							<input type="text" placeholder="Name of species" >
-							<input type="text" placeholder="time" > 
-							<input type="text" placeholder="location" > 
-							<input type="text" placeholder="darfor" > 
-							<input type="text" placeholder="link to picture" > 
-							<input type="text" placeholder="description (needs large box)" >
-						<hr>
-							There could be many of these
-							species #2
-							<input type="text" placeholder="Name of species" >
-							<input type="text" placeholder="time" > 
-							<input type="text" placeholder="location" > 
-							<input type="text" placeholder="darfor" > 
-							<input type="text" placeholder="link to picture" > 
-							<input type="text" placeholder="description (needs large box)" >
-						<hr>
-						
+
 				</div>
 			</div>
 			<!-- END MAIN SECTION -->
