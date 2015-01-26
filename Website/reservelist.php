@@ -49,39 +49,29 @@ This file is part of the main 3 homepages of the website
 				</div>
 			</div>
 				<div class="row">
-					<div class="col-12">
+					<div class="col-12 mainheading center">
 						<p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves";} ?></p></td>
 					</div>
 				</div>
-				<div class="row">
-					<!-- EDIT RESERVE FORM -->
-					<form method="GET" onsubmit="">
-						<table width="5">
-							<tr>
-								<td>Place</td>
-								<td>:</td>
-								<td colspan="3"><input type="text" placeholder="Place Name" name="place" /></td>
-							</tr>
-							<tr>
-								<td>Date</td>
-								<td>:</td>
-								<td><input type="text" placeholder="dd" name="fromday" class="resized" /></td>
-								<td><input type="text" placeholder="mm" name="frommonth" class="resized" /></td>
-								<td><input type="text" placeholder="yyyy" name="fromyear" class="resized" /></td>
-							</tr>
-							<tr>
-								<td>User</td>
-								<td>:</td>
-								<td colspan="3"><input type="text" placeholder="A username" name="user" /></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td colspan="3"><input type="submit" /></td>
-							</tr>
-						</table>
-					</form>
-					<!-- END EDIT RESERVE FORM -->
+
+				<!-- EDIT RESERVE FORM -->
+				<form method="GET" onsubmit="">
+					<div class="row">
+						<div class="col-12 center">
+							Place: 
+							<input type="text" placeholder="Place Name" name="place" />
+							&nbsp;
+							Date: 
+							<input type="text" placeholder="dd" name="fromday" class="resized" />
+							<input type="text" placeholder="mm" name="frommonth" class="resized" />
+							<input type="text" placeholder="yyyy" name="fromyear" class="resized" />
+							&nbsp;
+							User:
+							<input type="text" placeholder="A username" name="user" />
+							<input type="submit" />
+						</div>
+				</form>
+				<!-- END EDIT RESERVE FORM -->
 				</div>
 				<div class="row results">
 					<div class="col-12">

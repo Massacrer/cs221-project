@@ -8,7 +8,7 @@
 		
 		$where = "";
 		
-		if(isset($_GET['user'])  && strlen($_GET['user']) > 0){  
+		if(isset($_GET['user'])  && strlen($_GET['user']) > 1){  
 			header('Location: reservelist.php?name=' . getidfromname(mysqli_real_escape_string($con, $_GET['user'])));  
 		}		
 		if(isset($_GET['place']) && strlen($_GET['place']) > 1){  
@@ -39,11 +39,9 @@
 			
 			<div class="row">
 				<div class="col-12 element">
-					<?php echo "<a class='heading' href='specieslist.php?id=" . $row['0'] . " '>";?>
-					<span></span>
 					<div class="row">
-						<div class="col-12">
-							<?php echo $row[1]; ?>
+						<div class="col-12 elementheadingrow">
+							<a class='elementheading' href='specieslist.php?id=<?php echo $row["0"];?>'><?php echo $row[1]; ?></a>
 						</div>
 					</div>
 					<div class="row">
@@ -55,32 +53,18 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-10 descriptionreserve padding" id="smalldecrip_<?php echo $row['0']; ?>" >
-							<?php								
-								$longer = false;
+						<div class="col-10 padding">
+							<?php
 								$str = "" . $row['4'];
-								while(strlen($str) < 200){
-									$str = $str . " 1";
-								}
 								if (strlen($str) > 90){
-									$str = substr($str, 0, 90) . '... </a>';
-									$longer = true;
+									$str = substr($str, 0, 90) . '...';
 								}
-								echo mysqli_real_escape_string($con,$str);
+								echo $str;
 							?>
-						</div>					
-
+						</div>	
 						<div class="col-2 elementusername" id="personsname" >
-							<?php echo "<a class='elementbutton button' href='reservelist.php?name=" . $row['6'] . "'>" . getnamefromid($row['6'])  . "</a>";?>
+							<a class='elementbutton button' href='reservelist.php?name=<?php echo $row['6'];?>'><?php echo getnamefromid($row["6"]); ?></a>
 						</div>
-					</div>
-					</a>
-					<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
-						<?php echo "<a class='heading' href='specieslist.php?id=" . $row['0'] . " '>";
-						if($longer) {
-							echo $row['4'] . '<u><a onclick="showdescription(' . $row['0'] . ', 0)";></a></u>' . "</a>";
-						} 
-						?>
 					</div>
 				</div>
 			</div>
