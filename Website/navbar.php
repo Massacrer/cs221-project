@@ -15,17 +15,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-2 listelement">
-				<a href="reservelist.php">RESERVE LIST</a>
-			</div>
-			<div class="col-2 listelement">
-				<a href="editreserve.php">EDIT RESERVE</a>
-			</div>
-			<div class="col-2 listelement">
-				<a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>">USER PAGE</a>
-			</div>
+			<a href="reservelist.php"><div class="col-2 listelement">
+				RESERVE LIST
+			</div></a>
+			<a href="editreserve.php"><div class="col-2 listelement">
+				EDIT RESERVE
+			</div></a>
+			<a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>"><div class="col-2 listelement">
+				USER PAGE
+			</div></a>
 			<div class="col-1"></div>
-			<div class="col-1 listelement">
-				<a href="php/logout.php">LOGOUT</a>
-			</div>			
+			<a href="php/logout.php"><div class="col-1 listelement">
+				LOGOUT
+			</div></a>		
 		</div>
