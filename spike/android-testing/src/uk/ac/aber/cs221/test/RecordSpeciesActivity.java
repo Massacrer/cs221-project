@@ -162,7 +162,7 @@ public class RecordSpeciesActivity extends Activity {
             Intent intent = new Intent(RecordSpeciesActivity.this,
                   PhotoPickerActivity.class);
             intent.putExtra("picture", "specimen");
-            startActivity(intent);
+            startActivityForResult(intent, 1);
          }
       });
       

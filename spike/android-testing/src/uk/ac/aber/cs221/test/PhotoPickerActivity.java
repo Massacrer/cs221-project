@@ -252,4 +252,15 @@ public class PhotoPickerActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	/*@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)   {
+	   // responding the only way it can
+	   if(requestCode == 1) {
+	      // making sure the request was successful 
+	      if(resultCode == RESULT_OK)  {
+	          return currentImage;
+	      }
+	   }
+      return currentImage;
+	}*/
 }
