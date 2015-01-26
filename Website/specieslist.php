@@ -12,8 +12,10 @@ This file is part of the main 3 homepages of the website
 		<title>Species List</title>
 		<meta charset="UTF-8" />
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
+				<!--[if !IE]> -->
 		<link rel="stylesheet" type="text/css" href="css/master.css">
 		<link rel="stylesheet" type="text/css" href="css/specieslist.css">
+				<!-- <![endif]-->
 		<script type="text/javascript" src="js/reservelist.js"></script>
 	</head>
 	<!-- END HEAD -->

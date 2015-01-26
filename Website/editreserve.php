@@ -11,8 +11,10 @@ This page is redirected to from the add reserve page.
 		<title>Edit Reserve</title>
 		<meta charset="UTF-8" />
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
+				<!--[if !IE]> -->
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/editreserve.css" />
+				<!-- <![endif]-->
 	</head>
 	<!-- END HEAD -->
 	
