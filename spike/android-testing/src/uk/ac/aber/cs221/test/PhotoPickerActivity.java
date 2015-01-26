@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -29,6 +32,8 @@ import android.widget.Toast;
 public class PhotoPickerActivity extends Activity {
 
 	private File currentImage;
+	Uri contentUri;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,11 +115,12 @@ public class PhotoPickerActivity extends Activity {
 			case 1: {
 				Intent mediaScanIntent = new Intent(
 						Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-				Uri contentUri = Uri.fromFile(currentImage);
+				contentUri = Uri.fromFile(currentImage);
 				mediaScanIntent.setData(contentUri);
 				this.sendBroadcast(mediaScanIntent);
 
 				displayBitmap();
+				showPhotoChoiceAlert();
 				break;
 			}
 			// 2 -> gallery result
@@ -129,6 +135,7 @@ public class PhotoPickerActivity extends Activity {
 						.getColumnIndex(path[0])));
 				cursor.close();
 				displayBitmap();
+				showPhotoChoiceAlert();
 				break;
 			}
 		}
@@ -252,15 +259,41 @@ public class PhotoPickerActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	/*@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)   {
-	   // responding the only way it can
-	   if(requestCode == 1) {
-	      // making sure the request was successful 
-	      if(resultCode == RESULT_OK)  {
-	          return currentImage;
-	      }
-	   }
-      return currentImage;
-	}*/
+	
+	public void showPhotoChoiceAlert(){
+	   
+	   AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+	   alertDialog.setTitle("Photo choice");
+	   alertDialog.setMessage("Is this the photo you wish to use?");
+	   
+	   alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        
+	      @Override
+         public void onClick(DialogInterface dialog, int which) {
+	         
+	         Intent data = new Intent();
+	         data.putExtra("fileName", currentImage.getAbsolutePath());
+	         data.putExtra("picture", PhotoPickerActivity.this.getIntent().getStringExtra("picture"));
+	         // Activity finished ok, return the data
+	         setResult(RESULT_OK, data);
+	         finish();
+	         
+            //PhotoPickerActivity.this.finish();
+            
+         }
+      });
+	   
+	   alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+         
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+            
+         }
+      });
+	   
+	   alertDialog.show();
+	   
+	}
+
 }

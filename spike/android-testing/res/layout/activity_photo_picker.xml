@@ -22,16 +22,16 @@
         <Button
             android:id="@+id/pp_CameraButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Take Picture" />
 
         <Button
             android:id="@+id/pp_SelectButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Choose Picture" />
+            android:text="Choose Picture From Gallery" />
 
     </LinearLayout>
 

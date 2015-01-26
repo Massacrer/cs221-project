@@ -23,7 +23,8 @@ import uk.ac.aber.cs221.util.*;
 public class RecordSpeciesActivity extends Activity {
    private GpsLocator gps;
    private Species species;
-   
+   int REQUEST_CODE = 1;
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
@@ -33,20 +34,20 @@ public class RecordSpeciesActivity extends Activity {
       setupSpinner();
       setupPhotoPickerButtons();
    }
-   
+
    @Override
    protected void onPause() {
       super.onPause();
       SpeciesStorage.getInstance(this).store(species);
    }
-   
+
    @Override
    protected void onResume() {
       super.onResume();
       setupSpecies();
       setupFields();
    }
-   
+
    private void setupSpinner() {
       ((Spinner) findViewById(R.id.abundanceSpinner))
             .setAdapter(new ArrayAdapter<String>(this,
@@ -54,37 +55,34 @@ public class RecordSpeciesActivity extends Activity {
                         "Dominant", "Abundant", "Frequent", "Occasional",
                         "Rare" }));
    }
-   
+
    private void setupSpecies() {
       SpeciesStorage storage = SpeciesStorage.getInstance(this);
       Bundle extras = getIntent().getExtras();
       if (extras != null) {
          long recordingId = extras.getLong("recordingId");
          long speciesId = extras.getLong("speciesId");
-         
+
          if (recordingId != 0) {
             this.species = storage.createNew();
             this.species.recordingId = recordingId;
+         } else if (speciesId != 0) {
+            this.species = storage.get(speciesId);
+         } else {
+            throw new RuntimeException(
+                  "called RecordSpeciesActivity without ids");
          }
-         else
-            if (speciesId != 0) {
-               this.species = storage.get(speciesId);
-            }
-            else {
-               throw new RuntimeException(
-                     "called RecordSpeciesActivity without ids");
-            }
-         
+
       }
    }
-   
+
    private void setupFields() {
       ((TextView) findViewById(R.id.rec_sp_SpName)).setText(species.name);
       // work with imageView1 here
       ((TextView) findViewById(R.id.rec_sp_Comment)).setText(species.comment);
       ((Spinner) findViewById(R.id.abundanceSpinner))
             .setSelection(species.abundance);
-      
+
       Cursor cursor = null;
       ((AutoCompleteTextView) findViewById(R.id.rec_sp_SpName))
             .setAdapter(new CursorAdapter(RecordSpeciesActivity.this, cursor,
@@ -94,14 +92,14 @@ public class RecordSpeciesActivity extends Activity {
                      ViewGroup parent) {
                   return null;
                }
-               
+
                @Override
                public void bindView(View view, Context context, Cursor cursor) {
-                  
+
                }
             });
    }
-   
+
    private void setupButtons() {
       ((Button) findViewById(R.id.rec_sp_SaveButton))
             .setOnClickListener(new OnClickListener() {
@@ -113,7 +111,7 @@ public class RecordSpeciesActivity extends Activity {
                   RecordSpeciesActivity.this.finish();
                }
             });
-      
+
       ((Button) findViewById(R.id.rec_sp_delete))
             .setOnClickListener(new OnClickListener() {
                @Override
@@ -124,15 +122,15 @@ public class RecordSpeciesActivity extends Activity {
                }
             });
    }
-   
+
    private void storeDetails() {
       // TODO: fill in every field of this.species from the ui data here
-      
+
       gps = new GpsLocator(RecordSpeciesActivity.this);
       if (gps.canGetLocation()) {
          double latitude = gps.getLatitude();
          double longitude = gps.getLongitude();
-         
+
          // TODO: remove this call for prod
          Toast.makeText(
                RecordSpeciesActivity.this,
@@ -142,11 +140,10 @@ public class RecordSpeciesActivity extends Activity {
          temp.setLatitude(latitude);
          temp.setLongitude(longitude);
          species.loc = temp;
-      }
-      else {
+      } else {
          gps.showSettingsAlert();
       }
-      
+
       AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
       species.name = (nameField.getText().toString());
       TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);
@@ -154,7 +151,7 @@ public class RecordSpeciesActivity extends Activity {
       species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
             .getSelectedItemPosition();
    }
-   
+
    private void setupPhotoPickerButtons() {
       Button buttonScene = (Button) findViewById(R.id.rec_sp_ScenePic);
       buttonScene.setOnClickListener(new OnClickListener() {
@@ -165,7 +162,7 @@ public class RecordSpeciesActivity extends Activity {
             startActivityForResult(intent, 1);
          }
       });
-      
+
       Button buttonSpecimen = (Button) findViewById(R.id.ma_ContinueButton);
       buttonSpecimen.setOnClickListener(new OnClickListener() {
          public void onClick(View v) {
@@ -175,5 +172,25 @@ public class RecordSpeciesActivity extends Activity {
             startActivity(intent);
          }
       });
+   }
+   
+   //returns scene toast if specimen isnt there, but not specimen toast
+   @Override
+   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+      if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+         String picture = data.getStringExtra("picture");
+         if (picture != null) {
+            if (picture == "specimen") {
+               species.imageFile1 = data.getStringExtra("fileName");
+               Toast.makeText(this, "this was a species picture", Toast.LENGTH_LONG)
+               .show(); 
+            } else {
+               species.imageFile2 = data.getStringExtra("fileName");
+               Toast.makeText(this, "this was a scene picture", Toast.LENGTH_LONG)
+               .show(); 
+            }
+                    
+         }
+      }
    }
 }
