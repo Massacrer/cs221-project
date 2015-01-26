@@ -101,9 +101,13 @@ public class RecordingStorage extends Storage<Recording> {
    }
    
    public long getLastRecordingId() {
-      database.getReadableDatabase().rawQuery(
-            "SELECT _id FROM " + table + " ORDER BY date LIMIT 1", null);
-      // TODO Auto-generated method stub
-      return 0;
+      Cursor cursor = database.getReadableDatabase().rawQuery(
+            "SELECT _id FROM " + table + " ORDER BY date DESC LIMIT 1", null);
+      if (cursor.moveToFirst()) {
+         return cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+      }
+      else {
+         return 0;
+      }
    }
 }
