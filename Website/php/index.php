@@ -5,7 +5,7 @@ They will run this script
 -->
 <?php
 
-
+include_once('php/dbconnect.php');
 require 'ssbcrypt.php';
 /*
 Salt and Hash Library
@@ -32,7 +32,7 @@ function logtheuserin(){
  sanitises the data inputs using the mySQLi escape string function
  
  */
-	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
+	$con=opendatabase();
 	$username = mysqli_real_escape_string($con,$_POST['myusername']);
 	$password = mysqli_real_escape_string($con,$_POST['mypassword']);
 	

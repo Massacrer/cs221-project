@@ -1,4 +1,3 @@
-
 <!--
 Author: Katarzyna Turczynska
 This page is redirected to from the add reserve page.
@@ -23,6 +22,7 @@ This page is redirected to from the add reserve page.
 	<?php
 		require('php/loggedin.php');
 		include("php/editreserve.php");
+		if(isset($_GET['editid']) && !usersreservedata($_GET['editid'])){ header('Location: editreserve.php'); die("Unable to modify this reserve."); }
 	?>
 	<!-- END PHP INCLUDE -->
 	
@@ -50,44 +50,13 @@ This page is redirected to from the add reserve page.
 
 				<div class="row">
 					<div class="col-12 ">
-						<p class="heading">Edit Reserve</p>
+						<p class="heading">Edit Reserve</p><a href="#addnew">(Jump to add new)</a>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-12">
-						<form name="reserveedit" action="" onsubmit="return checkValidation();">
-							<table>
-								<tr>
-									<td>Name of Reserve</td>
-									<td>:</td>
-									<td><input type="text" placeholder="Name of Reserve" id="name" /></td>
-								</tr>
-								<tr>
-									<td>Time</td>
-									<td>:</td>
-									<td><input type="text" placeholder="Time" id="time" /></td>
-								</tr>
-								<tr>
-									<td>Location</td>
-									<td>:</td>
-									<td><input type="text" placeholder="Longitude" id="lng" /></td>
-									<td><input type="text" placeholder="Latitude" id="lat" /></td>
-								</tr>
-								<tr>
-									<td>Description:</td>
-								</tr>
-								<tr>
-									<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" id="description" /></textarea></td>
-								</tr>
-								
-								<tr>
-									<td>&nbsp;</td>
-									<td><input type="submit" name="submit" id="submit" value="Edit Reserve" /></td>
-								</tr>
-								
-							</table>
-						</form>
+						<?php loadreserve(); ?>
 					</div>
 				</div>
 
@@ -99,25 +68,46 @@ This page is redirected to from the add reserve page.
 
 				<div class="row">
 					<div class="col-12">
-						<p class="heading">Edit Species</p>
+						<p class="heading">Edit Existing Species</p>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-12">
-						<!-- PHP GENERATED CONTENT HERE - NIALL GRAB THIS CODE AND TAKE INTO PHP/EDITRESERVE.PHP -->
-						<form name="speciesedit" action="">
-							<table width="6">
+						<?php loadspecies(); ?>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12">
+						<p class="heading">Add New Species</p>Note: Create a new reserve first.
+						<a name="addnew"></a> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12">
+						<form name="speciesedit" method="POST" onsubmit="return checkValidation();" >
+							<input type="hidden" value="<?php echo $_GET['editid']; ?>" name="reserve"/>
+							<table>
+							<td colspan="3">
+									<!-- RETURN FIELD -->
+									<div id="message_after_submit">
+										&nbsp;
+									</div>
+									<!-- END OF RETURN FIELD -->
+								</td>
 								<tr>
 									<td>Name</td>
 									<td>:</td>
-									<td colspan="4"><input type="text" placeholder="Name of Species" id="sname" /></td>
+									<td colspan="2"><input type="text" placeholder="Name of Species"  name="name" id="name" required /></td>
 								</tr>
+								<tr>
 									<td>Time</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Time" id="time" /></td>
+									<td><input type="text" placeholder="Time"  name="time" id="time" title='Example 2015-01-27 14:06:85' required /></td>
 									<td>DAFOR:
-										<select>
+										<select  name="dafor">
 										   <option value="D">D</option>
 										   <option value="A">A</option>
 										   <option value="F">F</option>
@@ -125,40 +115,39 @@ This page is redirected to from the add reserve page.
 										   <option value="R">R</option>
 										</select>
 									</td>
+								</tr>
 								<tr>
 									<td>Location</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Longitude" id="lng1" /></td>
-									<td><input type="text" placeholder="Latitude" id="lat1" /></td>
+									<td><input type="text" placeholder="Latitude"  name="lat" id="lat" required /></td>
+									<td><input type="text" placeholder="Longitude" name="lng" id="lng" required /></td>
 								</tr>
 								<tr>
 									<td>Image of Area</td>
 									<td>:</td>
-									<td colspan="2"><input type="file" name="areaimage" placeholder="Image of Area" size="40" id="imagearea"/></td>
+									<td colspan="2"><input type="text" name="imagearea" placeholder="Image of Area URL" size="40" /></td>
 								</tr>
+								<tr>
 									<td>Image of Indiviual Plant</td>
 									<td>:</td>
-									<td colspan="2"><input type="file" name="individualimage" placeholder="Image of Individual" size="40" id="imageplant" /></td>
+									<td colspan="2"><input type="text" name="imageplant" placeholder="Image of Individual URL" size="40" /></td>
+								</tr>	
 								<tr>
 									<td>Description</td>
 									<td>:</td>
 								</tr>
 								<tr>
-									<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" id="description1" /></textarea></td>
+									<td colspan="4"><textarea rows="4" cols="65"  name="desc" placeholder="Description"></textarea></td>
 								</tr>
-								
 								<tr>
-									<td>&nbsp;</td>
-									<td><input type="submit" name="submit1" id="submit1" value="Edit Species" /></td>
+									<td colspan="4"><input type="submit" name="add_new" value="Add new species" /></td>
 								</tr>
 								
 							</table>
 						</form>
 						<hr />
 					</div>
-				</div>
-						
-				</div>
+				</div>			
 			</div>
 			<!-- END MAIN SECTION -->
 			
@@ -168,5 +157,3 @@ This page is redirected to from the add reserve page.
 	</body>
 	<!-- END BODY -->
 </html>
-
-    

@@ -17,7 +17,7 @@
 				RESERVE LIST
 			</a>
 			<a href="editreserve.php" class="col-2 listelement button">
-				EDIT RESERVE
+				ADD RESERVE
 			</a>
 			<a href="reservelist.php?name=<?php echo $_SESSION['user']; ?>" class="col-2 listelement button">
 				USER PAGE

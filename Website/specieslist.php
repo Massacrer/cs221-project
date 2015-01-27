@@ -51,18 +51,26 @@ This file is part of the main 3 homepages of the website
 				<div class="row">
 					<div class="col-12">
 						<hr />
-						<p class="heading">Species List</p>
+						<p><span class="heading">Species List</span> 
+						
+						<?php 
+						include_once('php/editreserve.php');
+						if(usersreservedata($_GET['id'])){ 
+							echo "<a href='editreserve.php?editid=" . $_GET['id'] . "'><u>(Edit)<img src='res/pencil.jpg' /></u></a>" ;
+						}?>
+						</p>
 					</div>
 				</div>
 				<div class="row results">
 					<div class="col-12">
 						<!-- PHP GENERATED CONTENT -->
-						<?php
-						outputtable();?>
-						<hr />
-						<p class="heading">The actual plants</p>
-						<?php 
-						outputspeciestable(); 
+						<?php if(isset($_GET['id'])){
+							outputtable();?>
+							<hr />
+							<p class="heading">The actual plants</p>
+							<?php 
+							outputspeciestable(); 
+						}
 						 ?>
 					</div>
 				</div>

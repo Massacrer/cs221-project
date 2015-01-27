@@ -1,0 +1,59 @@
+
+body {
+	background-color: #dddddd;
+
+}
+
+.element {
+
+}
+
+.seperator {
+	min-height: 50px;
+	height: 50px;
+}
+
+.heading {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+table {
+	margin: auto;
+}
+
+td {
+	padding: 10px;
+}
+
+.results {
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.mainsection {
+	padding: 20px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px #888888;
+	border: 1px solid black;
+}
+
+.descriptionreserve{
+visibility: hidden;
+position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 0px;
+  height:0px;
+}
+
+#personsname{
+visibility: hidden;
+position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 0px;
+  height:0px;
+}
+

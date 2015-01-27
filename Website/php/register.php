@@ -6,7 +6,7 @@ this form will be called when they attempt to register.
 -->
 <?php
 
-
+include_once('php/dbconnect.php');
 include 'ssbcrypt.php';
 
 //If submit
@@ -36,7 +36,7 @@ function userregister(){
  sanitises the data inputs using the mySQLi escape string function
  
  */
-	$con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
+	$con= opendatabase();
 	$username = mysqli_real_escape_string($con,$_POST['username']);
 	$password = mysqli_real_escape_string($con,$_POST['password']);
 	$hash = password_hash($password, PASSWORD_DEFAULT);
