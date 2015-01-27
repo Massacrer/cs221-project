@@ -57,3 +57,7 @@ position: fixed;
   height:0px;
 }
 
+.img-responsive{
+	width:100%;
+	height:auto;
+}

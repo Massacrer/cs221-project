@@ -19,16 +19,18 @@
 		if(isset($_GET['id']) && strlen($_GET['id']) > 0){
 			$where =" && reserveId = '" . mysqli_real_escape_string($con, $_GET['id']) . "'"; 
 		}
-	
-		$query = "SELECT * FROM Reserve WHERE reservehidden = '0'" . $where; 
-		
 		
 		if(isset($_GET['name'])){
 			$name = mysqli_real_escape_string($con, $_GET['name']);
 			$query = $query . " && reserveUserid = '" . $name . "'";		
-		}
+		}	
 		
-		$result = mysqli_query($con, $query);
+		$query = "SELECT * FROM Reserve WHERE reservehidden = '0'" . $where . " ORDER BY reserveDatetimeCreation DESC"; 
+		
+		
+		if(!$result = mysqli_query($con, $query)){
+			echo "Error: " . mysqli_error($con);
+		}
 			
 		while ($row=mysqli_fetch_row($result))
 		{
@@ -43,16 +45,16 @@
 					</div>
 					<div class="row">
 						<div class="col-10 padding">
-							<strong>Lat: </strong><?php echo $row['2']; ?><strong> Lng: </strong><?php echo $row['3']; ?>
+							<strong>OS grid ref: </strong><?php echo $row['2']; ?>
 						</div>
 						<div class="col-2 padding">
-							<?php echo $row['4']; ?>
+							<?php echo $row['3']; ?>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-10 padding">
 							<?php
-								$str = "" . $row['5'];
+								$str = "" . $row['4'];
 								if (strlen($str) > 90){
 									$str = substr($str, 0, 90) . '...';
 								}
@@ -60,7 +62,7 @@
 							?>
 						</div>	
 						<div class="col-2 elementusername" id="personsname" >
-							<a class='elementbutton button' href='reservelist.php?name=<?php echo $row['7'];?>'><?php echo getnamefromid($row["7"]); ?></a>
+							<a class='elementbutton button' href='reservelist.php?name=<?php echo $row['6'];?>'><?php echo getnamefromid($row["6"]); ?></a>
 						</div>
 					</div>
 				</div>
@@ -68,7 +70,7 @@
 				
 				<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
 						<?php 
-							echo $row['5'];
+							echo $row['4'];
 						?>
 				</div>	<hr />		
 			<?

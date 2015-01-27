@@ -56,7 +56,7 @@ This file is part of the main 3 homepages of the website
 						<?php 
 						include_once('php/editreserve.php');
 						if(usersreservedata($_GET['id'])){ 
-							echo "<a href='editreserve.php?editid=" . $_GET['id'] . "'>(Edit)</a>" ;
+							echo "<a href='editreserve.php?editid=" . $_GET['id'] . "'><u>(Edit)<img src='res/pencil.jpg' /></u></a>" ;
 						}?>
 						</p>
 					</div>

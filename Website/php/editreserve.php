@@ -35,8 +35,7 @@ function loadreserve(){
 			<tr>
 				<td>Location</td>
 				<td>:</td>
-				<td><input type="text" name="lng" placeholder="Longitude" value="<?php echo $lng; ?>" /></td>
-				<td><input type="text" name="lat" placeholder="Latitude" value="<?php echo $lat; ?>"/></td>
+				<td><input type="text" name="lat" placeholder="OS grid refrence" value="<?php echo $lat; ?>"/></td>
 			</tr>
 			<tr>
 				<td>Description:</td>
@@ -83,14 +82,14 @@ function loadspecies(){
 				<tr>
 					<td>Name</td>
 					<td>:</td>
-					<td colspan="4"><input type="text" placeholder="Name of Species" value="<?php echo $name; ?>" /></td>
+					<td colspan="4"><input name="name" type="text" placeholder="Name of Species" value="<?php echo $name; ?>" /></td>
 				</tr>
 					<td>Time</td>
 					<td>:</td>
-					<td><input type="text" placeholder="Time" value="<?php echo $time; ?>" /></td>
+					<td><input type="text" placeholder="Time" name="time" value="<?php echo $time; ?>" /></td>
 					<td>DAFOR:
 						<select>
-						   <option value="<?php echo $dafor; ?>"><?php echo $dafor; ?></option>
+						   <option  name="dafor" value="<?php echo $dafor; ?>"><?php echo $dafor; ?></option>
 						   <option value="D">D</option>
 						   <option value="A">A</option>
 						   <option value="F">F</option>
@@ -101,23 +100,23 @@ function loadspecies(){
 				<tr>
 					<td>Location</td>
 					<td>:</td>
-					<td><input type="text" placeholder="Latitude" value="<?php echo $lat; ?>"/></td>
-					<td><input type="text" placeholder="Longitude" value="<?php echo $lng; ?>"/></td>
+					<td><input type="text" name="lat" placeholder="Latitude" value="<?php echo $lat; ?>"/></td>
+					<td><input type="text" name="lng" placeholder="Longitude" value="<?php echo $lng; ?>"/></td>
 				</tr>
 				<tr>
 					<td>Image of Area</td>
 					<td>:</td>
-					<td colspan="2"><input type="text" name="areaimage" placeholder="Image of Area URL" size="40"value="<?php echo $imagearea; ?>" /></td>
+					<td colspan="2"><input type="text" name="imagearea" name="areaimage" placeholder="Image of Area URL" size="40"value="<?php echo $imagearea; ?>" /></td>
 				</tr>
 					<td>Image of Indiviual Plant</td>
 					<td>:</td>
-					<td colspan="2"><input type="text" name="individualimage" placeholder="Image of Individual URL" size="40" value="<?php echo $imageindiviul; ?>"/></td>
+					<td colspan="2"><input type="text"  name="imageplant" name="individualimage" placeholder="Image of Individual URL" size="40" value="<?php echo $imageindiviul; ?>"/></td>
 				<tr>
 					<td>Description</td>
 					<td>:</td>
 				</tr>
 				<tr>
-					<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" /><?php echo $desc; ?></textarea></td>
+					<td colspan="4"><textarea rows="4" name="desc" cols="65" type="textarea" placeholder="Description" /><?php echo $desc; ?></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" name="submit_species" value="Update" /></td>
@@ -169,10 +168,9 @@ if(isset($_POST['submit_reserve'])){
 	$name = mysqli_real_escape_string($con, $_POST['name']);
 	$time = mysqli_real_escape_string($con, $_POST['time']);
 	$lat = mysqli_real_escape_string($con, $_POST['lat']);
-	$lng = mysqli_real_escape_string($con, $_POST['lng']);
 	$desc = mysqli_real_escape_string($con, $_POST['desc']);
 
-	$query = "UPDATE Reserve SET reserveName='" . $name . "', reserveDatetimeCreation = '" . $time . "', reserveLocationLat = '" . $lat . "', reserveLocationLng = '" . $lng . "', reserveDescription = '" . $desc . "' WHERE reserveId='" . $id ."'"; 
+	$query = "UPDATE Reserve SET reserveName='" . $name . "', reserveDatetimeCreation = '" . $time . "', reserveLocationLat = '" . $lat . "', reserveDescription = '" . $desc . "' WHERE reserveId='" . $id ."'"; 
 
 	if(mysqli_query($con, $query)){
 
@@ -203,7 +201,33 @@ if(isset($_POST['delete_reserve'])){
 }
 
 if(isset($_POST['submit_species'])){
-	echo "submit species";
+	$con = opendatabase();		
+	$id =  mysqli_real_escape_string($con, $_GET['editid']);
+	if(!usersreservedata($id)){die ("Error with permissions.");}
+	
+	if(isset($_GET['editid'])){
+		$name = mysqli_real_escape_string($con, $_POST['name']);
+		$time = mysqli_real_escape_string($con, $_POST['time']);
+		$lat = mysqli_real_escape_string($con, $_POST['lat']);
+		$lng = mysqli_real_escape_string($con, $_POST['lng']);
+		$desc = mysqli_real_escape_string($con, $_POST['desc']);
+		$dafor = mysqli_real_escape_string($con, $_POST['dafor']);
+		$imagearea = mysqli_real_escape_string($con, $_POST['imagearea']);
+		$imageplant = mysqli_real_escape_string($con, $_POST['imageplant']);
+		$species = mysqli_real_escape_string($con, $_POST['species']);
+		$query = "UPDATE Species SET SpeciesName = '".$name."', SpeciesDafor='".$dafor."', SpeciesDescription='".$desc."', SpeciesLocationLat='".$lat."', SpeciesLocationLng='".$lng."', SpeciesTimeDate='".$time."', SpeciesPicUrlIndvidual='".$imageplant."', SpeciesPicUrlArea='".$imagearea."' WHERE SpeciesId='" . $species ."' && ReserveId='" . $id . "'"; 
+
+		if (mysqli_query($con, $query)) {
+			echo "Edited successfully.";
+			header('Location: ./editreserve.php?editid='.$id.'#'.$species);
+		} else {
+			echo "Error: " . mysqli_error($con);
+			die();
+		}
+	}
+	else{
+		echo "Need to create reserve first";
+	}
 
 }	
 
@@ -240,7 +264,7 @@ if(isset($_POST['add_new'])){
 		$imagearea = mysqli_real_escape_string($con, $_POST['imagearea']);
 		$imageplant = mysqli_real_escape_string($con, $_POST['imageplant']);
 		$reserve  = mysqli_real_escape_string($con, $_POST['reserve']);
-		$query = "INSERT INTO Species (SpeciesName, SpeciesDarfor, SpeciesDescription, SpeciesLocationLat, SpeciesLocationLng, SpeciesTimeDate, ReserveId, SpeciesPicUrlIndvidual, SpeciesPicUrlArea ) VALUES ('".$name."', '".$dafor."', '".$desc."', '".$lat."', '".$lng."', '".$time."', '".$reserve."', '".$imageplant."', '".$imagearea."')";
+		$query = "INSERT INTO Species (SpeciesName, SpeciesDafor, SpeciesDescription, SpeciesLocationLat, SpeciesLocationLng, SpeciesTimeDate, ReserveId, SpeciesPicUrlIndvidual, SpeciesPicUrlArea ) VALUES ('".$name."', '".$dafor."', '".$desc."', '".$lat."', '".$lng."', '".$time."', '".$reserve."', '".$imageplant."', '".$imagearea."')";
 
 		if (mysqli_query($con, $query)) {
 			echo "New record created successfully";

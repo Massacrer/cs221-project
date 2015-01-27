@@ -36,8 +36,8 @@ return returnVal;
 
 function CheckUserName() {
 	var userName = document.getElementById('username').value;
-	if (userName.length < 3){
-		document.getElementById("message_after_register").innerHTML = "USERNAME MUST BE ATLEAST 3 CHARACTERS";
+	if (userName.length < 3 || userName > 12){
+		document.getElementById("message_after_register").innerHTML = "USERNAME MUST BE ATLEAST 3 CHARACTERS OE LESS THAN 12.";
 		return false;
 	}
 	else{

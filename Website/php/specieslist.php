@@ -23,7 +23,7 @@
 					<div class="row">
 						<div class="col-2">
 							<!-- PUT PICTURE HERE -->
-							<img src="http://placehold.it/150x150">
+							<img src="<?echo $row['9']; ?>" class="img-responsive">
 							<?php// echo $row['9']; ?>
 						</div>
 						<div class="col-10">
