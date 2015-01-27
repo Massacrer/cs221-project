@@ -135,9 +135,7 @@ This page is redirected to from the add reserve page.
 						</form>
 						<hr />
 					</div>
-				</div>
-						
-				</div>
+				</div>			
 			</div>
 			<!-- END MAIN SECTION -->
 			
