@@ -3,9 +3,13 @@ package uk.ac.aber.cs221.upload;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.content.Context;
+import android.database.Cursor;
 import uk.ac.aber.cs221.storage.Recording;
 import uk.ac.aber.cs221.storage.RecordingStorage;
+import uk.ac.aber.cs221.storage.Species;
+import uk.ac.aber.cs221.storage.SpeciesStorage;
 import uk.ac.aber.cs221.storage.Storage;
 import static org.json.JSONObject.quote;
 
@@ -39,15 +43,34 @@ public class StorageInterface {
          values.put("user_number", quote(recording.userNumber));
          values.put("user_email", quote(recording.userEmail));
          JSONArray speciesArray = new JSONArray();
-         values.put("species", speciesArray);
          
-         // not needed
-         // JsonWriter writer = new JsonWriter(new
-         // OutputStreamWriter(System.out));
+         SpeciesStorage storage = SpeciesStorage.getInstance(context);
+         Cursor cursor = storage.getByRecordingId(recording.id);
+         cursor.moveToFirst();
+         
+         while (!cursor.isAfterLast()) {
+            JSONObject speciesObject = new JSONObject();
+            Species species = storage.get(cursor.getLong(cursor
+                  .getColumnIndexOrThrow("_id")));
+            
+            speciesObject.put("abundance", species.abundance);
+            speciesObject.put("date",
+                  quote(Storage.dateTimeString(species.date)));
+            speciesObject.put("name", quote(species.name));
+            speciesObject.put("comment", quote(species.comment));
+            speciesObject.put("lat", species.loc.getLatitude());
+            speciesObject.put("lon", species.loc.getLongitude());
+            // handle image file upload here
+            
+            speciesArray.put(speciesObject);
+            cursor.moveToNext();
+         }
+         values.put("species", speciesArray);
       }
       catch (JSONException e) {
+         return null;
       }
-      return null;
+      return values;
    }
    
 }
