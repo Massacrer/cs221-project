@@ -13,7 +13,8 @@ import android.util.Log;
 /**
  * Abstract superclass of the Storage classes, defining abstract methods and
  * some static helper methods and classes to enable easy access to the
- * Android-provided sqlite3 implementation
+ * Android-provided sqlite3 implementation. This class vaguely describes an
+ * implementation of the Active Record pattern
  * 
  * @author was4
  * 
@@ -24,12 +25,37 @@ import android.util.Log;
 public abstract class Storage<T> {
    static final String dateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSS";
    
+   /**
+    * Store the T in the database
+    * 
+    * @param t
+    *           The object to store
+    */
    public abstract void store(T t);
    
+   /**
+    * Create and return a T from the database, looking up by id
+    * 
+    * @param id
+    *           The id of the T to return
+    * @return The T with this id
+    */
    public abstract T get(long id);
    
+   /**
+    * Create a new T in the database and return it. All fields except id will be
+    * null
+    * 
+    * @return The T that was just created
+    */
    public abstract T createNew();
    
+   /**
+    * Delete the T with the given id from the database
+    * 
+    * @param id
+    *           The id of the T to delete
+    */
    public abstract void delete(long id);
    
    // apparently a method can't be both abstract and static in java. Shame.

@@ -2,8 +2,6 @@ package uk.ac.aber.cs221.test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,14 +12,11 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.database.Cursor;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,6 +24,11 @@ import uk.ac.aber.cs221.storage.RecordingStorage;
 import uk.ac.aber.cs221.util.RecordingManagerListAdapter;
 import uk.ac.aber.cs221.util.Util;
 
+/**
+ * Handles the RecordingManager activity
+ * 
+ * @author was4
+ */
 public class RecordingManager extends Activity {
    
    @Override
@@ -41,15 +41,23 @@ public class RecordingManager extends Activity {
       setupOnClickListeners();
    }
    
+   /**
+    * Sets up the list of Recordings using a {@link RecordingManagerListAdapter}
+    */
    private void setupList() {
       Cursor cursor = RecordingStorage.getInstance(this).getCursor();
       
       ListView listView = (ListView) findViewById(R.id.rmgr_list);
       listView.setAdapter(new RecordingManagerListAdapter(this, cursor, true));
-      String message = "Cursor contains " + cursor.getCount() + " rows";
-      Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+      
+      // DEBUG
+      // String message = "Cursor contains " + cursor.getCount() + " rows";
+      // Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }
    
+   /**
+    * Reloads the data in the list by simply getting a new Cursor
+    */
    private void refreshList() {
       ListView list = (ListView) findViewById(R.id.rmgr_list);
       CursorAdapter adapter = (CursorAdapter) list.getAdapter();
@@ -60,12 +68,23 @@ public class RecordingManager extends Activity {
       adapter.changeCursor(RecordingStorage.getInstance(this).getCursor());
    }
    
+   /**
+    * Method to be called when a row is selected - open the Recording
+    * corresponding to the row
+    * 
+    * @param selected
+    *           The row that was selected
+    */
    public void rowSelectCallback(View selected) {
       Intent intent = new Intent(this, RecordingActivity.class);
       intent.putExtra("id", (Long) selected.getTag());
       startActivity(intent);
    }
    
+   /**
+    * Sets up the delete button to delete rows that have their checkboxes
+    * checked
+    */
    private void setupOnClickListeners() {
       ((Button) findViewById(R.id.rmgr_deleteButton))
             .setOnClickListener(new OnClickListener() {
@@ -74,18 +93,24 @@ public class RecordingManager extends Activity {
                   List<ViewGroup> selected = getSelectedRows();
                   if (selected.size() > 0) {
                      for (ViewGroup vg : selected) {
+                        // delete recording
                         RecordingStorage.getInstance(RecordingManager.this)
                               .delete((Long) vg.getTag());
+                        
+                        // uncheck old checkbox - necessary because adapter uses
+                        // view recycling
                         CheckBox checkBox = (CheckBox) vg
                               .findViewById(R.id.rmgr_syncCheck);
                         checkBox.setChecked(false);
                      }
                   }
-                  refreshList();
                }
             });
    }
    
+   /**
+    * @return A list of all rows that have been ticked
+    */
    private List<ViewGroup> getSelectedRows() {
       ArrayList<ViewGroup> list = new ArrayList<ViewGroup>();
       ViewGroup parent = ((ViewGroup) findViewById(R.id.rmgr_list));
@@ -100,6 +125,9 @@ public class RecordingManager extends Activity {
       return list;
    }
    
+   /**
+    * Sets up the upload button handler
+    */
    private void setUpOnClickServer() {
       Button syncButton = (Button) findViewById(R.id.rmgr_syncButton);
       
@@ -146,13 +174,6 @@ public class RecordingManager extends Activity {
                
                alertDialog.show();
             }
-         }
-      });
-      Button cancelButton = (Button) findViewById(R.id.rmgr_deleteButton);
-      cancelButton.setOnClickListener(new OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            
          }
       });
    }

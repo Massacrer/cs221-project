@@ -3,12 +3,16 @@ package uk.ac.aber.cs221.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
 
+/**
+ * Main activity of the app, reached on launch. See xml file for layout. This
+ * class sets up action listeners for the main activity buttons
+ * 
+ * @author was4
+ */
 public class MainActivity extends Activity {
    
    @Override
@@ -23,6 +27,9 @@ public class MainActivity extends Activity {
       this.setupOnClickListener();
    }
    
+   /**
+    * Sets up the onClickListeners for the buttons in this activity
+    */
    private void setupOnClickListener() {
       Button buttonStart = (Button) findViewById(R.id.ma_StartButton);
       Button buttonContinue = (Button) findViewById(R.id.ma_ContinueButton);
