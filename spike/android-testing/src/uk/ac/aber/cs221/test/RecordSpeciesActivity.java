@@ -210,22 +210,14 @@ public class RecordSpeciesActivity extends Activity {
       species.date = calendar.getTime();
       species.loc = temp;
       
-      String noInts = "^[a-z A-Z]+$";
-      boolean noErrors = true;
-      
       AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
-      if (!nameField.getText().toString().matches(noInts)) {
-         noErrors = false;
-         Toast.makeText(RecordSpeciesActivity.this,
-               "Please enter a valid name", Toast.LENGTH_LONG).show();
-      }
       TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);
-      if (noErrors == true) {
-         species.comment = (commentField.getText().toString());
-         species.name = (nameField.getText().toString());
-         species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
-               .getSelectedItemPosition();
-      }
+      
+      species.comment = (commentField.getText().toString());
+      species.name = (nameField.getText().toString());
+      species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
+            .getSelectedItemPosition();
+      
    }
    
    /**
