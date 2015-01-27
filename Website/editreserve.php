@@ -15,6 +15,7 @@ This page is redirected to from the add reserve page.
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/editreserve.css" />
 				<!-- <![endif]-->
+		<script type="text/javascript" src="js/reserve&speciesValidation.js"></script>
 	</head>
 	<!-- END HEAD -->
 	
@@ -55,30 +56,36 @@ This page is redirected to from the add reserve page.
 
 				<div class="row">
 					<div class="col-12">
-						<form name="reserveedit" action="">
+						<form name="reserveedit" action="" onsubmit="return checkValidation();">
 							<table>
 								<tr>
 									<td>Name of Reserve</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Name of Reserve" /></td>
+									<td><input type="text" placeholder="Name of Reserve" id="name" /></td>
 								</tr>
 								<tr>
 									<td>Time</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Time" /></td>
+									<td><input type="text" placeholder="Time" id="time" /></td>
 								</tr>
 								<tr>
 									<td>Location</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Longitude" /></td>
-									<td><input type="text" placeholder="Latitude" /></td>
+									<td><input type="text" placeholder="Longitude" id="lng" /></td>
+									<td><input type="text" placeholder="Latitude" id="lat" /></td>
 								</tr>
 								<tr>
 									<td>Description:</td>
 								</tr>
 								<tr>
-									<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" /></textarea></td>
+									<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" id="description" /></textarea></td>
 								</tr>
+								
+								<tr>
+									<td>&nbsp;</td>
+									<td><input type="submit" name="submit" id="submit" value="Edit Reserve" /></td>
+								</tr>
+								
 							</table>
 						</form>
 					</div>
@@ -104,11 +111,11 @@ This page is redirected to from the add reserve page.
 								<tr>
 									<td>Name</td>
 									<td>:</td>
-									<td colspan="4"><input type="text" placeholder="Name of Species" /></td>
+									<td colspan="4"><input type="text" placeholder="Name of Species" id="sname" /></td>
 								</tr>
 									<td>Time</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Time" /></td>
+									<td><input type="text" placeholder="Time" id="time" /></td>
 									<td>DAFOR:
 										<select>
 										   <option value="D">D</option>
@@ -121,24 +128,30 @@ This page is redirected to from the add reserve page.
 								<tr>
 									<td>Location</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Latitude" /></td>
-									<td><input type="text" placeholder="Longitude" /></td>
+									<td><input type="text" placeholder="Longitude" id="lng1" /></td>
+									<td><input type="text" placeholder="Latitude" id="lat1" /></td>
 								</tr>
 								<tr>
 									<td>Image of Area</td>
 									<td>:</td>
-									<td colspan="2"><input type="file" name="areaimage" placeholder="Image of Area" size="40" /></td>
+									<td colspan="2"><input type="file" name="areaimage" placeholder="Image of Area" size="40" id="imagearea"/></td>
 								</tr>
 									<td>Image of Indiviual Plant</td>
 									<td>:</td>
-									<td colspan="2"><input type="file" name="individualimage" placeholder="Image of Individual" size="40" /></td>
+									<td colspan="2"><input type="file" name="individualimage" placeholder="Image of Individual" size="40" id="imageplant" /></td>
 								<tr>
 									<td>Description</td>
 									<td>:</td>
 								</tr>
 								<tr>
-									<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" /></textarea></td>
+									<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" id="description1" /></textarea></td>
 								</tr>
+								
+								<tr>
+									<td>&nbsp;</td>
+									<td><input type="submit" name="submit1" id="submit1" value="Edit Species" /></td>
+								</tr>
+								
 							</table>
 						</form>
 						<hr />

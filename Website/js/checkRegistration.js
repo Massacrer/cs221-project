@@ -1,3 +1,10 @@
+/*
+Author - Himalya Singh
+
+This script is to check if the values entered in the form is valid. 
+for example username is not less than 3 characters or confirm password
+matches the original password.
+*/
 function checkRegistration() {
 	var returnVal = true;
 
@@ -63,7 +70,7 @@ function checkConfirmPassword(){
 	var pWord = document.getElementById('password').value;
 	var confirmPWord = document.getElementById('passwordConfirm').value;
 	if (pWord != confirmPWord){
-		document.getElementById("message_after_register").innerHTML = "password you have entered do not match";
+		document.getElementById("message_after_register").innerHTML = "PASSWORD YOU HAVE ENTERED DO NOT MATCH";
 		return false;
 	}
 	else{
@@ -114,7 +121,7 @@ function checkEmail() {
 	var eMail = document.getElementById('email');
 	var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 	if (!filter.test(eMail.value)) {
-		document.getElementById("message_after_register").innerHTML = "Wrong Email Address";
+		document.getElementById("message_after_register").innerHTML = "INVALID EMAIL ADDRESS";
 		return false;
 	 }
 	 else{
