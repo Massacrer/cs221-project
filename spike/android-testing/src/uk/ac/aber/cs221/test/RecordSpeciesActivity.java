@@ -27,6 +27,8 @@ import uk.ac.aber.cs221.util.*;
 public class RecordSpeciesActivity extends Activity {
    private GpsLocator gps;
    private Species species;
+   int REQUEST_CODE = 1;
+
    private boolean isEdited = false;
 
    @Override
@@ -61,6 +63,7 @@ public class RecordSpeciesActivity extends Activity {
    /**
     * Populates the Spinner(dropdown list) with the abundance values
     */
+
    private void setupSpinner() {
       ((Spinner) findViewById(R.id.abundanceSpinner))
       .setAdapter(new ArrayAdapter<String>(this,
@@ -78,6 +81,7 @@ public class RecordSpeciesActivity extends Activity {
     * extras - recordingId or speciesId. If neither are present, an exception is
     * thrown, as it is an error to attempt to edit the null species
     */
+
    private void setupSpecies() {
       SpeciesStorage storage = SpeciesStorage.getInstance(this);
       Bundle extras = getIntent().getExtras();
@@ -129,14 +133,12 @@ public class RecordSpeciesActivity extends Activity {
       });
    }
 
-   /**
-    * Sets up the save and delete buttons. Both end the activity.
-    */
    private void setupButtons() {
       ((Button) findViewById(R.id.rec_sp_SaveButton))
       .setOnClickListener(new OnClickListener() {
          @Override
          public void onClick(View v) {
+            isEdited = true;
             storeDetails();
             SpeciesStorage.getInstance(RecordSpeciesActivity.this).store(
                   species);
@@ -175,8 +177,7 @@ public class RecordSpeciesActivity extends Activity {
          temp.setLatitude(latitude);
          temp.setLongitude(longitude);
          species.loc = temp;
-      }
-      else {
+      } else {
          gps.showSettingsAlert();
       }
       String noInts = "^[a-z A-Z]+$";
@@ -189,10 +190,10 @@ public class RecordSpeciesActivity extends Activity {
       }
       TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);
       if (noErrors==true) {
-      species.comment = (commentField.getText().toString());
-      species.name = (nameField.getText().toString());
-      species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
-            .getSelectedItemPosition();
+         species.comment = (commentField.getText().toString());
+         species.name = (nameField.getText().toString());
+         species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
+               .getSelectedItemPosition();
       }
    }
 
@@ -216,8 +217,28 @@ public class RecordSpeciesActivity extends Activity {
             Intent intent = new Intent(RecordSpeciesActivity.this,
                   PhotoPickerActivity.class);
             intent.putExtra("picture", "scene");
-            startActivity(intent);
+            startActivityForResult(intent, 1);
          }
       });
+   }
+
+   // returns scene toast if specimen isnt there, but not specimen toast
+   @Override
+   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+      if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+         String picture = data.getStringExtra("picture");
+         if (picture != null) {
+            if (picture == "specimen") {
+               species.imageFile1 = data.getStringExtra("fileName");
+               Toast.makeText(this, "this was a species picture",
+                     Toast.LENGTH_LONG).show();
+            } else {
+               species.imageFile2 = data.getStringExtra("fileName");
+               Toast.makeText(this, "this was a scene picture",
+                     Toast.LENGTH_LONG).show();
+            }
+
+         }
+      }
    }
 }
