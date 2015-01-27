@@ -12,38 +12,45 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 /**
+ * Class to handle uploading JSON to a PHP script
+ * <p>
  * Created by Cai Jones on 23/01/2015.
+ * 
+ * @author crj10
  */
 public class Uploader extends AsyncTask<JSONObject, JSONObject, JSONObject> {
-
-    @Override
-    /*
-    *
+   
+   @Override
+   /*
+    * 
     * protected method runs in the backround with an asynchronous thread
-    *
     */
-    protected JSONObject doInBackground(JSONObject... json) {
-
-        JSONObject j = json[0];
-        HttpClient client = new DefaultHttpClient();
-        HttpConnectionParams.setConnectionTimeout(client.getParams(), 100000);
-        String url = "http://users.aber.ac.uk/crj10/cs221-project/Website/php/appget.php";
-        JSONObject jResponse = null;
-        HttpPost post = new HttpPost(url);
-        try {
-
-            StringEntity se = new StringEntity("json="+j.toString());
-            post.addHeader("content-type", "application/x-www-form-urlencoded");
-            post.setEntity(se);
-
-            HttpResponse response;
-            response = client.execute(post);
-            String serverResponse = org.apache.http.util.EntityUtils.toString(response.getEntity());
-            // takes the server response as json
-            jResponse=new JSONObject(serverResponse);
-            Log.i("Server Response:", jResponse.getString("msg"));
-        } catch (Exception e) { e.printStackTrace();}
-
-        return jResponse;
-    }
+   protected JSONObject doInBackground(JSONObject... json) {
+      
+      JSONObject j = json[0];
+      HttpClient client = new DefaultHttpClient();
+      HttpConnectionParams.setConnectionTimeout(client.getParams(), 100000);
+      String url = "http://users.aber.ac.uk/crj10/cs221-project/Website/php/appget.php";
+      JSONObject jResponse = null;
+      HttpPost post = new HttpPost(url);
+      try {
+         
+         StringEntity se = new StringEntity("json=" + j.toString());
+         post.addHeader("content-type", "application/x-www-form-urlencoded");
+         post.setEntity(se);
+         
+         HttpResponse response;
+         response = client.execute(post);
+         String serverResponse = org.apache.http.util.EntityUtils
+               .toString(response.getEntity());
+         // takes the server response as json
+         jResponse = new JSONObject(serverResponse);
+         Log.i("Server Response:", jResponse.getString("msg"));
+      }
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+      
+      return jResponse;
+   }
 }

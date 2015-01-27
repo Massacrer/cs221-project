@@ -1,18 +1,20 @@
 package uk.ac.aber.cs221.upload;
 
-import java.io.OutputStreamWriter;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
-import android.util.JsonWriter;
 import uk.ac.aber.cs221.storage.Recording;
 import uk.ac.aber.cs221.storage.RecordingStorage;
 import uk.ac.aber.cs221.storage.Storage;
 import static org.json.JSONObject.quote;
 
+/**
+ * Class to assist in converting stored Recordings and Species' into
+ * serializable form for upload
+ * 
+ * @author was4
+ */
 public class StorageInterface {
    public JSONObject getRecording(Context context, long id) {
       Recording recording = RecordingStorage.getInstance(context).get(id);
