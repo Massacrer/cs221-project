@@ -107,6 +107,7 @@ public class RecordingManager extends Activity {
                         CheckBox checkBox = (CheckBox) vg
                               .findViewById(R.id.rmgr_syncCheck);
                         checkBox.setChecked(false);
+                        refreshList();
                      }
                   }
                }
@@ -156,10 +157,10 @@ public class RecordingManager extends Activity {
                JSONObject j = new JSONObject();
                try {
                   j.put("name", "RecordingTest");
-                  j.put("description","We like to move it move it");
+                  j.put("description", "We like to move it move it");
                   j.put("latitude", 50.5);
                   j.put("longitude", 20.6);
-                  j.put("date","0000-00-00-00");
+                  j.put("date", "0000-00-00-00");
                   j.put("user_name", "Riott");
                   j.put("user_number", "07528875810");
                   j.put("user_email", "acid_zepplin@hotmail.co.uk");

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -31,11 +32,11 @@ public class RecordSpeciesActivity extends Activity {
    private GpsLocator gps;
    private Species species;
    
-   double latitude,longitude;
+   double latitude, longitude;
    int REQUEST_CODE = 1;
-
+   
    private boolean isEdited = false;
-
+   
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
@@ -43,40 +44,47 @@ public class RecordSpeciesActivity extends Activity {
       Util.setupActionBar(this);
       setupButtons();
       setupSpinner();
+      setupSpecies();
       setupPhotoPickerButtons();
    }
-
+   
+   public void onStop() {
+      super.onStop();
+      Log.i("RPSR", "recordSpecies destroyed");
+   }
+   
    @Override
    protected void onPause() {
       super.onPause();
       // only store on save
       // SpeciesStorage.getInstance(this).store(species);
-
+      
       // prevent saving accidentally created species'
-      if (!isEdited) {
+      String name = ((TextView) findViewById(R.id.rec_sp_SpName)).getText()
+            .toString();
+      if (!isEdited && name == "") {
          SpeciesStorage.getInstance(this).delete(species.id);
       }
    }
-
+   
    @Override
    protected void onResume() {
       super.onResume();
-      setupSpecies();
       setupFields();
    }
-
+   
    /**
     * Populates the Spinner(dropdown list) with the abundance values
     */
-
+   
    private void setupSpinner() {
       ((Spinner) findViewById(R.id.abundanceSpinner))
-      .setAdapter(new ArrayAdapter<String>(this,
-            android.R.layout.simple_list_item_1, new String[] {
-            "Dominant", "Abundant", "Frequent", "Occasional",
-      "Rare" }));
+            .setAdapter(new ArrayAdapter<String>(this,
+                  android.R.layout.simple_list_item_1, new String[] {
+                        "Dominant", "Abundant", "Frequent", "Occasional",
+                        "Rare" }));
    }
-
+   
    /**
     * Initialises the internal Species object to a sensible value.
     * <p>
@@ -87,15 +95,13 @@ public class RecordSpeciesActivity extends Activity {
     * thrown, as it is an error to attempt to edit the null species
     */
    
-   
-
    private void setupSpecies() {
       SpeciesStorage storage = SpeciesStorage.getInstance(this);
       Bundle extras = getIntent().getExtras();
       if (extras != null) {
          long recordingId = extras.getLong("recordingId");
          long speciesId = extras.getLong("speciesId");
-
+         
          if (recordingId != 0) {
             this.species = storage.createNew();
             this.species.recordingId = recordingId;
@@ -109,10 +115,10 @@ public class RecordSpeciesActivity extends Activity {
                throw new RuntimeException(
                      "called RecordSpeciesActivity without ids");
             }
-
+         
       }
    }
-
+   
    /**
     * Sets the UI fields to values based on those in the internal Species object
     */
@@ -121,38 +127,38 @@ public class RecordSpeciesActivity extends Activity {
       // work with imageView1 here
       ((TextView) findViewById(R.id.rec_sp_Comment)).setText(species.comment);
       ((Spinner) findViewById(R.id.abundanceSpinner))
-      .setSelection(species.abundance);
-
+            .setSelection(species.abundance);
+      
       Cursor cursor = null;
       ((AutoCompleteTextView) findViewById(R.id.rec_sp_SpName))
-      .setAdapter(new CursorAdapter(RecordSpeciesActivity.this, cursor,
-            false) {
-         @Override
-         public View newView(Context context, Cursor cursor,
-               ViewGroup parent) {
-            return null;
-         }
-
-         @Override
-         public void bindView(View view, Context context, Cursor cursor) {
-
-         }
-      });
+            .setAdapter(new CursorAdapter(RecordSpeciesActivity.this, cursor,
+                  false) {
+               @Override
+               public View newView(Context context, Cursor cursor,
+                     ViewGroup parent) {
+                  return null;
+               }
+               
+               @Override
+               public void bindView(View view, Context context, Cursor cursor) {
+                  
+               }
+            });
    }
-
+   
    private void setupButtons() {
       ((Button) findViewById(R.id.rec_sp_SaveButton))
-      .setOnClickListener(new OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            isEdited = true;
-            storeDetails();
-            SpeciesStorage.getInstance(RecordSpeciesActivity.this).store(
-                  species);
-            RecordSpeciesActivity.this.finish();
-         }
-      });
-
+            .setOnClickListener(new OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  isEdited = true;
+                  storeDetails();
+                  SpeciesStorage.getInstance(RecordSpeciesActivity.this).store(
+                        species);
+                  RecordSpeciesActivity.this.finish();
+               }
+            });
+      
       ((Button) findViewById(R.id.rec_sp_delete))
             .setOnClickListener(new OnClickListener() {
                @Override
@@ -162,7 +168,7 @@ public class RecordSpeciesActivity extends Activity {
                   RecordSpeciesActivity.this.finish();
                }
             });
-
+      
       ((Button) findViewById(R.id.rec_sp_GPS))
             .setOnClickListener(new OnClickListener() {
                @Override
@@ -171,21 +177,22 @@ public class RecordSpeciesActivity extends Activity {
                   if (gps.canGetLocation()) {
                      latitude = gps.getLatitude();
                      longitude = gps.getLongitude();
-
+                     
                      Toast.makeText(
                            RecordSpeciesActivity.this,
                            "your Latitude is : " + latitude
                                  + "\nYour Longitude is : " + longitude,
                            Toast.LENGTH_LONG).show();
-                  
-                  } else {
+                     
+                  }
+                  else {
                      gps.showSettingsAlert();
                   }
-
+                  
                }
             });
    }
-
+   
    /**
     * Fills the internal Species object's fields with data from the UI
     */
@@ -197,32 +204,30 @@ public class RecordSpeciesActivity extends Activity {
       temp.setLongitude(longitude);
       
       Calendar calendar = Calendar.getInstance();
-     
       
+      // imagefile 1 and 2 set in ActivityResult
       
-      //imagefile 1 and 2 set in ActivityResult
-      
-      species.date =  calendar.getTime();
+      species.date = calendar.getTime();
       species.loc = temp;
-
+      
       String noInts = "^[a-z A-Z]+$";
       boolean noErrors = true;
-
+      
       AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
       if (!nameField.getText().toString().matches(noInts)) {
-         noErrors = false; Toast.makeText(
-               RecordSpeciesActivity.this,
+         noErrors = false;
+         Toast.makeText(RecordSpeciesActivity.this,
                "Please enter a valid name", Toast.LENGTH_LONG).show();
       }
       TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);
-      if (noErrors==true) {
+      if (noErrors == true) {
          species.comment = (commentField.getText().toString());
          species.name = (nameField.getText().toString());
          species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
                .getSelectedItemPosition();
       }
    }
-
+   
    /**
     * Sets up the buttons that launch the photo picker activity
     */
@@ -236,7 +241,7 @@ public class RecordSpeciesActivity extends Activity {
             startActivityForResult(intent, 1);
          }
       });
-
+      
       Button buttonSpecimen = (Button) findViewById(R.id.ma_ContinueButton);
       buttonSpecimen.setOnClickListener(new OnClickListener() {
          public void onClick(View v) {
@@ -247,7 +252,7 @@ public class RecordSpeciesActivity extends Activity {
          }
       });
    }
-
+   
    // returns scene toast if specimen isnt there, but not specimen toast
    @Override
    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -258,12 +263,13 @@ public class RecordSpeciesActivity extends Activity {
                species.imageFile1 = data.getStringExtra("fileName");
                Toast.makeText(this, "this was a species picture",
                      Toast.LENGTH_LONG).show();
-            } else {
+            }
+            else {
                species.imageFile2 = data.getStringExtra("fileName");
                Toast.makeText(this, "this was a scene picture",
                      Toast.LENGTH_LONG).show();
             }
-
+            
          }
       }
    }
