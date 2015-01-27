@@ -16,6 +16,9 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.database.Cursor;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -35,7 +38,7 @@ import uk.ac.aber.cs221.util.Util;
  * @author was4
  */
 public class RecordingManager extends Activity {
-   
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       Util.setupActionBar(this);
@@ -45,21 +48,21 @@ public class RecordingManager extends Activity {
       setupList();
       setupOnClickListeners();
    }
-   
+
    /**
     * Sets up the list of Recordings using a {@link RecordingManagerListAdapter}
     */
    private void setupList() {
       Cursor cursor = RecordingStorage.getInstance(this).getCursor();
-      
+
       ListView listView = (ListView) findViewById(R.id.rmgr_list);
       listView.setAdapter(new RecordingManagerListAdapter(this, cursor, true));
-      
+
       // DEBUG
       // String message = "Cursor contains " + cursor.getCount() + " rows";
       // Toast.makeText(this, message, Toast.LENGTH_LONG).show();
    }
-   
+
    /**
     * Reloads the data in the list by simply getting a new Cursor
     */
@@ -72,7 +75,7 @@ public class RecordingManager extends Activity {
        */
       adapter.changeCursor(RecordingStorage.getInstance(this).getCursor());
    }
-   
+
    /**
     * Method to be called when a row is selected - open the Recording
     * corresponding to the row
@@ -85,7 +88,7 @@ public class RecordingManager extends Activity {
       intent.putExtra("id", (Long) selected.getTag());
       startActivity(intent);
    }
-   
+
    /**
     * Sets up the delete button to delete rows that have their checkboxes
     * checked
@@ -101,7 +104,7 @@ public class RecordingManager extends Activity {
                         // delete recording
                         RecordingStorage.getInstance(RecordingManager.this)
                               .delete((Long) vg.getTag());
-                        
+
                         // uncheck old checkbox - necessary because adapter uses
                         // view recycling
                         CheckBox checkBox = (CheckBox) vg
@@ -112,7 +115,7 @@ public class RecordingManager extends Activity {
                }
             });
    }
-   
+
    /**
     * @return A list of all rows that have been ticked
     */
@@ -129,25 +132,25 @@ public class RecordingManager extends Activity {
       }
       return list;
    }
-   
+
    /**
     * Sets up the upload button handler
     */
    private void setUpOnClickServer() {
       Button syncButton = (Button) findViewById(R.id.rmgr_syncButton);
-      
+
       syncButton.setOnClickListener(new OnClickListener() {
          @Override
          public void onClick(View v) {
             ConnectivityManager cm = (ConnectivityManager) RecordingManager.this
                   .getSystemService(Context.CONNECTIVITY_SERVICE);
-            
+
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             boolean isConnected = activeNetwork != null
                   && activeNetwork.isConnectedOrConnecting();
-            
+
             if (isConnected) {
-               
+
                // place code to start upload of selected data here
                Toast.makeText(RecordingManager.this,
                      "Internet connection is available", Toast.LENGTH_LONG)
@@ -156,29 +159,27 @@ public class RecordingManager extends Activity {
                JSONObject j = new JSONObject();
                try {
                   j.put("name", "RecordingTest");
-                  j.put("description","We like to move it move it");
+                  j.put("description", "We like to move it move it");
                   j.put("latitude", 50.5);
                   j.put("longitude", 20.6);
-                  j.put("date","0000-00-00-00");
+                  j.put("date", "0000-00-00-00");
                   j.put("user_name", "Riott");
                   j.put("user_number", "07528875810");
                   j.put("user_email", "acid_zepplin@hotmail.co.uk");
-               }
-               catch (JSONException e) {
+               } catch (JSONException e) {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                }
                u.execute(j);
-               
-            }
-            else {
+
+            } else {
                AlertDialog.Builder alertDialog = new AlertDialog.Builder(
                      RecordingManager.this);
-               
+
                alertDialog.setTitle("Network Connection settings");
                alertDialog
                      .setMessage("No internet access. Please turn it on in settings");
-               
+
                alertDialog.setPositiveButton("Settings",
                      new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -186,17 +187,18 @@ public class RecordingManager extends Activity {
                            RecordingManager.this.startActivity(intent);
                         }
                      });
-               
+
                alertDialog.setNegativeButton("Cancel",
                      new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                            dialog.cancel();
                         }
                      });
-               
+
                alertDialog.show();
             }
          }
       });
    }
+
 }
