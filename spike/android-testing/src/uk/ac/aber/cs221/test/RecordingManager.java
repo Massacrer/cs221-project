@@ -2,6 +2,10 @@ package uk.ac.aber.cs221.test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,6 +25,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import uk.ac.aber.cs221.storage.RecordingStorage;
+import uk.ac.aber.cs221.upload.Uploader;
 import uk.ac.aber.cs221.util.RecordingManagerListAdapter;
 import uk.ac.aber.cs221.util.Util;
 
@@ -147,6 +152,23 @@ public class RecordingManager extends Activity {
                Toast.makeText(RecordingManager.this,
                      "Internet connection is available", Toast.LENGTH_LONG)
                      .show();
+               Uploader u = new Uploader();
+               JSONObject j = new JSONObject();
+               try {
+                  j.put("name", "RecordingTest");
+                  j.put("description","We like to move it move it");
+                  j.put("latitude", 50.5);
+                  j.put("longitude", 20.6);
+                  j.put("date","0000-00-00-00");
+                  j.put("user_name", "Riott");
+                  j.put("user_number", "07528875810");
+                  j.put("user_email", "acid_zepplin@hotmail.co.uk");
+               }
+               catch (JSONException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+               }
+               u.execute(j);
                
             }
             else {
