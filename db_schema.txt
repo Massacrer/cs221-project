@@ -1,0 +1,59 @@
+SET NAMES utf8;
+SET foreign_key_checks = 0;
+SET time_zone = '+00:00';
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+ 
+DROP TABLE IF EXISTS `Plants`;
+CREATE TABLE `Plants` (
+  `SpeciesID` int(11) NOT NULL AUTO_INCREMENT,
+  `Species` varchar(82) NOT NULL,
+  `Authority` varchar(51) DEFAULT NULL,
+  `Common_Name` varchar(33) DEFAULT NULL,
+  PRIMARY KEY (`SpeciesID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+ 
+DROP TABLE IF EXISTS `Reserve`;
+CREATE TABLE `Reserve` (
+  `reserveId` int(11) NOT NULL AUTO_INCREMENT,
+  `reserveName` varchar(80) NOT NULL,
+  `reserveLocationLat` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `reserveDatetimeCreation` datetime NOT NULL,
+  `reserveDescription` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `reservehidden` bit(1) NOT NULL DEFAULT b'0',
+  `reserveUserid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`reserveId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+ 
+DROP TABLE IF EXISTS `Species`;
+CREATE TABLE `Species` (
+  `SpeciesId` int(11) NOT NULL AUTO_INCREMENT,
+  `SpeciesName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SpeciesDafor` char(1) NOT NULL,
+  `SpeciesDescription` text NOT NULL,
+  `SpeciesLocationLat` varchar(60) NOT NULL,
+  `SpeciesLocationLng` varchar(60) NOT NULL,
+  `SpeciesTimeDate` datetime NOT NULL,
+  `SpeciesHidden` bit(1) NOT NULL DEFAULT b'0',
+  `ReserveId` int(11) NOT NULL,
+  `SpeciesPicUrlIndvidual` varchar(120) NOT NULL,
+  `SpeciesPicUrlArea` varchar(120) NOT NULL,
+  PRIMARY KEY (`SpeciesId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+ 
+DROP TABLE IF EXISTS `User`;
+CREATE TABLE `User` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Phone` varchar(11) NOT NULL,
+  `Surname` varchar(255) DEFAULT NULL,
+  `Forename` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `hidden` bit(1) NOT NULL,
+  `Email` varchar(250) NOT NULL,
+  `Username` varchar(12) DEFAULT NULL,
+  `AuthLevel` int(11) DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Email` (`Email`),
+  UNIQUE KEY `Username` (`Username`)
