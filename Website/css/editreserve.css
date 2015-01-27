@@ -23,4 +23,7 @@ td {
 	border: 1px solid black;
 }
 
- 
+ #message_after_submit{
+	color: #DF0101;
+	font-weight: bold;
+}

@@ -14,6 +14,7 @@ This page is redirected to from the add reserve page.
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<link rel="stylesheet" type="text/css" href="css/editreserve.css" />
 				<!-- <![endif]-->
+		<script type="text/javascript" src="js/reserve&speciesValidation.js"></script>
 	</head>
 	<!-- END HEAD -->
 	
@@ -86,18 +87,25 @@ This page is redirected to from the add reserve page.
 
 				<div class="row">
 					<div class="col-12">
-						<form name="speciesedit" method="POST">
+						<form name="speciesedit" method="POST" onsubmit="return checkValidation();" >
 							<input type="hidden" value="<?php echo $_GET['editid']; ?>" name="reserve"/>
 							<table>
+							<td colspan="3">
+									<!-- RETURN FIELD -->
+									<div id="message_after_submit">
+										&nbsp;
+									</div>
+									<!-- END OF RETURN FIELD -->
+								</td>
 								<tr>
 									<td>Name</td>
 									<td>:</td>
-									<td colspan="2"><input type="text" placeholder="Name of Species"  name="name" /></td>
+									<td colspan="2"><input type="text" placeholder="Name of Species"  name="name" id="name" required /></td>
 								</tr>
 								<tr>
 									<td>Time (yyyy-mm-dd hh:mm:ss)</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Time"  name="time" /></td>
+									<td><input type="text" placeholder="Time"  name="time" id="time" title='Example 2015-01-27 14:06:85' required /></td>
 									<td>DAFOR:
 										<select  name="dafor">
 										   <option value="D">D</option>
@@ -111,8 +119,8 @@ This page is redirected to from the add reserve page.
 								<tr>
 									<td>Location</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Latitude"  name="lat" /></td>
-									<td><input type="text" placeholder="Longitude" name="lng" /></td>
+									<td><input type="text" placeholder="Latitude"  name="lat" id="lat" required /></td>
+									<td><input type="text" placeholder="Longitude" name="lng" id="lng" required /></td>
 								</tr>
 								<tr>
 									<td>Image of Area</td>
@@ -134,6 +142,7 @@ This page is redirected to from the add reserve page.
 								<tr>
 									<td colspan="4"><input type="submit" name="add_new" value="Add new species" /></td>
 								</tr>
+								
 							</table>
 						</form>
 						<hr />
