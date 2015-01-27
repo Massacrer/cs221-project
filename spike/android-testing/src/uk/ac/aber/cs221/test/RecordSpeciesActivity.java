@@ -137,6 +137,7 @@ public class RecordSpeciesActivity extends Activity {
             .setOnClickListener(new OnClickListener() {
                @Override
                public void onClick(View v) {
+                  isEdited = true;
                   storeDetails();
                   SpeciesStorage.getInstance(RecordSpeciesActivity.this).store(
                         species);
