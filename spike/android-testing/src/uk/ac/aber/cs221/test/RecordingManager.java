@@ -28,6 +28,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import uk.ac.aber.cs221.storage.RecordingStorage;
+import uk.ac.aber.cs221.upload.StorageInterface;
 import uk.ac.aber.cs221.upload.Uploader;
 import uk.ac.aber.cs221.util.RecordingManagerListAdapter;
 import uk.ac.aber.cs221.util.Util;
@@ -110,6 +111,7 @@ public class RecordingManager extends Activity {
                         CheckBox checkBox = (CheckBox) vg
                               .findViewById(R.id.rmgr_syncCheck);
                         checkBox.setChecked(false);
+                        refreshList();
                      }
                   }
                }
@@ -170,9 +172,15 @@ public class RecordingManager extends Activity {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                }
-               u.execute(j);
-
-            } else {
+               
+               List<ViewGroup> checkedRows = getSelectedRows();
+               for (ViewGroup row : checkedRows) {
+                  JSONObject data = new StorageInterface().getRecording(
+                        RecordingManager.this, (Long) row.getTag());
+                  u.execute(data/* j */);
+               }
+            }
+            else {
                AlertDialog.Builder alertDialog = new AlertDialog.Builder(
                      RecordingManager.this);
 
