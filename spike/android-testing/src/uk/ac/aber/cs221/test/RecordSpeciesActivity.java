@@ -1,5 +1,8 @@
 package uk.ac.aber.cs221.test;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +30,8 @@ import uk.ac.aber.cs221.util.*;
 public class RecordSpeciesActivity extends Activity {
    private GpsLocator gps;
    private Species species;
+   
+   double latitude,longitude;
    int REQUEST_CODE = 1;
 
    private boolean isEdited = false;
@@ -81,6 +86,8 @@ public class RecordSpeciesActivity extends Activity {
     * extras - recordingId or speciesId. If neither are present, an exception is
     * thrown, as it is an error to attempt to edit the null species
     */
+   
+   
 
    private void setupSpecies() {
       SpeciesStorage storage = SpeciesStorage.getInstance(this);
@@ -154,6 +161,28 @@ public class RecordSpeciesActivity extends Activity {
                   RecordSpeciesActivity.this.finish();
                }
             });
+
+      ((Button) findViewById(R.id.rec_sp_GPS))
+            .setOnClickListener(new OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  gps = new GpsLocator(RecordSpeciesActivity.this);
+                  if (gps.canGetLocation()) {
+                     latitude = gps.getLatitude();
+                     longitude = gps.getLongitude();
+
+                     Toast.makeText(
+                           RecordSpeciesActivity.this,
+                           "your Latitude is : " + latitude
+                                 + "\nYour Longitude is : " + longitude,
+                           Toast.LENGTH_LONG).show();
+                  
+                  } else {
+                     gps.showSettingsAlert();
+                  }
+
+               }
+            });
    }
 
    /**
@@ -161,25 +190,19 @@ public class RecordSpeciesActivity extends Activity {
     */
    private void storeDetails() {
       // TODO: fill in every field of this.species from the ui data here
-
-      gps = new GpsLocator(RecordSpeciesActivity.this);
-      if (gps.canGetLocation()) {
-         double latitude = gps.getLatitude();
-         double longitude = gps.getLongitude();
-
-         // TODO: remove this call for prod
-         Toast.makeText(
-               RecordSpeciesActivity.this,
-               "your Latitude is : " + latitude + "\nYour Longitude is : "
-                     + longitude, Toast.LENGTH_LONG).show();
-         Location temp = new Location("RPSRrec");
-         temp.setLatitude(latitude);
-         temp.setLongitude(longitude);
-         species.loc = temp;
-      } else {
-         gps.showSettingsAlert();
-      }
-
+      
+      Location temp = new Location("RPSRrec");
+      temp.setLatitude(latitude);
+      temp.setLongitude(longitude);
+      
+      Calendar calendar = Calendar.getInstance();
+     
+      
+      
+      //imagefile 1 and 2 set in ActivityResult
+      
+      species.date =  calendar.getTime();
+      species.loc = temp;
       AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
       species.name = (nameField.getText().toString());
       TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);

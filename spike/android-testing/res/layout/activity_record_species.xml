@@ -14,7 +14,7 @@
         <AutoCompleteTextView
             android:id="@+id/rec_sp_SpName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:hint="Species Name"
@@ -24,7 +24,7 @@
         <Button
             android:id="@+id/rec_sp_addButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="+" />
 
@@ -34,16 +34,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/imageView1"
+        <Button
+            android:id="@+id/rec_sp_GPS"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/abc_ic_clear_normal" />
+            android:layout_height="match_parent"
+            android:text="Set GPS" />
 
         <Spinner
             android:id="@+id/abundanceSpinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="right"
             android:gravity="right" />
 
@@ -57,14 +58,14 @@
         <Button
             android:id="@+id/rec_sp_ScenePic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Scene Picture" />
 
         <Button
             android:id="@+id/ma_ContinueButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Specimen Picture" />
 
@@ -91,7 +92,7 @@
             android:id="@+id/rec_sp_SaveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save" />
+            android:text=" Save " />
 
         <Button
             android:id="@+id/rec_sp_delete"
