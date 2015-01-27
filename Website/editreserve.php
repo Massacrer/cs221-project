@@ -103,7 +103,7 @@ This page is redirected to from the add reserve page.
 									<td colspan="2"><input type="text" placeholder="Name of Species"  name="name" id="name" required /></td>
 								</tr>
 								<tr>
-									<td>Time</td>
+									<td>Time (yyyy-mm-dd hh:mm:ss)</td>
 									<td>:</td>
 									<td><input type="text" placeholder="Time"  name="time" id="time" title='Example 2015-01-27 14:06:85' required /></td>
 									<td>DAFOR:
