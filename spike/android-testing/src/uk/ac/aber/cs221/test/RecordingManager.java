@@ -172,10 +172,11 @@ public class RecordingManager extends Activity {
                }
                
                List<ViewGroup> checkedRows = getSelectedRows();
-               JSONObject data = new StorageInterface().getRecording(
-                     RecordingManager.this, (Long) checkedRows.get(0).getTag());
-               u.execute(data/* j */);
-               
+               for (ViewGroup row : checkedRows) {
+                  JSONObject data = new StorageInterface().getRecording(
+                        RecordingManager.this, (Long) row.getTag());
+                  u.execute(data/* j */);
+               }
             }
             else {
                AlertDialog.Builder alertDialog = new AlertDialog.Builder(

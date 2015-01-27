@@ -20,6 +20,11 @@ import static org.json.JSONObject.quote;
  * @author was4
  */
 public class StorageInterface {
+   
+   private static String quote(String s) {
+      return s;
+   }
+   
    public JSONObject getRecording(Context context, long id) {
       Recording recording = RecordingStorage.getInstance(context).get(id);
       JSONObject values = new JSONObject();
@@ -58,8 +63,8 @@ public class StorageInterface {
                   quote(Storage.dateTimeString(species.date)));
             speciesObject.put("name", quote(species.name));
             speciesObject.put("comment", quote(species.comment));
-            speciesObject.put("lat", species.loc.getLatitude());
-            speciesObject.put("lon", species.loc.getLongitude());
+            speciesObject.put("latitude", species.loc.getLatitude());
+            speciesObject.put("longitude", species.loc.getLongitude());
             // handle image file upload here
             
             speciesArray.put(speciesObject);
