@@ -42,7 +42,7 @@ This page is redirected to from the add reserve page.
 
 				<div class="row">
 					<div class="col-12">
-						<a href="">Edit Reserve</a>
+						<a href="reservelist.php">Reserve List</a> -> <a href="specieslist.php?id=<?php echo $_GET['editid']; ?>">Species List</a> -> <a href="">Edit Reserve</a>
 						<hr />
 					</div>
 				</div>

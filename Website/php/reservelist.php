@@ -6,20 +6,24 @@
 		
 		$where = "";
 		
+		//Checks if the user exists and then goes to there user page
 		if(isset($_GET['user'])  && strlen($_GET['user']) > 0){  
 			header('Location: reservelist.php?name=' . getidfromname(mysqli_real_escape_string($con, $_GET['user'])));  
 		}		
+		//Checks for a place and then adds to query
 		if(isset($_GET['place']) && strlen($_GET['place']) > 1){  
 			$where = $where . " && reserveLocationLat='" . mysqli_real_escape_string($con, $_GET['place']) . "'";  
 		}
+		//Checks if a date has been specified and adds to query
 		if(isset($_GET['frommonth']) && strlen($_GET['frommonth']) > 1 && isset($_GET['fromday'] ) && strlen($_GET['fromday']) > 1 && isset($_GET['fromyear']) && strlen($_GET['fromyear']) > 1){
 			//yyyy-mm-dd hh:mm:ss
 			$where = $where . " && reserveDatetimeCreation LIKE '" . mysqli_real_escape_string($con, $_GET['fromyear']) . "-" . mysqli_real_escape_string($con, $_GET['frommonth']) . "-" . mysqli_real_escape_string($con, $_GET['fromday']) . "%'"; 
 		}	
+		//For just getting the values of one reserve on the species list page
 		if(isset($_GET['id']) && strlen($_GET['id']) > 0){
 			$where =" && reserveId = '" . mysqli_real_escape_string($con, $_GET['id']) . "'"; 
 		}
-		
+		//This would mean on a users page
 		if(isset($_GET['name'])){
 			$name = mysqli_real_escape_string($con, $_GET['name']);
 			$where = $where . " && reserveUserid = '" . $name . "'";		
@@ -31,6 +35,7 @@
 			echo "Error: " . mysqli_error($con);
 		}
 			
+			//echos out all the html conatining the reserves
 		while ($row=mysqli_fetch_row($result))
 		{
 			?>
@@ -76,6 +81,21 @@
 		}
 		// Free result set
 		mysqli_free_result($result);
-		closedatabase();
+	}
+	
+	//echo the users basic info (FR2)
+	function usersdetails(){
+		$con = opendatabase();
+		$name = mysqli_real_escape_string($con, $_GET['name']);
+		$query = "SELECT * FROM User WHERE ID = '" . $name . "'";
+
+		if(!$result = mysqli_query($con, $query)){
+			echo "Error: Unknown User.";
+		}
+			
+		$row=mysqli_fetch_row($result);
+		
+		echo "<br />Name: " . $row['3'] . " " . $row['2'] . "&nbsp;&nbsp;|&nbsp;&nbsp;Phone: " . $row['1'] . "&nbsp;&nbsp;|&nbsp;&nbsp;Email: " . $row['7'];
+		
 	}
 ?>

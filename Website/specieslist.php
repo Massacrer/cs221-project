@@ -51,7 +51,7 @@ This file is part of the main 3 homepages of the website
 				<div class="row">
 					<div class="col-12">
 						<hr />
-						<p><span class="heading">Species List</span> 
+						<p><span class="heading">Reserve Details</span> 
 						
 						<?php 
 						include_once('php/editreserve.php');
@@ -67,7 +67,7 @@ This file is part of the main 3 homepages of the website
 						<?php if(isset($_GET['id'])){
 							outputtable();?>
 							<hr />
-							<p class="heading">The actual plants</p>
+							<p class="heading">The Species</p>
 							<?php 
 							outputspeciestable(); 
 						}

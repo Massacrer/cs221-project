@@ -1,6 +1,6 @@
 <!-- #
 Author: Niall
-This form checks that they are logged in.
+This form checks that they are logged in, else will kick them out.
  -->
 <?php
 	

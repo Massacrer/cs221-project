@@ -84,6 +84,7 @@ function logtheuserin(){
 	
 }
 
+//Outputs the login message to the user
 function loginmessage() {
 /**/
 	if(isset($_GET['error'])){

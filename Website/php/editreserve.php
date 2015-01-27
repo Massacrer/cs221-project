@@ -2,8 +2,10 @@
 
 include_once('php/dbconnect.php');
 
+//This shows the reserves
 function loadreserve(){
 
+	//connect to the database, return the values
 	$con = opendatabase();
 	$id =  mysqli_real_escape_string($con, $id);
 	$query = "SELECT * FROM Reserve WHERE reserveId = '" . $_GET['editid'] . "' && reservehidden = '0'"; 
@@ -18,6 +20,7 @@ function loadreserve(){
 	$lng = $row['3'];
 	$desc = $row['4'];
 
+		//Outputs the html data form
 ?>
 	<form name="reserveedit" action="" method="POST">
 			<input type="hidden" value="<?php echo $_GET['editid']; ?>"/>
@@ -54,16 +57,23 @@ function loadreserve(){
 
 }
 
-
+// Here it outputs the species in a reserve for editing
 function loadspecies(){
+
+	//checks on a created reserve
+	if(!isset($_GET['editid'])){echo "No species yet.<hr>"; return;}
+	
+	//connect to the database
 	$con = opendatabase();
 	$id =  mysqli_real_escape_string($con, $id);
 	$query = "SELECT * FROM Species WHERE ReserveId = '" . $_GET['editid'] . "' && SpeciesHidden = '0'"; 
 	
 	$result = mysqli_query($con, $query);
 
+	//check there are some rows made
 	if(mysqli_num_rows($result) == 0){echo "No species yet.<hr />"; return;}
 
+	//loop through each species creating a form for each one
 	while($row=mysqli_fetch_row($result)){
 
 		$name = $row['1'];
@@ -130,6 +140,7 @@ function loadspecies(){
 	}
 }
 
+//Used to check that the user can edit that reserve
 function usersreservedata($id){
 	$con = opendatabase();
 	$id =  mysqli_real_escape_string($con, $id);
@@ -139,6 +150,7 @@ function usersreservedata($id){
 
 	$row=mysqli_fetch_row($result);
 
+	//if the ids are the same or an admin
 	if($_SESSION['user'] == $row['0'] || $_SESSION['auth'] > 1){
 		return true;
 	}else{
@@ -148,23 +160,28 @@ function usersreservedata($id){
 
 /* ALL THE UPDATING AND CHECKING DOWN HERE */
 
+//Checks if a reserve has been submitted for editing/creation
 if(isset($_POST['submit_reserve'])){
 	$con = opendatabase();		
 	$id =  mysqli_real_escape_string($con, $_GET['editid']);
+	//If editid is not there they must be creating a new reserve
 	if(!isset($_GET['editid'])){
+		//create a new reserve
 		$query = "INSERT INTO Reserve (reserveUserid, reservehidden) VALUES (" . $_SESSION['user'] .", 0)";
 		if (mysqli_query($con, $query)) {
 		echo "New record created successfully";
-		
+		// set id to the new, for the following update
 		$id = mysqli_insert_id($con);
 		} else {
 		    echo "Error: " . mysqli_error($con);
 			die();
 		}
 	}else{
+		//unable to modify this reserve
 		if(!usersreservedata($id)){die ("Error with permissions.");}
 	}
 
+	// get all the values and update the table
 	$name = mysqli_real_escape_string($con, $_POST['name']);
 	$time = mysqli_real_escape_string($con, $_POST['time']);
 	$lat = mysqli_real_escape_string($con, $_POST['lat']);
@@ -181,6 +198,7 @@ if(isset($_POST['submit_reserve'])){
 	}
 }
 
+//for if someone deletes a reserve, then set hidden to 1
 if(isset($_POST['delete_reserve'])){
 
 	$con = opendatabase();
@@ -200,11 +218,13 @@ if(isset($_POST['delete_reserve'])){
 
 }
 
+//to edit a species
 if(isset($_POST['submit_species'])){
 	$con = opendatabase();		
 	$id =  mysqli_real_escape_string($con, $_GET['editid']);
 	if(!usersreservedata($id)){die ("Error with permissions.");}
 	
+	//get all the values and update the database
 	if(isset($_GET['editid'])){
 		$name = mysqli_real_escape_string($con, $_POST['name']);
 		$time = mysqli_real_escape_string($con, $_POST['time']);
@@ -231,14 +251,15 @@ if(isset($_POST['submit_species'])){
 
 }	
 
+//deletes a species
 if(isset($_POST['delete_species'])){
 	$con = opendatabase();
 	$id =  mysqli_real_escape_string($con, $_GET['editid']);
-
+	//checks the user can delete
 	if(!usersreservedata($id)){die ("Error with permissions.");}
 
 	$species = mysqli_real_escape_string($con, $_POST['species']);
-
+	//sets the hidden value to one effectively removing it
 	$query = "UPDATE Species SET SpeciesHidden='1' WHERE SpeciesId='" . $species ."' && ReserveId='" . $id . "'"; 
 
 	if(mysqli_query($con, $query)){
@@ -251,6 +272,7 @@ if(isset($_POST['delete_species'])){
 
 }
 
+//adds a new species
 if(isset($_POST['add_new'])){
 	$con = opendatabase();		
 	$id =  mysqli_real_escape_string($con, $_GET['editid']);
@@ -265,7 +287,8 @@ if(isset($_POST['add_new'])){
 		$imageplant = mysqli_real_escape_string($con, $_POST['imageplant']);
 		$reserve  = mysqli_real_escape_string($con, $_POST['reserve']);
 		$query = "INSERT INTO Species (SpeciesName, SpeciesDafor, SpeciesDescription, SpeciesLocationLat, SpeciesLocationLng, SpeciesTimeDate, ReserveId, SpeciesPicUrlIndvidual, SpeciesPicUrlArea ) VALUES ('".$name."', '".$dafor."', '".$desc."', '".$lat."', '".$lng."', '".$time."', '".$reserve."', '".$imageplant."', '".$imagearea."')";
-
+		
+		//query to add new species
 		if (mysqli_query($con, $query)) {
 			echo "New record created successfully";
 			$id = mysqli_insert_id($con);
@@ -280,9 +303,5 @@ if(isset($_POST['add_new'])){
 	}
 
 }
-
-
-
-
 
 ?>

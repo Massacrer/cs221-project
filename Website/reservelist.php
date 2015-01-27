@@ -50,27 +50,26 @@ This file is part of the main 3 homepages of the website
 				</div>
 				<div class="row">
 					<div class="col-12 mainheading center">
-						<p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves";} ?></p>
+						<p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves"; usersdetails();} ?></p>
 					</div>
 				</div>
 				<div class="row">
 					<!-- EDIT RESERVE FORM -->
-					<form method="GET" onsubmit="">
-						
-							<div class="col-12 center">
-								OS Ref: 
-								<input type="text" placeholder="Grid Reference" name="place" />
-								&nbsp;
-								Date: 
-								<input type="text" placeholder="dd" name="fromday" class="resized" />
-								<input type="text" placeholder="mm" name="frommonth" class="resized" />
-								<input type="text" placeholder="yyyy" name="fromyear" class="resized" />
-								&nbsp;
-								User:
-								<input type="text" placeholder="A username" name="user" />
-								<input type="submit" />
-							</div>
-					</form>
+					<div class="col-12 center">
+						<form method="GET" onsubmit="">
+							OS Ref: 
+							<input type="text" placeholder="Grid Reference" name="place" />
+							&nbsp;
+							Date: 
+							<input type="text" placeholder="dd" name="fromday" class="resized" />
+							<input type="text" placeholder="mm" name="frommonth" class="resized" />
+							<input type="text" placeholder="yyyy" name="fromyear" class="resized" />
+							&nbsp;
+							User:
+							<input type="text" placeholder="A username" name="user" />
+							<input type="submit" />
+						</form>
+					</div>
 					<!-- END EDIT RESERVE FORM -->
 				</div>
 				<div class="row results">
