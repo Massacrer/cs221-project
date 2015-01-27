@@ -45,7 +45,6 @@ It contains the LOGIN form
 								<td colspan="3" class="heading">LOG IN</td>
 								<td rowspan="4" class="align-fix"><img src="res/logo.png" /></td>
 							</tr>
-							</tr>
 							
 							<tr>
 								<td colspan="3">
