@@ -1,3 +1,9 @@
+/*
+Author - Himalya Singh
+
+This script is to check the values entered in add species. 
+*/
+
 function checkValidation() {
 	var returnVal = true;
 
