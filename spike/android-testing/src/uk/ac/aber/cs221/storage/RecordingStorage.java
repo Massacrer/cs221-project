@@ -6,16 +6,36 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 
+/**
+ * @author was4
+ * 
+ *         Implementation of Storage that deals with Recordings. Contains logic
+ *         to construct instances from the database, and store them back
+ */
 public class RecordingStorage extends Storage<Recording> {
    private static RecordingStorage instance;
    public static final String table = "recordings";
    private Storage.DatabaseHelper database;
    
-   RecordingStorage(Context context) {
+   /**
+    * Private constructor to enforce use of factory method for singleton pattern
+    * 
+    * @param context
+    *           Context to use for database access, required by
+    *           {@link DatabaseHelper}
+    */
+   private RecordingStorage(Context context) {
       instance = this;
       database = new Storage.DatabaseHelper(context);
    }
    
+   /**
+    * Gets the singleton instance of this class
+    * 
+    * @param context
+    *           The {@link Context} to use to enable database access
+    * @return The instance of this class
+    */
    public static RecordingStorage getInstance(Context context) {
       if (instance == null) {
          instance = new RecordingStorage(context);
@@ -23,6 +43,9 @@ public class RecordingStorage extends Storage<Recording> {
       return instance;
    }
    
+   /**
+    * @return A {@link Cursor} containing all Recordings in the database table
+    */
    public Cursor getCursor() {
       SQLiteDatabase connection = database.getReadableDatabase();
       Cursor cursor = connection.query(table, null, null, null, null, null,
@@ -98,16 +121,5 @@ public class RecordingStorage extends Storage<Recording> {
    @Override
    public void delete(long id) {
       database.getWritableDatabase().delete(table, "_id = " + id, null);
-   }
-   
-   public long getLastRecordingId() {
-      Cursor cursor = database.getReadableDatabase().rawQuery(
-            "SELECT _id FROM " + table + " ORDER BY date DESC LIMIT 1", null);
-      if (cursor.moveToFirst()) {
-         return cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-      }
-      else {
-         return 0;
-      }
    }
 }

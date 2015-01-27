@@ -13,17 +13,23 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import uk.ac.aber.cs221.storage.*;
 import uk.ac.aber.cs221.util.*;
 
+/**
+ * Handles the Record Species activity, dealing with a single species
+ * 
+ * @author was4
+ */
 public class RecordSpeciesActivity extends Activity {
    private GpsLocator gps;
    private Species species;
    int REQUEST_CODE = 1;
+
+   private boolean isEdited = false;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,13 @@ public class RecordSpeciesActivity extends Activity {
    @Override
    protected void onPause() {
       super.onPause();
-      SpeciesStorage.getInstance(this).store(species);
+      // only store on save
+      // SpeciesStorage.getInstance(this).store(species);
+
+      // prevent saving accidentally created species'
+      if (!isEdited) {
+         SpeciesStorage.getInstance(this).delete(species.id);
+      }
    }
 
    @Override
@@ -48,6 +60,10 @@ public class RecordSpeciesActivity extends Activity {
       setupFields();
    }
 
+   /**
+    * Populates the Spinner(dropdown list) with the abundance values
+    */
+
    private void setupSpinner() {
       ((Spinner) findViewById(R.id.abundanceSpinner))
             .setAdapter(new ArrayAdapter<String>(this,
@@ -55,6 +71,16 @@ public class RecordSpeciesActivity extends Activity {
                         "Dominant", "Abundant", "Frequent", "Occasional",
                         "Rare" }));
    }
+
+   /**
+    * Initialises the internal Species object to a sensible value.
+    * <p>
+    * This is slightly tricky as this activity can be called in 2 different ways
+    * - either to create a new species or to update an existing one. The cases
+    * are differentiated by the presence of one of two keys in the intent's
+    * extras - recordingId or speciesId. If neither are present, an exception is
+    * thrown, as it is an error to attempt to edit the null species
+    */
 
    private void setupSpecies() {
       SpeciesStorage storage = SpeciesStorage.getInstance(this);
@@ -66,8 +92,11 @@ public class RecordSpeciesActivity extends Activity {
          if (recordingId != 0) {
             this.species = storage.createNew();
             this.species.recordingId = recordingId;
-         } else if (speciesId != 0) {
+         }
+
+         else if (speciesId != 0) {
             this.species = storage.get(speciesId);
+            this.isEdited = true;
          } else {
             throw new RuntimeException(
                   "called RecordSpeciesActivity without ids");
@@ -76,6 +105,9 @@ public class RecordSpeciesActivity extends Activity {
       }
    }
 
+   /**
+    * Sets the UI fields to values based on those in the internal Species object
+    */
    private void setupFields() {
       ((TextView) findViewById(R.id.rec_sp_SpName)).setText(species.name);
       // work with imageView1 here
@@ -123,6 +155,9 @@ public class RecordSpeciesActivity extends Activity {
             });
    }
 
+   /**
+    * Fills the internal Species object's fields with data from the UI
+    */
    private void storeDetails() {
       // TODO: fill in every field of this.species from the ui data here
 
@@ -169,12 +204,12 @@ public class RecordSpeciesActivity extends Activity {
             Intent intent = new Intent(RecordSpeciesActivity.this,
                   PhotoPickerActivity.class);
             intent.putExtra("picture", "scene");
-            startActivity(intent);
+            startActivityForResult(intent, 1);
          }
       });
    }
-   
-   //returns scene toast if specimen isnt there, but not specimen toast
+
+   // returns scene toast if specimen isnt there, but not specimen toast
    @Override
    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
       if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
@@ -182,14 +217,14 @@ public class RecordSpeciesActivity extends Activity {
          if (picture != null) {
             if (picture == "specimen") {
                species.imageFile1 = data.getStringExtra("fileName");
-               Toast.makeText(this, "this was a species picture", Toast.LENGTH_LONG)
-               .show(); 
+               Toast.makeText(this, "this was a species picture",
+                     Toast.LENGTH_LONG).show();
             } else {
                species.imageFile2 = data.getStringExtra("fileName");
-               Toast.makeText(this, "this was a scene picture", Toast.LENGTH_LONG)
-               .show(); 
+               Toast.makeText(this, "this was a scene picture",
+                     Toast.LENGTH_LONG).show();
             }
-                    
+
          }
       }
    }

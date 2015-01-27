@@ -3,14 +3,18 @@ package uk.ac.aber.cs221.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import uk.ac.aber.cs221.util.Util;
 
+/**
+ * Essentially just sets up the onClickListener for the "start recording" button
+ * in the activity, passing the user and site details to RecordingActivity
+ * 
+ * @author was4
+ */
 public class NewRecordingActivity extends Activity {
    
    @Override
@@ -21,6 +25,10 @@ public class NewRecordingActivity extends Activity {
       this.setupOnClickListener();
    }
    
+   /**
+    * Sets up the onClickListener for the "start recording" button, passing the
+    * contents of the TextViews as extras in the Intent
+    */
    private void setupOnClickListener() {
       Button button = (Button) findViewById(R.id.nr_StartButton);
       
@@ -29,6 +37,8 @@ public class NewRecordingActivity extends Activity {
          public void onClick(View v) {
             Intent intent = new Intent(NewRecordingActivity.this,
                   RecordingActivity.class);
+            
+            // get strings from UI
             String userName = ((EditText) findViewById(R.id.nr_Uname))
                   .getText().toString();
             String siteName = ((EditText) findViewById(R.id.nr_SiteName))
@@ -40,6 +50,7 @@ public class NewRecordingActivity extends Activity {
             String siteDescription = ((EditText) findViewById(R.id.nr_siteDescription))
                   .getText().toString();
             
+            // add strings to intent
             intent.putExtra("siteName", siteName);
             intent.putExtra("siteDescription", siteDescription);
             intent.putExtra("userName", userName);

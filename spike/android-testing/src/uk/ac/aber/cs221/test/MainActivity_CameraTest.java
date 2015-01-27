@@ -31,7 +31,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-// TODO: prototype camera functionality - open system camera app, get picture
+/**
+ * This class was originally part of the spike / exploratory work in
+ * implementing camera functionality - calling the device Camera activity,
+ * getting the filename back, displaying the image etc. It is no longer included
+ * in the manifest and is not used or reachable in the app
+ * 
+ * @author was4
+ */
 
 public class MainActivity_CameraTest extends Activity {
    
@@ -56,6 +63,11 @@ public class MainActivity_CameraTest extends Activity {
             });
    }
    
+   /**
+    * Opens the device camera app to take a picture, and informs the device
+    * media storage of the new image so that it can be added to e.g. the Gallery
+    * view
+    */
    private void takePicture() {
       String now = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
       // vFile picture = new File(this.getFilesDir(), "img_" + now);
@@ -96,6 +108,10 @@ public class MainActivity_CameraTest extends Activity {
       }
    }
    
+   /**
+    * Opens the device Media Picker activity, allowing the user to select an
+    * image, whos filename is then returned to onActivityResult
+    */
    private void selectPicture() {
       Intent intent = new Intent(Intent.ACTION_PICK,
             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -137,6 +153,10 @@ public class MainActivity_CameraTest extends Activity {
       }
    }
    
+   /**
+    * Displays the bitmap image stored in currentImage in the main view,
+    * downscaling it as necessary to fit on the screen and minimise memory use
+    */
    private void displayBitmap() {
       ImageView imageView = (ImageView) findViewById(R.id.imageView1);
       imageView.setVisibility(View.VISIBLE);
