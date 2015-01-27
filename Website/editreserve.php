@@ -49,7 +49,7 @@ This page is redirected to from the add reserve page.
 
 				<div class="row">
 					<div class="col-12 ">
-						<p class="heading">Edit Reserve</p><a href="#addnew"/>(Jump to add new)</a>
+						<p class="heading">Edit Reserve</p><a href="#addnew">(Jump to add new)</a>
 					</div>
 				</div>
 
@@ -88,11 +88,11 @@ This page is redirected to from the add reserve page.
 					<div class="col-12">
 						<form name="speciesedit" method="POST">
 							<input type="hidden" value="<?php echo $_GET['editid']; ?>" name="reserve"/>
-							<table width="6">
+							<table>
 								<tr>
 									<td>Name</td>
 									<td>:</td>
-									<td colspan="4"><input type="text" placeholder="Name of Species"  name="name" /></td>
+									<td colspan="2"><input type="text" placeholder="Name of Species"  name="name" /></td>
 								</tr>
 								<tr>
 									<td>Time</td>
@@ -129,10 +129,10 @@ This page is redirected to from the add reserve page.
 									<td>:</td>
 								</tr>
 								<tr>
-									<td colspan="4"><textarea rows="4" cols="65"  name="desc" type="textarea" placeholder="Description" /></textarea></td>
+									<td colspan="4"><textarea rows="4" cols="65"  name="desc" placeholder="Description"></textarea></td>
 								</tr>
 								<tr>
-									<td colspan="4"><input type="submit" name="add_new" value="Add new species" placeholder="submit" /></textarea></td>
+									<td colspan="4"><input type="submit" name="add_new" value="Add new species" /></td>
 								</tr>
 							</table>
 						</form>

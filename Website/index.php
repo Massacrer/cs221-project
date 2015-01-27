@@ -40,10 +40,10 @@ It contains the LOGIN form
 
 					<!-- LOGIN FORM -->
 					<form method="post" onsubmit="return checkLoginPassword();">
-						<table width="4">
+						<table>
 							<tr>
 								<td colspan="3" class="heading">LOG IN</td>
-								<td rowspan="4" class="align-fix"><img src="res/logo.png" /></td>
+								<td rowspan="4" class="align-fix"><img src="res/logo.png" alt="Logo Image" /></td>
 							</tr>
 							
 							<tr>
