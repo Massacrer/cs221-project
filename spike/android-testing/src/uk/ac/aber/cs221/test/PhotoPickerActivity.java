@@ -85,11 +85,7 @@ public class PhotoPickerActivity extends Activity {
                Uri.fromFile(currentImage));
 
          Uri uri = new Uri.Builder().path(currentImage.getPath()).build();
-         // DEBUG
-         ((TextView) findViewById(R.id.pp_CameraButton))
-               .setText(uri.toString());
-         Log.i("CS221_test", uri.toString());
-
+         
          mediaScanIntent.setData(uri);
          this.sendBroadcast(mediaScanIntent);
 
