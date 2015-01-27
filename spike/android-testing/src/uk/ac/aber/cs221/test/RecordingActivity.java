@@ -65,7 +65,10 @@ public class RecordingActivity extends Activity {
       storage = RecordingStorage.getInstance(this);
       
       long id = getIntent().getExtras().getLong("id");
-      if (id == 0) {
+      recording = storage.get(id);
+      
+      // check if id references a valid recording, if not create new
+      if (recording == null) {
          recording = storage.createNew();
          
          // set recording.date to now
@@ -75,9 +78,6 @@ public class RecordingActivity extends Activity {
          recording.userEmail = getIntent().getStringExtra("userEmail");
          recording.name = getIntent().getStringExtra("siteName");
          recording.description = getIntent().getStringExtra("siteDescription");
-      }
-      else {
-         recording = storage.get(id);
       }
       
       this.getSharedPreferences("prefs", MODE_PRIVATE).edit()
