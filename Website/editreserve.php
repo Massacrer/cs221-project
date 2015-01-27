@@ -77,7 +77,6 @@ This page is redirected to from the add reserve page.
 					</div>
 				</div>
 
-
 				<div class="row">
 					<div class="col-12">
 						<p class="heading">Add New Species</p>Note: Create a new reserve first.
@@ -95,6 +94,7 @@ This page is redirected to from the add reserve page.
 									<td>:</td>
 									<td colspan="4"><input type="text" placeholder="Name of Species"  name="name" /></td>
 								</tr>
+								<tr>
 									<td>Time</td>
 									<td>:</td>
 									<td><input type="text" placeholder="Time"  name="time" /></td>
@@ -107,6 +107,7 @@ This page is redirected to from the add reserve page.
 										   <option value="R">R</option>
 										</select>
 									</td>
+								</tr>
 								<tr>
 									<td>Location</td>
 									<td>:</td>
@@ -118,9 +119,11 @@ This page is redirected to from the add reserve page.
 									<td>:</td>
 									<td colspan="2"><input type="text" name="imagearea" placeholder="Image of Area URL" size="40" /></td>
 								</tr>
+								<tr>
 									<td>Image of Indiviual Plant</td>
 									<td>:</td>
 									<td colspan="2"><input type="text" name="imageplant" placeholder="Image of Individual URL" size="40" /></td>
+								</tr>	
 								<tr>
 									<td>Description</td>
 									<td>:</td>

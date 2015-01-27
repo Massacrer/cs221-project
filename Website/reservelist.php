@@ -42,12 +42,12 @@ This file is part of the main 3 homepages of the website
 
 			<!-- MAIN SECTION -->
 			<section class="mainsection">
-			<div class="row">
-				<div class="col-12">
-					<a href=""><?php if(!isset($_GET['name'])){ echo "Reserve List"; }else{echo getnamefromid($_GET['name']) . "'s Reserve List";} ?></a>
-					<hr />
+				<div class="row">
+					<div class="col-12">
+						<a href=""><?php if(!isset($_GET['name'])){ echo "Reserve List"; }else{echo getnamefromid($_GET['name']) . "'s Reserve List";} ?></a>
+						<hr />
+					</div>
 				</div>
-			</div>
 				<div class="row">
 					<div class="col-12 mainheading center">
 						<p class="heading"><?php if(!isset($_GET['name'])){ echo "Reserves"; }else{echo getnamefromid($_GET['name']) . "'s Reserves";} ?></p>
