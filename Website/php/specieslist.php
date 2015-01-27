@@ -15,6 +15,10 @@
 		
 		$result = mysqli_query($con, $query);
 	
+		if(mysqli_num_rows($result) == 0){
+			echo "There are no species yet.";
+		}
+	
 		while ($row=mysqli_fetch_row($result))
 		{?>
 			<hr />

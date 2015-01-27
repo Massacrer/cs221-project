@@ -13,10 +13,10 @@ function loadreserve(){
 	$row=mysqli_fetch_row($result);
 
 	$name = $row['1'];
-	$time = $row['4'];
+	$time = $row['3'];
 	$lat = $row['2'];
 	$lng = $row['3'];
-	$desc = $row['5'];
+	$desc = $row['4'];
 
 ?>
 	<form name="reserveedit" action="" method="POST">
