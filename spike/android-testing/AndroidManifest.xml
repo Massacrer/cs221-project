@@ -38,8 +38,9 @@
             android:name=".NewRecordingActivity"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_new_recording"
+            android:noHistory="true"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustResize" android:noHistory="true">
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
             android:name=".RecordingActivity"
@@ -49,7 +50,6 @@
         <activity
             android:name=".RecordSpeciesActivity"
             android:label="@string/title_activity_record_species"
-            android:parentActivityName=".RecordingActivity"
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
