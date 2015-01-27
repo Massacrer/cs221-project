@@ -28,7 +28,7 @@ function loadreserve(){
 				<td><input type="text" name="name" placeholder="Name of Reserve" value="<?php echo $name; ?>" /></td>
 			</tr>
 			<tr>
-				<td>Time</td>
+				<td>Time (yyyy-mm-dd hh:mm:ss)</td>
 				<td>:</td>
 				<td><input type="text" name="time" placeholder="Time" value="<?php echo $time; ?>"/></td>
 			</tr>
