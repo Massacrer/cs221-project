@@ -58,8 +58,8 @@ This file is part of the main 3 homepages of the website
 					<form method="GET" onsubmit="">
 						
 							<div class="col-12 center">
-								Place: 
-								<input type="text" placeholder="Place Name" name="place" />
+								OS Ref: 
+								<input type="text" placeholder="Grid Reference" name="place" />
 								&nbsp;
 								Date: 
 								<input type="text" placeholder="dd" name="fromday" class="resized" />

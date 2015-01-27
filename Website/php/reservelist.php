@@ -6,11 +6,11 @@
 		
 		$where = "";
 		
-		if(isset($_GET['user'])  && strlen($_GET['user']) > 1){  
+		if(isset($_GET['user'])  && strlen($_GET['user']) > 0){  
 			header('Location: reservelist.php?name=' . getidfromname(mysqli_real_escape_string($con, $_GET['user'])));  
 		}		
 		if(isset($_GET['place']) && strlen($_GET['place']) > 1){  
-			$where = $where . " && reserveLocation LIKE '%" . mysqli_real_escape_string($con, $_GET['place']) . "%'";  
+			$where = $where . " && reserveLocationLat='" . mysqli_real_escape_string($con, $_GET['place']) . "'";  
 		}
 		if(isset($_GET['frommonth']) && strlen($_GET['frommonth']) > 1 && isset($_GET['fromday'] ) && strlen($_GET['fromday']) > 1 && isset($_GET['fromyear']) && strlen($_GET['fromyear']) > 1){
 			//yyyy-mm-dd hh:mm:ss
