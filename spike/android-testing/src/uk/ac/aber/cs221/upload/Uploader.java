@@ -44,8 +44,8 @@ public class Uploader extends AsyncTask<JSONObject, JSONObject, JSONObject> {
          String serverResponse = org.apache.http.util.EntityUtils
                .toString(response.getEntity());
          // takes the server response as json
-         jResponse = new JSONObject(serverResponse);
-         Log.i("Server Response:", jResponse.getString("msg"));
+         // jResponse = new JSONObject(serverResponse);
+         Log.i("Server Response:", serverResponse);
       }
       catch (Exception e) {
          e.printStackTrace();

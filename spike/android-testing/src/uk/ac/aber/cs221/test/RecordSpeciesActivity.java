@@ -71,10 +71,10 @@ public class RecordSpeciesActivity extends Activity {
 
    private void setupSpinner() {
       ((Spinner) findViewById(R.id.abundanceSpinner))
-            .setAdapter(new ArrayAdapter<String>(this,
-                  android.R.layout.simple_list_item_1, new String[] {
-                        "Dominant", "Abundant", "Frequent", "Occasional",
-                        "Rare" }));
+      .setAdapter(new ArrayAdapter<String>(this,
+            android.R.layout.simple_list_item_1, new String[] {
+            "Dominant", "Abundant", "Frequent", "Occasional",
+      "Rare" }));
    }
 
    /**
@@ -100,14 +100,15 @@ public class RecordSpeciesActivity extends Activity {
             this.species = storage.createNew();
             this.species.recordingId = recordingId;
          }
-
-         else if (speciesId != 0) {
-            this.species = storage.get(speciesId);
-            this.isEdited = true;
-         } else {
-            throw new RuntimeException(
-                  "called RecordSpeciesActivity without ids");
-         }
+         else
+            if (speciesId != 0) {
+               this.species = storage.get(speciesId);
+               this.isEdited = true;
+            }
+            else {
+               throw new RuntimeException(
+                     "called RecordSpeciesActivity without ids");
+            }
 
       }
    }
@@ -120,37 +121,37 @@ public class RecordSpeciesActivity extends Activity {
       // work with imageView1 here
       ((TextView) findViewById(R.id.rec_sp_Comment)).setText(species.comment);
       ((Spinner) findViewById(R.id.abundanceSpinner))
-            .setSelection(species.abundance);
+      .setSelection(species.abundance);
 
       Cursor cursor = null;
       ((AutoCompleteTextView) findViewById(R.id.rec_sp_SpName))
-            .setAdapter(new CursorAdapter(RecordSpeciesActivity.this, cursor,
-                  false) {
-               @Override
-               public View newView(Context context, Cursor cursor,
-                     ViewGroup parent) {
-                  return null;
-               }
+      .setAdapter(new CursorAdapter(RecordSpeciesActivity.this, cursor,
+            false) {
+         @Override
+         public View newView(Context context, Cursor cursor,
+               ViewGroup parent) {
+            return null;
+         }
 
-               @Override
-               public void bindView(View view, Context context, Cursor cursor) {
+         @Override
+         public void bindView(View view, Context context, Cursor cursor) {
 
-               }
-            });
+         }
+      });
    }
 
    private void setupButtons() {
       ((Button) findViewById(R.id.rec_sp_SaveButton))
-            .setOnClickListener(new OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                  isEdited = true;
-                  storeDetails();
-                  SpeciesStorage.getInstance(RecordSpeciesActivity.this).store(
-                        species);
-                  RecordSpeciesActivity.this.finish();
-               }
-            });
+      .setOnClickListener(new OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            isEdited = true;
+            storeDetails();
+            SpeciesStorage.getInstance(RecordSpeciesActivity.this).store(
+                  species);
+            RecordSpeciesActivity.this.finish();
+         }
+      });
 
       ((Button) findViewById(R.id.rec_sp_delete))
             .setOnClickListener(new OnClickListener() {
@@ -203,14 +204,28 @@ public class RecordSpeciesActivity extends Activity {
       
       species.date =  calendar.getTime();
       species.loc = temp;
+
+      String noInts = "^[a-z A-Z]+$";
+      boolean noErrors = true;
+
       AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.rec_sp_SpName);
-      species.name = (nameField.getText().toString());
+      if (!nameField.getText().toString().matches(noInts)) {
+         noErrors = false; Toast.makeText(
+               RecordSpeciesActivity.this,
+               "Please enter a valid name", Toast.LENGTH_LONG).show();
+      }
       TextView commentField = (TextView) findViewById(R.id.rec_sp_Comment);
-      species.comment = (commentField.getText().toString());
-      species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
-            .getSelectedItemPosition();
+      if (noErrors==true) {
+         species.comment = (commentField.getText().toString());
+         species.name = (nameField.getText().toString());
+         species.abundance = ((Spinner) findViewById(R.id.abundanceSpinner))
+               .getSelectedItemPosition();
+      }
    }
 
+   /**
+    * Sets up the buttons that launch the photo picker activity
+    */
    private void setupPhotoPickerButtons() {
       Button buttonScene = (Button) findViewById(R.id.rec_sp_ScenePic);
       buttonScene.setOnClickListener(new OnClickListener() {
