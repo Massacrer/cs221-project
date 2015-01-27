@@ -56,7 +56,7 @@
 								if (strlen($str) > 90){
 									$str = substr($str, 0, 90) . '...';
 								}
-								echo $str;
+								if(!isset($_GET['id'])){ echo $str; }
 							?>
 						</div>	
 						<div class="col-2 elementusername" id="personsname" >
@@ -65,12 +65,12 @@
 					</div>
 				</div>
 			</div>
-			<hr />	
+				
 				<div id="decrip_<?php echo $row['0']; ?>" class="largedescriptionholder">
 						<?php 
 							echo $row['5'];
 						?>
-				</div>			
+				</div>	<hr />		
 			<?
 		}
 		// Free result set

@@ -88,18 +88,18 @@ This page is redirected to from the add reserve page.
 				<div class="row">
 					<div class="col-12">
 						<form name="speciesedit" method="POST">
-							<input type="hidden" value="<?php echo $_GET['editid']; ?>" name="reserve"/>
+							<input type="hidden" value="<?php echo $_GET['editid']; ?>"/>
 							<table width="6">
 								<tr>
 									<td>Name</td>
 									<td>:</td>
-									<td colspan="4"><input type="text" placeholder="Name of Species"  name="name" /></td>
+									<td colspan="4"><input type="text" placeholder="Name of Species" /></td>
 								</tr>
 									<td>Time</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Time"  name="time" /></td>
+									<td><input type="text" placeholder="Time" /></td>
 									<td>DAFOR:
-										<select  name="dafor">
+										<select>
 										   <option value="D">D</option>
 										   <option value="A">A</option>
 										   <option value="F">F</option>
@@ -110,23 +110,23 @@ This page is redirected to from the add reserve page.
 								<tr>
 									<td>Location</td>
 									<td>:</td>
-									<td><input type="text" placeholder="Latitude"  name="lat" /></td>
-									<td><input type="text" placeholder="Longitude" name="lng" /></td>
+									<td><input type="text" placeholder="Latitude" /></td>
+									<td><input type="text" placeholder="Longitude" /></td>
 								</tr>
 								<tr>
 									<td>Image of Area</td>
 									<td>:</td>
-									<td colspan="2"><input type="text" name="imagearea" placeholder="Image of Area URL" size="40" /></td>
+									<td colspan="2"><input type="text" name="areaimage" placeholder="Image of Area URL" size="40" /></td>
 								</tr>
 									<td>Image of Indiviual Plant</td>
 									<td>:</td>
-									<td colspan="2"><input type="text" name="imageplant" placeholder="Image of Individual URL" size="40" /></td>
+									<td colspan="2"><input type="text" name="individualimage" placeholder="Image of Individual URL" size="40" /></td>
 								<tr>
 									<td>Description</td>
 									<td>:</td>
 								</tr>
 								<tr>
-									<td colspan="4"><textarea rows="4" cols="65"  name="desc" type="textarea" placeholder="Description" /></textarea></td>
+									<td colspan="4"><textarea rows="4" cols="65" type="textarea" placeholder="Description" /></textarea></td>
 								</tr>
 								<tr>
 									<td colspan="4"><input type="submit" name="add_new" value="Add new species" placeholder="submit" /></textarea></td>

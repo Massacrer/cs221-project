@@ -5,7 +5,7 @@
 	function outputspeciestable(){
 	
 		$con = opendatabase();
-		$query = "SELECT * FROM Species WHERE SpeciesHidden = '0'"; 
+		$query = "SELECT * FROM Species WHERE SpeciesHidden = '0' && SpeciesHidden = '0'"; 
 		
 		
 		if(isset($_GET['id'])){
@@ -17,6 +17,7 @@
 	
 		while ($row=mysqli_fetch_row($result))
 		{?>
+			<hr />
 			<div class="row">
 				<div class="col-12">
 					<div class="row">
