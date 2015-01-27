@@ -23,7 +23,7 @@
 					<div class="row">
 						<div class="col-2">
 							<!-- PUT PICTURE HERE -->
-							<img src="<?echo $row['9']; ?>" class="img-responsive">
+							<img src="<?if(strlen($row['9']) > 3){echo $row['9'];}else{echo "res/noimg.jpg";} ?>" class="img-responsive">
 							<?php// echo $row['9']; ?>
 						</div>
 						<div class="col-10">
@@ -36,7 +36,9 @@
 							<div class="row">
 								<div class="col-4">
 									<!-- GENERATED DAFOR HERE -->
-									<strong>DAFOR: </strong><?php echo $row['2']; ?>
+									<strong>DAFOR: </strong><?php echo $row['2']; ?><br />
+									<strong>Plant Image: </strong><u><?php echo "<a href=" . $row['9'] . ">Plant</a>"; ?></u><br />
+									<strong>Area Image: </strong><u><?php echo "<a href=" . $row['10'] . ">Area</a>"; ?></u>
 								</div>
 								<div class="col-4">
 									<!-- GENERATED LOCATION HERE -->
@@ -50,7 +52,7 @@
 							<div class="row">
 								<div class="col-12">
 									<!-- GENERATED DESCRIPTION HERE -->
-									<?php echo $row['3']; ?>
+									<?php  echo "Description: " . $row['3']; ?>
 								</div>
 							</div>
 						</div>

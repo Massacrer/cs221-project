@@ -88,8 +88,8 @@ function loadspecies(){
 					<td>:</td>
 					<td><input type="text" placeholder="Time" name="time" value="<?php echo $time; ?>" /></td>
 					<td>DAFOR:
-						<select>
-						   <option  name="dafor" value="<?php echo $dafor; ?>"><?php echo $dafor; ?></option>
+						<select name="dafor">
+						   <option value="<?php echo $dafor; ?>"><?php echo $dafor; ?></option>
 						   <option value="D">D</option>
 						   <option value="A">A</option>
 						   <option value="F">F</option>

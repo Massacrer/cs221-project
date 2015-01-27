@@ -22,11 +22,10 @@
 		
 		if(isset($_GET['name'])){
 			$name = mysqli_real_escape_string($con, $_GET['name']);
-			$query = $query . " && reserveUserid = '" . $name . "'";		
+			$where = $where . " && reserveUserid = '" . $name . "'";		
 		}	
 		
 		$query = "SELECT * FROM Reserve WHERE reservehidden = '0'" . $where . " ORDER BY reserveDatetimeCreation DESC"; 
-		
 		
 		if(!$result = mysqli_query($con, $query)){
 			echo "Error: " . mysqli_error($con);
