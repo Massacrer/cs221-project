@@ -6,16 +6,36 @@ import android.location.Location;
 import android.content.ContentValues;
 import android.content.Context;
 
+/**
+ * @author was4
+ * 
+ *         Implementation of Storage that deals with Recordings. Contains logic
+ *         to construct instances from the database, and store them back
+ */
 public class SpeciesStorage extends Storage<Species> {
    private static SpeciesStorage instance;
    public static final String table = "species";
    private DatabaseHelper database;
    
-   SpeciesStorage(Context context) {
+   /**
+    * Private constructor to enforce use of factory method for singleton pattern
+    * 
+    * @param context
+    *           Context to use for database access, required by
+    *           {@link DatabaseHelper}
+    */
+   private SpeciesStorage(Context context) {
       instance = this;
       database = new DatabaseHelper(context);
    }
    
+   /**
+    * Gets the singleton instance of this class
+    * 
+    * @param context
+    *           The {@link Context} to use to enable database access
+    * @return The instance of this class
+    */
    public static SpeciesStorage getInstance(Context context) {
       if (instance == null) {
          instance = new SpeciesStorage(context);
@@ -83,6 +103,13 @@ public class SpeciesStorage extends Storage<Species> {
       return s;// get(id);
    }
    
+   /**
+    * Gets all species in a specific recording
+    * 
+    * @param recordingId
+    *           The id of the recording to get species for
+    * @return A {@link Cursor} containing all species in the recording
+    */
    public Cursor getByRecordingId(long recordingId) {
       SQLiteDatabase connection = database.getReadableDatabase();
       Cursor cursor = connection.rawQuery("SELECT * FROM " + table

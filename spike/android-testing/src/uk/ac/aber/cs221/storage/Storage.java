@@ -10,10 +10,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Abstract superclass of the Storage classes, defining abstract methods and
+ * some static helper methods and classes to enable easy access to the
+ * Android-provided sqlite3 implementation
+ * 
+ * @author was4
+ * 
+ * @param <T>
+ *           The type of object to store. Concrete implementations store
+ *           {@link Recording}s and {@link Species}'
+ */
 public abstract class Storage<T> {
    static final String dateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSS";
-   static final String idColumn = "_id INTEGER PRIMARY KEY AUTOINCREMENT";
-   static final String nn = "";// "NOT NULL";
    
    public abstract void store(T t);
    
@@ -23,6 +32,19 @@ public abstract class Storage<T> {
    
    public abstract void delete(long id);
    
+   // apparently a method can't be both abstract and static in java. Shame.
+   // Declaring them manually in concrete implementations it is then - was4
+   // public static abstract Storage<T> getInstance(Context context);
+   
+   /**
+    * Utility method for converting a Java Date to a String suitable for
+    * database storage
+    * 
+    * @param date
+    *           The {@link Date} to store
+    * @return The string representation of the date, created using
+    *         {@link SimpleDateFormat}
+    */
    public static String dateTimeString(Date date) {
       if (date == null) {
          return null;
@@ -30,6 +52,15 @@ public abstract class Storage<T> {
       return new SimpleDateFormat(dateTimeFormat, Locale.UK).format(date);
    }
    
+   /**
+    * Utility method for converting a Date from it's String format as stored in
+    * the database, back to a Java Date object
+    * 
+    * @param date
+    *           The String to read
+    * @return The Date that is represented by the String, or null if there is a
+    *         formatting error
+    */
    public static Date dateFromString(String date) {
       if (date == null) {
          return null;
@@ -42,17 +73,36 @@ public abstract class Storage<T> {
       }
    }
    
+   /**
+    * Class to help with creating and opening the database. See the Android
+    * sqlite3 and Storage documentation for more information
+    * 
+    * @author was4
+    */
    static class DatabaseHelper extends SQLiteOpenHelper {
-      private String recordings_create = "name TEXT " + nn
+      private static final String nn = "";// "NOT NULL"; // no longer used -
+                                          // fields are initialized to null //
+                                          // EN-US spelling used here for
+                                          // project management reasons
+      
+      // The following Strings define SQL fragments used in the following
+      // methods
+      private static final String idColumn = "_id INTEGER PRIMARY KEY AUTOINCREMENT";
+      private static final String recordings_create = "name TEXT " + nn
             + ", description TEXT " + nn
             + ", latitude REAL, longitude REAL, date TEXT " + nn
             + ", user_name TEXT " + nn + ", user_email TEXT " + nn
             + ", user_number TEXT " + nn;
-      private String species_create = "name TEXT " + nn + ", comment TEXT "
-            + nn + ", date TEXT " + nn + ", recording INTEGER " + nn
-            + ", abundance INTEGER " + nn + ", image_1 TEXT " + nn
-            + ", image_2 TEXT " + nn + ", latitude REAL, longitude REAL";
+      private static final String species_create = "name TEXT " + nn
+            + ", comment TEXT " + nn + ", date TEXT " + nn
+            + ", recording INTEGER " + nn + ", abundance INTEGER " + nn
+            + ", image_1 TEXT " + nn + ", image_2 TEXT " + nn
+            + ", latitude REAL, longitude REAL";
       
+      /**
+       * @param context
+       *           The Context to access the database of
+       */
       public DatabaseHelper(Context context) {
          super(context, "database", null, 1);
       }
