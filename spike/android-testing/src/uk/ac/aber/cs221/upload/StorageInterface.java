@@ -1,5 +1,9 @@
 package uk.ac.aber.cs221.upload;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +29,11 @@ public class StorageInterface {
       return s;
    }
    
+   public static String serverDateString(Date date) {
+      String format = "yyyy-MM-dd HH:mm:ss";
+      return new SimpleDateFormat(format, Locale.UK).format(date);
+   }
+   
    public JSONObject getRecording(Context context, long id) {
       Recording recording = RecordingStorage.getInstance(context).get(id);
       JSONObject values = new JSONObject();
@@ -39,10 +48,8 @@ public class StorageInterface {
                "longitude",
                recording.loc == null ? "" : JSONObject
                      .numberToString(recording.loc.getLongitude()));
-         values.put(
-               "date",
-               recording.date == null ? null : Storage
-                     .dateTimeString(recording.date));
+         values.put("date", recording.date == null ? null
+               : serverDateString(recording.date));
          
          values.put("user_name", quote(recording.userName));
          values.put("user_number", quote(recording.userNumber));
