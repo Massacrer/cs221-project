@@ -1,10 +1,10 @@
 <?php 
-
+include_once('php/dbconnect.php');
 
 if( isset($_POST["json"]) ) {
      $data = json_decode($_POST["json"], TRUE);
      //$data->msg = strrev($data->msg);
-	 $con=mysqli_connect("db.dcs.aber.ac.uk", "amdcrj10", "group5db1337", "csgp05_14_15");
+	 $con=opendatabase();
    //$data = json_decode($data);  
 	 $data = json_encode($data);
 	 //echo $data;
